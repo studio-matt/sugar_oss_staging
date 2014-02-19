@@ -1,0 +1,153 @@
+body {
+    font-family: helvetica, arial, sans-serif;
+    font-size: 13px;
+    width: 700px;
+    margin: 0;
+    padding: 0;
+}
+p.company {
+    display: block;
+    height: 60px;
+    text-align: right;
+    font-size: 16px;
+    font-style: italic;
+    margin-top: 0;
+}
+p.company img {
+    float: left;
+    position: relative;
+    left: -16px;
+}
+p.date {
+    font-weight: bold;
+}
+p.title {
+    font-weight: bold;
+}
+p.title {
+    font-weight: bold;
+}
+
+span.red {
+    color: red;
+}
+
+/* MED TABLE ---------------------------------------------------------------- */
+
+#medtable {
+}
+#medtable p.title {
+    float: right;
+    margin: 0 280px 0 0;
+}
+#medtable p.patient {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+#medtable p.description {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+}
+#medtable table {
+    font-size: 11px;
+    border-collapse: collapse;
+}
+#medtable table tr th {
+    border-bottom: 1px solid #333;
+    padding-top: 25px;
+    text-align: center;
+}
+#medtable table tr td {
+    border: 1px solid #333;
+    font-size: 12px;
+    padding: 2px;
+    text-align: center;
+    white-space: nowrap;
+}
+#medtable table tr.supplement_header th {
+    border-bottom: 1px solid #000;
+}
+
+#medtable table tr th:nth-child(1),
+#medtable table tr td:nth-child(1) {
+    text-align: left;
+    white-space: normal;
+    width: 200px;
+}
+#medtable table tr th:nth-child(2),
+#medtable table tr th:nth-child(3),
+#medtable table tr th:nth-child(4),
+#medtable table tr td:nth-child(2),
+#medtable table tr td:nth-child(3),
+#medtable table tr td:nth-child(4) {
+    width: 50px;
+}
+#medtable table tr th:nth-child(5),
+#medtable table tr th:nth-child(6),
+#medtable table tr th:nth-child(7),
+#medtable table tr th:nth-child(8),
+#medtable table tr td:nth-child(5),
+#medtable table tr td:nth-child(6),
+#medtable table tr td:nth-child(7),
+#medtable table tr td:nth-child(8) {
+    width: 30px;
+}
+#medtable table tr th:nth-child(9),
+#medtable table tr th:nth-child(10),
+#medtable table tr td:nth-child(9),
+#medtable table tr td:nth-child(10) {
+    white-space: normal;
+    width: 84px;
+}
+/* BONE STUDY --------------------------------------------------------------- */
+
+#bonestudy {
+}
+#bonestudy ul.tests {
+    list-style: none;
+}
+#bonestudy ul.tests li {
+    list-style: none;
+    margin-bottom: 2px;
+}
+#bonestudy ul.tests li span.checkbox {
+    padding: 0 10px;
+    border-bottom: 2px solid #000;
+    text-align: center;
+    position: relative;
+}
+#bonestudy table.testing {
+    border-collapse: collapse;
+    font-size: 14px;
+}
+#bonestudy table.testing td {
+    border: 2px solid #333;
+    text-align: center;
+    line-height: 1.1em;
+}
+#bonestudy table.testing td.blank {
+    border: none;
+}
+#bonestudy table.testing td.head {
+    width: 130px;
+    vertical-align: bottom;
+}
+#bonestudy table.testing td.head span.context {
+    font-size: 9px;
+}
+#bonestudy table.testing td.level {
+    text-align: left;
+    font-weight: bold;
+    width: 120px;
+    border: none;
+}
+#bonestudy table.testing td.value {
+    font-weight: bold;
+}
+#bonestudy table.testing td.value span.borderline {
+    color: #f00;
+}
+#bonestudy p.bottom-zero {
+    margin-bottom: 0;
+}
