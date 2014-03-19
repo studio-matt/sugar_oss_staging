@@ -1,0 +1,5 @@
+<?php
+// created: 2013-04-12 19:14:21
+$mod_strings = array (
+  'LBL_COMITE_PHARMACYMEDICINE_COMITE_PHARMACYLOG_FROM_COMITE_PHARMACYMEDICINE_TITLE' => 'Pharmacy Medicine',
+);

@@ -1,0 +1,23 @@
+<?php
+ // created: 2012-08-10 17:10:09
+$layout_defs["Contacts"]["subpanel_setup"]['comite_episodicnote_contacts'] = array (
+  'order' => 100,
+  'module' => 'comite_EpisodicNote',
+  'subpanel_name' => 'default',
+  'sort_order' => 'asc',
+  'sort_by' => 'id',
+  'title_key' => 'LBL_COMITE_EPISODICNOTE_CONTACTS_FROM_COMITE_EPISODICNOTE_TITLE',
+  'get_subpanel_data' => 'comite_episodicnote_contacts',
+  'top_buttons' => 
+  array (
+    0 => 
+    array (
+      'widget_class' => 'SubPanelTopButtonQuickCreate',
+    ),
+    1 => 
+    array (
+      'widget_class' => 'SubPanelTopSelectButton',
+      'mode' => 'MultiSelect',
+    ),
+  ),
+);

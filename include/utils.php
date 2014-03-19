@@ -2979,6 +2979,7 @@ function StackTraceErrorHandler($errno, $errstr, $errfile,$errline, $errcontext)
 	$halt_script = true;
 	switch($errno){
 		case 2048: return; //depricated we have lots of these ignore them
+		case 8192: return; //depricated we have lots of these ignore them
 		case E_USER_NOTICE:
 		case E_NOTICE:
 		    if ( error_reporting() & E_NOTICE ) {

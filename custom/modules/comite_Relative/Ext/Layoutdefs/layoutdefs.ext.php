@@ -1,0 +1,28 @@
+<?php 
+ //WARNING: The contents of this file are auto-generated
+
+
+ // created: 2012-07-06 15:23:28
+$layout_defs["comite_Relative"]["subpanel_setup"]['comite_conditioninstance_comite_relative'] = array (
+  'order' => 100,
+  'module' => 'comite_ConditionInstance',
+  'subpanel_name' => 'default',
+  'sort_order' => 'asc',
+  'sort_by' => 'id',
+  'title_key' => 'LBL_COMITE_CONDITIONINSTANCE_COMITE_RELATIVE_FROM_COMITE_CONDITIONINSTANCE_TITLE',
+  'get_subpanel_data' => 'comite_conditioninstance_comite_relative',
+  'top_buttons' => 
+  array (
+    0 => 
+    array (
+      'widget_class' => 'SubPanelTopButtonQuickCreate',
+    ),
+    1 => 
+    array (
+      'widget_class' => 'SubPanelTopSelectButton',
+      'mode' => 'MultiSelect',
+    ),
+  ),
+);
+
+?>

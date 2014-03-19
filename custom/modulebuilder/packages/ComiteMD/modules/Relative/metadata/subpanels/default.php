@@ -1,0 +1,88 @@
+<?php
+$module_name='comite_Relative';
+$subpanel_layout = array (
+  'top_buttons' => 
+  array (
+    0 => 
+    array (
+      'widget_class' => 'SubPanelTopCreateButton',
+    ),
+    1 => 
+    array (
+      'widget_class' => 'SubPanelTopSelectButton',
+      'popup_module' => 'comite_Relative',
+    ),
+  ),
+  'where' => '',
+  'list_fields' => 
+  array (
+    'name' => 
+    array (
+      'vname' => 'LBL_NAME',
+      'widget_class' => 'SubPanelDetailViewLink',
+      'width' => '45%',
+      'default' => true,
+    ),
+    'relation' => 
+    array (
+      'type' => 'enum',
+      'default' => true,
+      'studio' => 'visible',
+      'vname' => 'LBL_RELATION',
+      'width' => '10%',
+    ),
+    'is_deceased' => 
+    array (
+      'type' => 'bool',
+      'default' => true,
+      'vname' => 'LBL_IS_DECEASED',
+      'width' => '10%',
+    ),
+    'date_born' => 
+    array (
+      'type' => 'varchar',
+      'vname' => 'LBL_DATE_BORN',
+      'width' => '10%',
+      'default' => true,
+    ),
+    'date_deceased' => 
+    array (
+      'type' => 'varchar',
+      'vname' => 'LBL_DATE_DECEASED',
+      'width' => '10%',
+      'default' => true,
+    ),
+    'deceased_explanation' => 
+    array (
+      'type' => 'text',
+      'studio' => 'visible',
+      'vname' => 'LBL_DECEASED_EXPLANATION',
+      'sortable' => false,
+      'width' => '10%',
+      'default' => true,
+    ),
+    'description' => 
+    array (
+      'type' => 'text',
+      'studio' => 'visible',
+      'vname' => 'LBL_DESCRIPTION',
+      'sortable' => false,
+      'width' => '10%',
+      'default' => true,
+    ),
+    'edit_button' => 
+    array (
+      'widget_class' => 'SubPanelEditButton',
+      'module' => 'comite_Relative',
+      'width' => '4%',
+      'default' => true,
+    ),
+    'remove_button' => 
+    array (
+      'widget_class' => 'SubPanelRemoveButton',
+      'module' => 'comite_Relative',
+      'width' => '5%',
+      'default' => true,
+    ),
+  ),
+);

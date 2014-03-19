@@ -1,0 +1,208 @@
+<?php
+$viewdefs ['Meetings'] = 
+array (
+  'DetailView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'form' => 
+      array (
+        'buttons' => 
+        array (
+          0 => 'EDIT',
+          1 => 'DUPLICATE',
+          2 => 'DELETE',
+          3 => 
+          array (
+            'customCode' => '{if $fields.status.value != "Held"} <input type="hidden" name="isSaveAndNew" value="false">  <input type="hidden" name="status" value="">  <input type="hidden" name="isSaveFromDetailView" value="true">  <input title="{$APP.LBL_CLOSE_AND_CREATE_BUTTON_TITLE}"   class="button"  onclick="this.form.status.value=\'Held\'; this.form.action.value=\'Save\';this.form.return_module.value=\'Meetings\';this.form.isDuplicate.value=true;this.form.isSaveAndNew.value=true;this.form.return_action.value=\'EditView\'; this.form.isDuplicate.value=true;this.form.return_id.value=\'{$fields.id.value}\';"  name="button"  value="{$APP.LBL_CLOSE_AND_CREATE_BUTTON_TITLE}"  type="submit">{/if}',
+          ),
+          4 => 
+          array (
+            'customCode' => '{if $fields.status.value != "Held"} <input type="hidden" name="isSave" value="false">  <input title="{$APP.LBL_CLOSE_BUTTON_TITLE}"  accesskey="{$APP.LBL_CLOSE_BUTTON_KEY}"  class="button"  onclick="this.form.status.value=\'Held\'; this.form.action.value=\'Save\';this.form.return_module.value=\'Meetings\';this.form.isSave.value=true;this.form.return_action.value=\'DetailView\'; this.form.return_id.value=\'{$fields.id.value}\'"  name="button1"  value="{$APP.LBL_CLOSE_BUTTON_TITLE}"  type="submit">{/if}',
+          ),
+        ),
+      ),
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'useTabs' => false,
+      'syncDetailEditViews' => true,
+    ),
+    'panels' => 
+    array (
+      'lbl_meeting_information' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'name',
+            'label' => 'LBL_SUBJECT',
+          ),
+          1 => 'status',
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'date_start',
+            'label' => 'LBL_DATE_TIME',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'duration_hours',
+            'customCode' => '{$fields.duration_hours.value}{$MOD.LBL_HOURS_ABBREV} {$fields.duration_minutes.value}{$MOD.LBL_MINSS_ABBREV} ',
+            'label' => 'LBL_DURATION',
+          ),
+          1 => 
+          array (
+            'name' => 'reminder_time',
+            'comment' => 'Specifies when a reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start',
+            'label' => 'LBL_REMINDER',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 'description',
+          1 => 
+          array (
+            'name' => 'comite_planlocation_meetings_name',
+            'label' => 'LBL_COMITE_PLANLOCATION_MEETINGS_FROM_COMITE_PLANLOCATION_TITLE',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'comite_planmisc_meetings_name',
+            'label' => 'LBL_COMITE_PLANMISC_MEETINGS_FROM_COMITE_PLANMISC_TITLE',
+          ),
+          1 => 
+          array (
+            'name' => 'comite_specialtyreferral_meetings_name',
+          ),
+        ),
+      ),
+      'lbl_editview_panel1' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'plan_type_c',
+            'studio' => 'visible',
+            'label' => 'LBL_PLAN_TYPE',
+          ),
+        ),
+      ),
+      'lbl_editview_panel2' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'specialty_type_c',
+            'studio' => 'visible',
+            'label' => 'LBL_SPECIALTY_TYPE',
+          ),
+          1 => 
+          array (
+            'name' => 'comite_specialtyreferral_meetings_name',
+          ),
+        ),
+      ),
+      'lbl_editview_panel3' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'tests_test_c',
+            'studio' => 'visible',
+            'label' => 'LBL_TESTS_TEST',
+          ),
+          1 => 
+          array (
+            'name' => 'comite_planlocation_meetings_name',
+            'label' => 'LBL_COMITE_PLANLOCATION_MEETINGS_FROM_COMITE_PLANLOCATION_TITLE',
+          ),
+        ),
+      ),
+      'lbl_editview_panel4' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'studies_study_c',
+            'studio' => 'visible',
+            'label' => 'LBL_STUDIES_STUDY',
+          ),
+        ),
+      ),
+      'lbl_editview_panel5' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'misc_type_c',
+            'studio' => 'visible',
+            'label' => 'LBL_MISC_TYPE',
+          ),
+        ),
+      ),
+      'lbl_editview_panel6' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'call_list_name_c',
+            'label' => 'LBL_CALL_LIST_NAME',
+          ),
+          1 => 
+          array (
+            'name' => 'call_list_phone_c',
+            'label' => 'LBL_CALL_LIST_PHONE',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'call_list_reason_c',
+            'studio' => 'visible',
+            'label' => 'LBL_CALL_LIST_REASON',
+          ),
+        ),
+      ),
+      'LBL_PANEL_ASSIGNMENT' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'assigned_user_name',
+            'label' => 'LBL_ASSIGNED_TO',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>

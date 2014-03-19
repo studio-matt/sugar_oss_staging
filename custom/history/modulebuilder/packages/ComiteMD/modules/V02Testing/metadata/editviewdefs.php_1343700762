@@ -1,0 +1,81 @@
+<?php
+$module_name = 'comite_V02Testing';
+$viewdefs [$module_name] = 
+array (
+  'EditView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'useTabs' => false,
+    ),
+    'panels' => 
+    array (
+      'default' => 
+      array (
+        0 => 
+        array (
+          0 => '',
+        ),
+        1 => 
+        array (
+          0 => 'name',
+        ),
+        2 => 
+        array (
+          0 => 'description',
+          1 => '',
+        ),
+      ),
+      'lbl_editview_panel1' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'v02max',
+            'label' => 'LBL_V02MAX',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'restrate',
+            'label' => 'LBL_RESTRATE',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'maxrate',
+            'label' => 'LBL_MAXRATE',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'hiit',
+            'label' => 'LBL_HIIT',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>

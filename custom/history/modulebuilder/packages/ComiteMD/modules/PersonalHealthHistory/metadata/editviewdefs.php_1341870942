@@ -1,0 +1,150 @@
+<?php
+$module_name = 'comite_PersonalHealthHistory';
+$viewdefs [$module_name] = 
+array (
+  'EditView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'useTabs' => false,
+      'syncDetailEditViews' => true,
+    ),
+    'panels' => 
+    array (
+      'default' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'comite_personalhealthhistory_contacts_name',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'sick_days',
+            'label' => 'LBL_SICK_DAYS',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'doctor_visits_within_year',
+            'label' => 'LBL_DOCTOR_VISITS_WITHIN_YEAR',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'dental_health',
+            'studio' => 'visible',
+            'label' => 'LBL_DENTAL_HEALTH',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'last_doctor_visit',
+            'label' => 'LBL_LAST_DOCTOR_VISIT',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'hospital_days',
+            'studio' => 'visible',
+            'label' => 'LBL_HOSPITAL_DAYS',
+          ),
+          1 => 
+          array (
+            'name' => 'hosptial_days_explanation',
+            'studio' => 'visible',
+            'label' => 'LBL_HOSPTIAL_DAYS_EXPLANATION',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'blood_transfusion',
+            'studio' => 'visible',
+            'label' => 'LBL_BLOOD_TRANSFUSION',
+          ),
+        ),
+        7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'trauma_history',
+            'studio' => 'visible',
+            'label' => 'LBL_TRAUMA_HISTORY',
+          ),
+        ),
+        8 => 
+        array (
+          0 => 
+          array (
+            'name' => 'surgical_procedures',
+            'studio' => 'visible',
+            'label' => 'LBL_SURGICAL_PROCEDURES',
+          ),
+          1 => 
+          array (
+            'name' => 'blood_transfusion_explanation',
+            'studio' => 'visible',
+            'label' => 'LBL_BLOOD_TRANSFUSION_EXPLANATION',
+          ),
+        ),
+        9 => 
+        array (
+          0 => 
+          array (
+            'name' => 'radiation_therapy',
+            'label' => 'LBL_RADIATION_THERAPY',
+          ),
+          1 => 
+          array (
+            'name' => 'radiation_therapy_reason',
+            'studio' => 'visible',
+            'label' => 'LBL_RADIATION_THERAPY_REASON',
+          ),
+        ),
+        10 => 
+        array (
+          0 => 
+          array (
+            'name' => 'chemotherapy',
+            'label' => 'LBL_CHEMOTHERAPY',
+          ),
+          1 => 
+          array (
+            'name' => 'chemotherapy_explanation',
+            'studio' => 'visible',
+            'label' => 'LBL_CHEMOTHERAPY_EXPLANATION',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>

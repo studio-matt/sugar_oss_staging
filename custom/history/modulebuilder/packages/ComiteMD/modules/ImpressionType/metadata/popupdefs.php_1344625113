@@ -1,0 +1,25 @@
+<?php
+$popupMeta = array (
+    'moduleMain' => 'comite_ImpressionType',
+    'varName' => 'comite_ImpressionType',
+    'orderBy' => 'comite_impressiontype.name',
+    'whereClauses' => array (
+  'name' => 'comite_impressiontype.name',
+),
+    'searchInputs' => array (
+  0 => 'comite_impressiontype_number',
+  1 => 'name',
+  2 => 'priority',
+  3 => 'status',
+),
+    'listviewdefs' => array (
+  'NAME' => 
+  array (
+    'type' => 'name',
+    'link' => true,
+    'label' => 'LBL_NAME',
+    'width' => '10%',
+    'default' => true,
+  ),
+),
+);

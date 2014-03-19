@@ -1,0 +1,87 @@
+<?php
+$module_name = 'comite_Spirometry';
+$viewdefs [$module_name] = 
+array (
+  'EditView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'useTabs' => false,
+    ),
+    'panels' => 
+    array (
+      'default' => 
+      array (
+        0 => 
+        array (
+          0 => 'name',
+        ),
+        1 => 
+        array (
+          0 => '',
+        ),
+        2 => 
+        array (
+          0 => 'description',
+        ),
+      ),
+      'lbl_editview_panel1' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'lungage',
+            'label' => 'LBL_LUNGAGE',
+          ),
+          1 => 
+          array (
+            'name' => 'copdrisk',
+            'label' => 'LBL_COPDRISK',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'interpretation',
+            'label' => 'LBL_INTERPRETATION',
+          ),
+          1 => 
+          array (
+            'name' => 'forced_vital_capacity',
+            'label' => 'LBL_FORCED_VITAL_CAPACITY',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'forced_expiratory_volume',
+            'label' => 'LBL_FORCED_EXPIRATORY_VOLUME',
+          ),
+          1 => 
+          array (
+            'name' => 'fec_fvc',
+            'label' => 'LBL_FEC_FVC',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>
