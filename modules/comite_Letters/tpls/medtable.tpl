@@ -5,7 +5,7 @@
 <div class="pdf" id="medtable">
     <p class="company">
         <img src="{$base}/custom/include/images/logo_print.png" />
-        55 East 86th Street, 1B, New York, NY 10028 ~ 202.288.8123 & 212.288.8126 
+        55 East 86th Street, 1B, New York, NY 10028 ~ 212.288.8123 & 212.288.8126
     </p>
 
     <p class="title">Medication Table</p>

@@ -5,7 +5,7 @@
 <div class="pdf" id="ehe">
     <p class="company">
         <img src="{$base}/custom/include/images/logo_print.png" />
-        55 East 86th Street, 1B, New York, NY 10028 ~ 202.288.8123 & 212.288.8126 fax
+        55 East 86th Street, 1B, New York, NY 10028 ~ 212.288.8123 & 212.288.8126 fax
     </p>
 
     <p class="title">ComiteMD - Exercise &amp Nutrition Report</p>
@@ -17,13 +17,22 @@
         <span class="name">{$CONTACT->last_name}</span>,
     </p>
 
-    <p class="description editable" data-var="description">{if $VARS.description}{$VARS.description}{else}It was a pleasure meeting with you, and learning about your nutrition and exercise goals. Our conversation and review of your exercise nutritional pattern revealed that you{/if}</p>
-
-    <p class="regimen editable" data-var="regimen">{if $VARS.regimen}{$VARS.regimen}{else}
+    {assign var=datavar value='description'}
+    <p class="description editable" data-var="{$datavar}">
+    {if $VARS[$datavar]}{$VARS[$datavar]}
+    {else}
+        It was a pleasure meeting with you, and learning about your nutrition and exercise goals. Our conversation and review of your exercise nutritional pattern revealed that you
+    {/if}
+    </p>
+    {assign var=datavar value='regimen'}
+    <p class="regimen editable" data-var="{$datavar}">
+    {if $VARS[$datavar]}{$VARS[$datavar]}
+    {else}
         {if $EHE_RECOMMENDATIONS->ehe_exercise_regimen == "ehe_exercise_regiment_solid_foundation"}Your exercise regimen is currently well-balanced. Small improvements over time will help you attain more specific goals.
         {elseif $EHE_RECOMMENDATIONS->ehe_exercise_regimen == "ehe_exercise_regiment_needs_improvement"}Your exercise regimen would be further beneficial with the inclusion of cardiovascular, weight, and flexibility training. These three areas together form the basis for a balanced exercise foundation.
         {elseif $EHE_RECOMMENDATIONS->ehe_exercise_regimen == "ehe_exercise_regiment_no_execise"}Although you do not exercise regularly, being physically active on a regular basis is an essential part of your program. Doing small amounts of exercise regularly will give you the momentum to build up your endurance over time. {/if}
-    {/if}</p>
+    {/if}
+    </p>
 
     <h2 class="vo2_label">VO2 Comparison</h2>
     <table class="vo2">
@@ -97,7 +106,13 @@
         </li>
         <li><strong>Daily Protein Intake:</strong>
             <ul>
-                <li class="editable" data-var="protein_intake">{if $VARS.protein_intake}{$VARS.protein_intake}{else} grams{/if}</li>
+                {assign var=datavar value='protein_intake'}
+                <li class="editable" data-var="{$datavar}">
+                {if $VARS[$datavar]}{$VARS[$datavar]}
+                {else}
+                    grams
+                {/if}
+                </li>
                 <li>No more than 35 grams in one sitting</li>
             </ul>
         </li>
@@ -139,19 +154,43 @@
                 </li>
                 <li>Intensity:
                     <ul>
-                        <li class="editable" data-var="aerobic_duration">Longer duration CV: 60-80% heart rate reserve - {math equation="x*y" x=$VO2_TESTING->maxrate|intval y=0.6 format="%.0f"} to {math equation="x*y" x=$VO2_TESTING->maxrate|intval y=0.8 format="%.0f"} beats per minute</li>
-                        <li class="editable" data-var="aerobic_interval">Interval based CV: 90-95% heart rate reserve - {math equation="x*y" x=$VO2_TESTING->maxrate|intval y=0.9 format="%.0f"} to {math equation="x*y" x=$VO2_TESTING->maxrate|intval y=0.95 format="%.0f"} beats per minute</li>
+                        {assign var=datavar value='aerobic_duration'}
+                        <li class="editable" data-var="{$datavar}">
+                        {if $VARS[$datavar]}{$VARS[$datavar]}
+                        {else}
+                            Longer duration CV: 60-80% heart rate reserve - {math equation="x*y" x=$VO2_TESTING->maxrate|intval y=0.6 format="%.0f"} to {math equation="x*y" x=$VO2_TESTING->maxrate|intval y=0.8 format="%.0f"} beats per minute
+                        {/if}
+                        </li>
+                        {assign var=datavar value='aerobic_interval'}
+                        <li class="editable" data-var="{$datavar}">
+                        {if $VARS[$datavar]}{$VARS[$datavar]}
+                        {else}
+                            Interval based CV: 90-95% heart rate reserve - {math equation="x*y" x=$VO2_TESTING->maxrate|intval y=0.9 format="%.0f"} to {math equation="x*y" x=$VO2_TESTING->maxrate|intval y=0.95 format="%.0f"} beats per minute
+                        {/if}
+                        </li>
                     </ul>
                 </li>
                 {assign var=A value=$EHE_RECOMMENDATIONS->ehe_aerobic_time}
                 <li>Time:
                     <ul>
-                        <li class="editable" data-var="aerobic_time">Longer duration CV: {$app_list_strings.ehe_aerobic_time_list[$A]} minutes</li>
+                        {assign var=datavar value='aerobic_time'}
+                        <li class="editable" data-var="{$datavar}">
+                        {if $VARS[$datavar]}{$VARS[$datavar]}
+                        {else}
+                            Longer duration CV: {$app_list_strings.ehe_aerobic_time_list[$A]} minutes
+                        {/if}
+                        </li>
                         <li>Interval based CV: 9-21 intervals of 30 seconds at a high intensity (90-95% heart rate reserve) and 30 seconds active recovery at a low intensity</li>
                     </ul>
                 </li>
                 {assign var=A value=$EHE_RECOMMENDATIONS->ehe_aerobic_activity}
-                <li class="editable" data-var="aerobic_activity_type">Type: {$app_list_strings.ehe_aerobic_activity_list[$A]}</li>
+                {assign var=datavar value='aerobic_activity_type'}
+                <li class="editable" data-var="{$datavar}">
+                {if $VARS[$datavar]}{$VARS[$datavar]}
+                {else}
+                    Type: {$app_list_strings.ehe_aerobic_activity_list[$A]}
+                {/if}
+                </li>
             </ul>
         </li>
         <li><strong>Weight Training:</strong>
@@ -162,7 +201,13 @@
                 <li>Duration: 3 sets of 1 to 2 different exercises (totaling 3 to 6 sets) for each body part or muscle group</li>
                 <li>Intensity: 8 to 10 repetitions per set. When you can perform 10 reps in any one set, increase the weight for that set so that you can perform at least 8 reps. Continue to increase the reps to 10 before adding weight.</li>
                 {assign var=A value=$EHE_RECOMMENDATIONS->ehe_weight_type}
-                <li class="editable" data-var="weight_type">Type: {$app_list_strings.ehe_weight_type_list[$A]}</li>
+                {assign var=datavar value='weight_type'}
+                <li class="editable" data-var="{$datavar}">
+                {if $VARS[$datavar]}{$VARS[$datavar]}
+                {else}
+                    Type: {$app_list_strings.ehe_weight_type_list[$A]}
+                {/if}
+                </li>
             </ul>
         </li>
         <li><strong>Stretching - Incorporate into your training.</strong> The ACSM recommends flexibility training a minimum 2 to 3 days per week, holding each stretch for 10 to 30 seconds to mild discomfort; 3 to 4 repetitions per stretch. Review flexibility packet for specific stretches (found on your USB).</li>

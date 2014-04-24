@@ -233,6 +233,7 @@ class comite_LettersViewTms extends PdfView {
         $this->ss->assign('PHYSICALEXAM', $PhysicalExam);
         $this->ss->assign('PHYSICALEXAMPROPERTIES', $PhysicalExamProperties);
         $this->ss->assign('REQUEST', $_REQUEST);
+        $this->ss->assign('VARS', isset($_REQUEST['VARS']) ? $_REQUEST['VARS'] : array());
 
         $html = $this->ss->fetch('modules/comite_Letters/tpls/tms.tpl');
 
