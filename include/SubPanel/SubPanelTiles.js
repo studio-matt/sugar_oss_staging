@@ -33,56 +33,36 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 var request_id=0;var current_child_field='';var current_subpanel_url='';var child_field_loaded=new Object();var request_map=new Object();
-function get_index(child_field) {
-    switch(child_field) {
-        case 'comite_phone_contacts':
-        case 'comite_address_contacts':
-        case 'comite_billing_contacts':
-        case 'comite_episodicnote_contacts':
-        case 'comite_doctorsnote_contacts':
-        case 'activities':
-            return 1;
-            break;
-        case 'comite_conditioninstance_comite_familyhealthhistory':
-        case 'comite_relative_comite_familyhealthhistory':
-            return 2;
-            break;
-        case 'comite_exposureinstance_comite_personalhealthhistory':
-        case 'comite_diagnosticinstance_comite_personalhealthhistory':
-        case 'comite_reviewoverallhealth_comite_personalhealthhistory':
-        case 'comite_medsuppinst_comite_personalhealthhistory':
-            return 3;
-        case 'comite_substanceuseinstance_comite_lifestyle':
-        case 'comite_personaltraitinstance_comite_lifestyle':
-        case 'comite_angryreactioninstance_comite_lifestyle':
-        case 'comite_workfeelinginstance_comite_lifestyle':
-        case 'comite_sleepconditioninstance_comite_lifestyle':
-        case 'comite_mindemotioninstance_comite_lifestyle':
-        case 'comite_lifechangeinstance_comite_lifestyle':
-            return 4;
-        case 'comite_exercisesummary_comite_nutritionexercise':
-        case 'comite_fitnessactivity_comite_nutritionexercise':
-        case 'comite_nutrionalsummary_comite_nutritionexercise':
-        case 'comite_nutritionalintake_comite_nutritionexercise':
-            return 5;
-        case 'comite_pharmacymedicine_comite_pharmacylog':
-        case 'comite_pharmacy_comite_pharmacylog':
-            return 6;
-        case 'comite_eherecommendations_comite_healthtest':
-        case 'comite_bonestudies_comite_healthtest':
-        case 'comite_v02testing_comite_healthtest':
-        case 'comite_physicalexam_comite_healthtest':
-            return 7;
-        case 'comite_fitnessassessment_comite_drnotesnutritionexercise':
-        case 'comite_spirometry_comite_drnotesnutritionexercise':
-        case 'comite_v02testing_comite_drnotesnutritionexercise':
-        case 'comite_tmfollowupcall_comite_drnotesnutritionexercise':
-            return 8;
-            break;
-        default:
-            return 0;
-            break;
+// dr note page fix return module
+$(document).ready(function(){
+  $('.HLAGroup ul#subpanel_list input[name=return_module]').each(function(){
+      $(this).val($(this).parents('#subpanel_list').parent().find('form:first input[name=module]').val());
+  });
+  $('.HLAGroup input[id$=_select_button]').hide();
+});
+
+function get_form(/*child_field*/) {
+    var child_field = arguments[0];
+    // just use the top form
+    if(child_field == undefined) {
+        return jQuery('form[name="DetailView"]').get(0);
     }
+
+    // subpanel with proper parent types
+    if ($('#formform' + child_field).find('input[name=parent_type]').val()) {
+        var field = $('input[name=module][value=' + $('#formform' + child_field).find('input[name=parent_type]').val()  + ']');
+        if (field.length) {
+            return field.parents('form').get(0);
+        }
+    }
+
+    // demographics subpanels
+    if ($('#whole_subpanel_' + child_field).length) {
+        return $('#whole_subpanel_' + child_field).parent().parent().find('form:first').get(0);
+    }
+
+    // otherwise top form
+    return jQuery('form[name="DetailView"]').get(0);
 }
 function get_module_name(/*child_field*/)
 {
@@ -104,8 +84,7 @@ function get_module_name(/*child_field*/)
         /* /Original Code */
     } else {
         var child_field = arguments[0];
-        index = get_index(child_field);
-        detailViewForm = jQuery('form[name="DetailView"]').get(index);
+        detailViewForm = get_form(child_field);
         
         if(typeof(detailViewForm.elements['subpanel_parent_module']) != 'undefined' &&
                 detailViewForm.elements['subpanel_parent_module'].value != ''){
@@ -141,8 +120,7 @@ function get_record_id(/*child_field*/)
         /* /Original Code */
     } else {
         var child_field = arguments[0];
-        index = get_index(child_field);
-        detailViewForm = jQuery('form[name="DetailView"]').get(index);
+        detailViewForm = get_form(child_field);
         return detailViewForm.elements['record'].value;
     }
 }
@@ -155,8 +133,8 @@ function get_layout_def_key(/*child_field*/)
         /* /Original Code */
     } else {
         var child_field = arguments[0];
-        index = get_index(child_field);
-        detailViewForm = jQuery('form[name="DetailView"]').get(index);
+        detailViewForm = get_form(child_field);
+        if(typeof(detailViewForm.elements['layout_def_key']) == 'undefined')return '';
         return detailViewForm.elements['layout_def_key'].value;
     }
 }
@@ -214,7 +192,18 @@ url='index.php?module=Home&action=SaveSubpanelLayout&layout='+order+'&layoutModu
 var cObj=YAHOO.util.Connect.asyncRequest('GET',url,{success:success,failure:success});},inlineSave:function(theForm,buttonName){ajaxStatus.showStatus(SUGAR.language.get('app_strings','LBL_SAVING'));var success=function(data){var element=document.getElementById(buttonName);do{element=element.parentNode;}while(element.className!='quickcreate'&&element.parentNode);if(element.className=='quickcreate'){var subpanel=element.id.slice(9,-7);var module=get_module_name();var id=get_record_id();var layout_def_key=get_layout_def_key();try{eval('result = '+data.responseText);}catch(err){}
 if(typeof(result)!='undefined'&&result!=null&&result['status']=='dupe'){document.location.href="index.php?"+result['get'].replace(/&amp;/gi,'&').replace(/&lt;/gi,'<').replace(/&gt;/gi,'>').replace(/&#039;/gi,'\'').replace(/&quot;/gi,'"').replace(/\r\n/gi,'\n');return;}else{SUGAR.subpanelUtils.cancelCreate(buttonName);showSubPanel(subpanel,null,true);ajaxStatus.showStatus(SUGAR.language.get('app_strings','LBL_SAVED'));window.setTimeout('ajaxStatus.hideStatus()',1000);if(reloadpage)window.location.reload(false);}}}
 var reloadpage=false;if((buttonName=='Meetings_subpanel_save_button'||buttonName=='Calls_subpanel_save_button')&&typeof(theForm)!='undefined'&&typeof(document.getElementById(theForm))!='undefined'&&typeof(document.getElementById(theForm).status)!='undefined'&&document.getElementById(theForm).status[document.getElementById(theForm).status.selectedIndex].value=='Held'){reloadpage=true;}
-YAHOO.util.Connect.setForm(theForm,true,true);var cObj=YAHOO.util.Connect.asyncRequest('POST','index.php',{success:success,failure:success,upload:success});return false;},sendAndRetrieve:function(theForm,theDiv,loadingStr){var quickCreateDiv=YAHOO.util.Selector.query("div.quickcreate",null,true);if(quickCreateDiv)
+YAHOO.util.Connect.setForm(theForm,true,true);var cObj=YAHOO.util.Connect.asyncRequest('POST','index.php',{success:success,failure:success,upload:success});return false;},sendAndRetrieve:function(theForm,theDiv,loadingStr){
+
+    if ($('.dcQuickEdit').length) {
+        if (confirm("You already have a form open. Would you like to cancel your current form and open the new one?")) {
+            $('.dcQuickEdit input[title=Cancel]:first').trigger('click');
+            //this.sendAndRetrieve(theForm, theDiv, loadingStr);
+        } else {
+            return false;
+        }
+    }
+
+var quickCreateDiv=YAHOO.util.Selector.query("div.quickcreate",null,true);if(quickCreateDiv)
 {var form=YAHOO.util.Selector.query("form",quickCreateDiv,true);if(form)
 {var moduleName=form.id.replace(/.*?_([^_]+)$/,"$1");var buttonName=moduleName+"_subpanel_cancel_button";var cancelled=false;SUGAR.subpanelUtils.cancelCreate(buttonName,function()
 {cancelled=true;});if(cancelled)

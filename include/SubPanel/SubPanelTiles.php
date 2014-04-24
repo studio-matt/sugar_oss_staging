@@ -80,9 +80,10 @@ class SubPanelTiles
             $_SESSION['subpanelTabs'] = $_REQUEST['subpanelTabs'];
 
         require_once 'include/tabConfig.php' ; // include/tabConfig.php in turn includes the customized file at custom/include/tabConfig.php...
-
         $subpanelTabsPref = $current_user->getPreference('subpanel_tabs');
         if(!isset($subpanelTabsPref)) $subpanelTabsPref = $GLOBALS['sugar_config']['default_subpanel_tabs'];
+// Ignore user preferences when it comes to tabs, all users see the same.
+        $subpanelTabsPref = $GLOBALS['sugar_config']['default_subpanel_tabs'];
         if(!empty($GLOBALS['tabStructure']) && (!empty($_SESSION['subpanelTabs']) || !empty($sugar_config['subpanelTabs']) || !empty($subpanelTabsPref)))
         {
             // Determine selected group

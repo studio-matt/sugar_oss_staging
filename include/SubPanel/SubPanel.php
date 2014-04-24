@@ -184,6 +184,11 @@ class SubPanel
 		ob_start();
 
 		$ListView->is_dynamic = true;
+		
+                if ($this->parent_module == 'comite_PhysicalExam'){
+                    $sugar_config['list_max_entries_per_subpanel']  = '500';
+                }
+
 		$ListView->records_per_page = $sugar_config['list_max_entries_per_subpanel'] + 0;
 		$ListView->start_link_wrapper = "javascript:showSubPanel('".$this->subpanel_id."','";
 		$ListView->subpanel_id = $this->subpanel_id;
