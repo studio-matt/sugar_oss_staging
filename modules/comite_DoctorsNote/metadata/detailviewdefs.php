@@ -1,14 +1,14 @@
 <?php
 $module_name = 'comite_DoctorsNote';
-$viewdefs [$module_name] =
+$viewdefs [$module_name] = 
 array (
-  'DetailView' =>
+  'DetailView' => 
   array (
-    'templateMeta' =>
+    'templateMeta' => 
     array (
-      'form' =>
+      'form' => 
       array (
-        'buttons' =>
+        'buttons' => 
         array (
           0 => 'EDIT',
           1 => 'DUPLICATE',
@@ -26,14 +26,14 @@ array (
         ),
       ),
       'maxColumns' => '2',
-      'widths' =>
+      'widths' => 
       array (
-        0 =>
+        0 => 
         array (
           'label' => '10',
           'field' => '30',
         ),
-        1 =>
+        1 => 
         array (
           'label' => '10',
           'field' => '30',
@@ -41,44 +41,44 @@ array (
       ),
       'useTabs' => false,
     ),
-    'panels' =>
+    'panels' => 
     array (
-      'default' =>
+      'default' => 
       array (
-        0 =>
+        0 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'comite_doctorsnote_contacts_name',
           ),
-          1 =>
+          1 => 
           array (
             'name' => 'contact_birthdate',
             'studio' => 'visible',
             'label' => 'LBL_BIRTHDATE',
           ),
         ),
-        1 =>
+        1 => 
         array (
           0 => 'name',
           1 => 'assigned_user_name',
         ),
-        2 =>
+        2 => 
         array (
           0 => 'description',
         ),
       ),
-      'lbl_detailview_panel2' =>
+      'lbl_detailview_panel2' => 
       array (
-        0 =>
+        0 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'date_entered',
             'customCode' => '{$fields.date_entered.value} {$APP.LBL_BY} {$fields.created_by_name.value}',
             'label' => 'LBL_DATE_ENTERED',
           ),
-          1 =>
+          1 => 
           array (
             'name' => 'date_modified',
             'customCode' => '{$fields.date_modified.value} {$APP.LBL_BY} {$fields.modified_by_name.value}',
@@ -86,34 +86,34 @@ array (
           ),
         ),
       ),
-      'lbl_detailview_panel1' =>
+      'lbl_detailview_panel1' => 
       array (
-        0 =>
+        0 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'finalized',
             'label' => 'LBL_FINALIZED',
           ),
-          1 =>
+          1 => 
           array (
             'name' => 'appointment_type',
             'studio' => 'visible',
             'label' => 'LBL_APPOINTMENT_TYPE',
           ),
         ),
-        1 =>
+        1 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'introduction',
             'studio' => 'visible',
             'label' => 'LBL_INTRODUCTION',
           ),
         ),
-        2 =>
+        2 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'additional_notes',
             'studio' => 'visible',

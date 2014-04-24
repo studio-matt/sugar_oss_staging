@@ -1,0 +1,28 @@
+#content > table > tbody > tr > td {
+    padding: 30px;
+}
+
+.pdf {
+    padding: 30px;
+    border: 4px solid #ddd;
+}
+
+.editable {
+    cursor: text;
+    background: url('/custom/themes/comiteMD/images/comite_DoctorsNote.gif') right top no-repeat #ffc;
+    margin-bottom: 1px;
+}
+
+.editable form button {
+    display: none;
+}
+
+.editable .placeholder {
+    color: #999;
+}
+
+form#letter {
+    width: 700px;
+    padding: 30px;
+    text-align: right;
+}

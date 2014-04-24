@@ -35,6 +35,7 @@ class comite_PhysicalExamHook {
         $object = new comite_PhysicalExamProperty();
         $object->category = $category;
         $object->name = $id;
+        $object->is_normal = 'yes';
         $object->save();
         $physicalExam->comite_physicalexamproperty_comite_physicalexam->add($object);
         $physicalExam->save();

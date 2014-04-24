@@ -7,5 +7,5 @@
     <li><a href="index.php?module=comite_NutritionExercise&action=DetailView&record={$NutritionExercise->id}">Nutrition & Exercise</a></li>
     <li><a href="index.php?module=comite_FamilyHealthHistory&action=DetailView&record={$FamilyHealthHistory->id}">Family's Health History</a></li>
     <li><a href="index.php?module=comite_LifeStyle&action=DetailView&record={$LifeStyle->id}">Lifestyle</a></li>
-    <li><a href="index.php?module=comite_PharmacyLog&action=DetailView&record={$PharmacyLog->id}">Pharmacy Log</a></li>
+<!--    <li><a href="index.php?module=comite_PharmacyLog&action=DetailView&record={$PharmacyLog->id}">Pharmacy Log</a></li> -->
 </ul>

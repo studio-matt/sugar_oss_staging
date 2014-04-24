@@ -4,11 +4,10 @@
     {$css}
 </style>
 
-<div id="bonestudy">
+<div class="pdf" id="bonestudy">
     <p class="company">
-        <img src="{$base}/custom/include/images/logo_small.png" />
-        55 East 86th Street, 1B<br />
-        New York, NY 10028
+        <img src="{$base}/custom/include/images/logo_print.png" />
+        55 East 86th Street, 1B, New York, NY 10028 ~ 202.288.8123 & 212.288.8126 
     </p>
 
     <p class="patient">

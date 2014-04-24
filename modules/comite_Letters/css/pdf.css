@@ -1,44 +1,53 @@
-body {
+.pdf {
     font-family: helvetica, arial, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     width: 700px;
     margin: 0;
     padding: 0;
 }
-p.company {
-    display: block;
-    height: 60px;
-    text-align: right;
-    font-size: 16px;
-    font-style: italic;
-    margin-top: 0;
+.pdf p {
+    margin-bottom: 1em;
 }
-p.company img {
-    float: left;
-    position: relative;
-    left: -16px;
-}
-p.date {
-    font-weight: bold;
-}
-p.title {
-    font-weight: bold;
-}
-p.title {
-    font-weight: bold;
+.pdf table,
+.pdf div {
+    font-size: 14px;
 }
 
-span.red {
+.pdf p.company {
+    text-align: center;
+    font-size: 10px;
+    font-style: italic;
+    margin: 0 0 20px 0;
+}
+.pdf p.company img {
+    display: block;
+    margin: 0 auto 5px auto;
+}
+.pdf p.title {
+    display: block;
+    font-weight: bold;
+    border: 2px solid #333;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-top-color: #666;
+    border-left-color: #666;
+    background: #ffffbf;
+    text-align: center;
+    padding: 2px;
+    margin-bottom: 10px;
+}
+.pdf p.date {
+    font-weight: bold;
+    border: none;
+}
+
+.pdf span.red {
     color: red;
 }
 
 /* MED TABLE ---------------------------------------------------------------- */
 
 #medtable {
-}
-#medtable p.title {
-    float: right;
-    margin: 0 280px 0 0;
 }
 #medtable p.patient {
     font-weight: bold;
@@ -150,4 +159,49 @@ span.red {
 }
 #bonestudy p.bottom-zero {
     margin-bottom: 0;
+}
+
+/* EHE --------------------------------------------------------------- */
+body #ehe {
+    color: #000;
+}
+#ehe {
+    width: 620px;
+    margin-left: 40px;
+}
+#ehe h2 {
+    text-decoration: underline;
+    margin-top: 1em;
+    font-size: 14px;
+}
+#ehe h2.vo2_label {
+    text-decoration: none;
+    margin-top: 0;
+}
+#ehe .vo2 {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 0 0 1em 0;
+}
+#ehe .vo2 th,
+#ehe .vo2 td {
+    text-align: left;
+    border: 1px solid #333;
+    padding: 2px;
+}
+#ehe .signature {
+    display: inline-block;
+}
+#ehe .signature.first {
+    margin-right: 250px;
+}
+#ehe ol li {
+    margin-bottom: 1em;
+}
+#ehe ul li {
+    list-style-type: disc;
+    margin-bottom: 3px;
+}
+#ehe ul li li {
+    list-style-type: circle;
 }

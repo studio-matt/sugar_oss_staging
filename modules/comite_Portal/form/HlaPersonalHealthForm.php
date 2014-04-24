@@ -160,8 +160,8 @@ EOF;
       if (array_key_exists('personalhealthhistory__dental_health', $_REQUEST)) {
         $_REQUEST['personalhealthhistory__dental_health'] = self::array2Csv($_REQUEST['personalhealthhistory__dental_health'], ',', '^');
       }
-      if (array_key_exists('medicationinstances__fem_med_birthcontrol_notes', $_REQUEST)) {
-        $_REQUEST['medicationinstances__fem_med_birthcontrol_notes'] = self::array2Csv($_REQUEST['medicationinstances__fem_med_birthcontrol_notes'], ',', '^');
+      if (array_key_exists('personalhealthhistory__fem_med_birthcontrol_notes', $_REQUEST)) {
+        $_REQUEST['personalhealthhistory__fem_med_birthcontrol_notes'] = self::array2Csv($_REQUEST['personalhealthhistory__fem_med_birthcontrol_notes'], ',', '^');
       }
 
        /**
@@ -296,7 +296,7 @@ EOF;
           'name' => 'exposure_additional'
         ),
 
-        # Medicale Supplements
+        # Medical Supplements
         'personalhealthhistory__is_no_current_medications' => array(
           'name' => 'is_no_current_medications',
           'validators' => array(
@@ -471,36 +471,15 @@ EOF;
             ),
           ),
         ),
-        'dosage' => array(
-          'validators' => array(
-            array(
-              'callable' => 'ComiteForm::validateRequired',
-              'message' => 'You must enter your dosage.'
-            ),
-          ),
-        ),
+        'dosage' => array(),
         'dosage_unit' => array(),
-        'quantity' => array(
-          'validators' => array(
-            array(
-              'callable' => 'ComiteForm::validateRequired',
-              'message' => 'You must enter a quantity.'
-            ),
-         ),
-        ),
+        'quantity' => array(),
         'quantity_unit' => array(),
         'frequency' => array(),
         'time_of_day' => array(),
         'notes_doctor' => array(),
         'source' => array(),
-        'notes_patient' => array(
-          'validators' => array(
-            array(
-              'callable' => 'ComiteForm::validateRequired',
-              'message' => 'You must enter your reason.'
-            ),
-         ),
-        ),
+        'notes_patient' => array(),
       ));
 
       # BindAndValidate: comite_SupplementInstance
@@ -509,83 +488,30 @@ EOF;
           'validators' => array(
             array(
               'callable' => 'ComiteForm::validateRequired',
-              'message' => 'You must select your medication.'
+              'message' => 'You must select your supplement.'
             ),
           ),
         ),
-        'dosage' => array(
-          'validators' => array(
-            array(
-              'callable' => 'ComiteForm::validateRequired',
-              'message' => 'You must enter a dosage.'
-            ),
-          ),
-        ),
+        'dosage' => array(),
         'dosage_unit' => array(),
-        'quantity' => array(
-          'validators' => array(
-            array(
-              'callable' => 'ComiteForm::validateRequired',
-              'message' => 'You must enter a quantity.'
-            ),
-          ),
-        ),
+        'quantity' => array(),
         'quantity_unit' => array(),
         'frequency' => array(),
-        'notes_patient' => array(
-         'validators' => array(
-            array(
-              'callable' => 'ComiteForm::validateRequired',
-              'message' => 'You must enter your reason.'
-            ),
-          ),
-        ),
+        'notes_patient' => array(),
       ));
 
       # BindAndValidate: comite_ExposureInstance
       $this->bindOneToMany('exposureinstances', 'exposureinstances', 'comite_ExposureInstance', array(
         'name' => array(),
-        'dates' => array(
-            'validators' => array(
-                  array(
-                      'callable'      => 'ComiteForm::validateRequiredIfNotBlank',
-                      'message'       => 'You must enter date(s) of exposure.',
-                      'field'         => 'length',
-                  ),
-              ),
-            ),
-        'length' => array(
-            'validators' => array(
-                  array(
-                      'callable'      => 'ComiteForm::validateRequiredIfNotBlank',
-                      'message'       => 'You must enter a length of exposure.',
-                      'field'         => 'dates',
-                  ),
-              ),
-            ),
+        'dates' => array(),
+        'length' => array(),
       ));
 
-      # BindAndValidate: comite_SupplementInstance
+      # BindAndValidate: comite_DiagnosticInstance
       $this->bindOneToMany('diagnosticinstances', 'diagnosticinstances', 'comite_DiagnosticInstance', array(
         'name' => array(),
-        'dates' => array(
-            'validators' => array(
-                  array(
-                      'callable'      => 'ComiteForm::validateRequiredIfNotBlank',
-                      'message'       => 'You must enter a date(s) of test.',
-                      'field'         => 'results',
-                  ),
-                ),
-              ),
-        'results' => array(
-            'validators' => array(
-                  array(
-                      'callable'      => 'ComiteForm::validateRequiredIfNotBlank',
-                      'message'       => 'You must enter the results of test.',
-                      'field'         => 'dates',
-                  ),
-                ),
-              ),
+        'dates' => array(),
+        'results' => array(),
       ));
 
       # BindAndValidate: comite_ReviewOverallHealth
@@ -600,9 +526,7 @@ EOF;
                   ),
               ),
             ),
-        'notes_patient' => array(
-              'validators' => array(),
-          ),
+        'notes_patient' => array(),
         'category' => array(),
       ));
 

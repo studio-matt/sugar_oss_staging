@@ -47,22 +47,167 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * @author Collin Lee
  * */
 
-require_once('include/MVC/View/SugarView.php');
+require_once(dirname(__FILE__) . '/PdfView.php');
 
-class comite_LettersViewEhe extends SugarView {
+class comite_LettersViewEhe extends PdfView {
+
+  public function init($bean = null, $view_object_map = array()) {
+    if (!isset($_REQUEST['render'])) {
+       $this->will_be_rendering_pdf = false;
+    }
+    parent::init($bean, $view_object_map);
+  }
 
   /**
    * @see SugarView::display()
    */
   public function display() {
+
+    global $app_list_strings;
+    $this->ss->assign('app_list_strings', $app_list_strings);
+
+    $record = $_REQUEST['record'];;
+
+    # Get DrNote
+    $DrNote = new comite_DoctorsNote();
+    $DrNote->retrieve($record);
+
+    # Find Contact
+    $DrNote->load_relationship('comite_doctorsnote_contacts');
+    $Contact = reset($DrNote->comite_doctorsnote_contacts->beans);
+
+    $Contact->load_relationship('comite_drnotesnutritionexercise_contacts');
+    $DrNotesNutritionExercise = reset($Contact->comite_drnotesnutritionexercise_contacts->beans);
+
+    $DrNotesNutritionExercise->load_relationship('comite_eherecommendations_comite_drnotesnutritionexercise');
+    $EheRecommendations = end($DrNotesNutritionExercise->comite_eherecommendations_comite_drnotesnutritionexercise->beans);
+
+    $DrNotesNutritionExercise->load_relationship('comite_v02testing_comite_drnotesnutritionexercise');
+    $VO2Testings = $DrNotesNutritionExercise->comite_v02testing_comite_drnotesnutritionexercise->beans;
+
+    # Get PersonalHealthHistory
+    $Contact->load_relationship('comite_personalhealthhistory_contacts');
+    $PersonalHealthHistory = reset($Contact->comite_personalhealthhistory_contacts->beans);
+
+    # Get MedicationSupplementInstances
+    $PersonalHealthHistory->load_relationship('comite_medsuppinst_comite_personalhealthhistory');
+    $MedSuppInstances = $PersonalHealthHistory->comite_medsuppinst_comite_personalhealthhistory->beans;
+    $MedSuppObjects = array();
+    foreach($MedSuppInstances as $MedSuppInstance) {
+        $MedSuppInstance->load_relationship('comite_medsuppinstance_comite_medsupp');
+        $MedSupp = reset($MedSuppInstance->comite_medsuppinstance_comite_medsupp->beans);
+        $MedSuppObjects[$MedSuppInstance->comite_med8f3bplement_ida] = $MedSupp;
+        // assume new, unless audit exists, then check dates.
+        $MedSuppInstance->comite_new = false;
+        if(new \DateTime($MedSuppInstance->date_modified) > new \DateTime($DrNote->date_entered)) {
+            $MedSuppInstance->comite_new = true;
+        }
+
+        # Add Attributes
+        $db = $MedSupp->db;
+        $resp = $db->query('SELECT * FROM comite_medicationsupplementinstance_audit WHERE parent_id = "'.$MedSuppInstance->id.'"');
+        while($row = $resp->fetch_assoc()) {
+            $MedSuppInstance->comite_new = false;
+
+            if(new \DateTime($MedSuppInstance->date_modified) > new \DateTime($DrNote->date_entered)) {
+                switch($row['field_name']) {
+                    case 'name':
+                        $MedSuppInstance->comite_change_name = true;
+                        break;
+                    case 'dosage':
+                        if ($row['after_value_string'] > $row['before_value_string']) {
+                            $MedSuppInstance->comite_change_dosage = 'increase';
+                        } else {
+                            $MedSuppInstance->comite_change_dosage = 'decrease';
+                        }
+                        break;
+                    case 'quantity':
+                        if ($row['after_value_string'] > $row['before_value_string']) {
+                            $MedSuppInstance->comite_change_quantity = 'increase';
+                        } else {
+                            $MedSuppInstance->comite_change_quantity = 'decrease';
+                        }
+                        break;
+                    case 'frequency':
+
+                        $before = 0;
+                        foreach ( $app_list_strings['frequency_list'] as $value => $display) {
+                            $before++;
+                            if($value == $row['before_value_string']) {
+                                break;
+                            }
+                        }
+
+                        $after = 0;
+                        foreach ( $app_list_strings['frequency_list'] as $value => $display) {
+                            $after++;
+                            if($value == $row['after_value_string']) {
+                                break;
+                            }
+                        }
+
+                        if ($after > $before) {
+                            $MedSuppInstance->comite_change_frequency = 'increase';
+                        } else {
+                            $MedSuppInstance->comite_change_frequency = 'decrease';
+                        }
+                        break;
+                }
+            }
+
+            if(new \DateTime($MedSuppInstance->date_entered) >= new \DateTime($DrNote->date_entered)) {
+                $MedSuppInstance->comite_new = true;
+            }
+        }
+    }
+
+    $date = date('F j, Y');
+
+    $this->ss->assign('date', $date);
+    $this->ss->assign('base', $this->getBaseUrl());
+
     
-    $record = $_REQUEST['record'];
-    $Contact = new Contact();
-    $Contact->retrieve($record);
-    
+    if ($this->will_be_rendering_pdf) {
+        $this->ss->assign('css', file_get_contents(dirname(__FILE__).'/../css/pdf.css'));
+    } else {
+        $this->ss->assign('css', file_get_contents(dirname(__FILE__).'/../css/pdf.css') . "\n" . file_get_contents(dirname(__FILE__).'/../css/edit-pdf.css'));
+    }
+
+    usort($VO2Testings, array($this, 'sortVo2'));
+
     $this->ss->assign('CONTACT', $Contact);
+    $this->ss->assign('NUTRITION_EXERCISE', $DrNotesNutritionExercise);
+    $this->ss->assign('EHE_RECOMMENDATIONS', $EheRecommendations);
+    $this->ss->assign('VO2_TESTINGS', $VO2Testings);
+    $this->ss->assign('VO2_TESTING', reset($VO2Testings));
+    $this->ss->assign('MEDSUPPINSTANCES', $MedSuppInstances);
+    $this->ss->assign('MEDSUPPS', $MedSuppObjects);
+
     $this->ss->assign('REQUEST', $_REQUEST);
-    
-    echo $this->ss->fetch('modules/comite_Letters/tpls/ehe.tpl');
+    $this->ss->assign('VARS', isset($_REQUEST['VARS']) ? $_REQUEST['VARS'] : array());
+    $this->ss->assign('render', $this->will_be_rendering_pdf);
+
+    $html = $this->ss->fetch('modules/comite_Letters/tpls/ehe.tpl');
+
+    if ($this->will_be_rendering_pdf) {
+        $filename = preg_replace("#[^a-z0-9]+#i", "-", $Contact->first_name . '-' . $Contact->last_name . '-' . $date . '-Letter') . '.pdf';
+        $pdf = $this->generatePdf($html);
+        $Document = $this->savePdfAsDocument($pdf, $filename, $Contact);
+        header("Location: index.php?action=DetailView&module=Documents&record=".$Document->id);
+    } else {
+        echo $html;
+    }
+  }
+  
+  /**
+   * Sorts newest first
+   */
+  public function sortVo2($a, $b) {
+      if ($a->document_name < $b->document_name) {
+          return 1;
+      } else if ($a->document_name > $b->document_name) {
+          return -1;
+      }
+      return 0;
   }
 }

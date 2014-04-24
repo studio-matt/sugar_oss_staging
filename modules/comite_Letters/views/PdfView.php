@@ -8,6 +8,8 @@ require_once('include/tcpdf/tcpdf.php');
 
 class PdfView extends SugarView {
 
+    protected $will_be_rendering_pdf = true;
+
     /**
      * Override init to disable content aside from the body
      *
@@ -15,12 +17,14 @@ class PdfView extends SugarView {
      * @param type $view_object_map
      */
     public function init($bean = null, $view_object_map = array()) {
-        $this->options['show_header'] = false;
-        $this->options['show_title'] = false;
-        $this->options['show_subpanels'] = false;
-        $this->options['show_footer'] = false;
-        $this->options['show_javascript'] = false;
-        $this->options['view_print'] = false;
+        if ($this->will_be_rendering_pdf) {
+            $this->options['show_header'] = false;
+            $this->options['show_title'] = false;
+            $this->options['show_subpanels'] = false;
+            $this->options['show_footer'] = false;
+            $this->options['show_javascript'] = false;
+            $this->options['view_print'] = false;
+        }
 
         parent::init($bean, $view_object_map);
     }
@@ -40,11 +44,9 @@ class PdfView extends SugarView {
     }
 
     /**
-     * Inside display, call this displayPdf to render the PDF
-     *
-     * @see SugarView::display()
+     * Inside display, call this generatePdf to generate the PDF
      */
-    public function displayPdf($html, $filename) {
+    public function generatePdf($html) {
         $descriptorspec = array(
             0 => array('pipe', 'r'), // stdin
             1 => array('pipe', 'w'), // stdout
@@ -63,25 +65,57 @@ class PdfView extends SugarView {
         // Close the process
         fclose($pipes[1]);
         $return_value = proc_close($process);
-
         // Output the results
         $errors = str_replace("QPixmap: Cannot create a QPixmap when no GUI is being used\n", '', $errors);
         $errors = str_replace("QSslSocket: cannot resolve SSLv2_client_method\n", '', $errors);
         $errors = str_replace("QSslSocket: cannot resolve SSLv2_server_method\n", '', $errors);
         if ($errors) {
-            // Note: On a live site you should probably log the error and give a
-            // more generic error message, for security
-            echo 'PDF GENERATOR ERROR:<br />' . nl2br(htmlspecialchars($errors));
-        } else {
-            header('Content-Type: application/pdf');
-            header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
-            header('Pragma: public');
-            header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-            header('Content-Length: ' . strlen($pdf));
-            header('Content-Disposition: inline; filename="' . $filename . '";');
-            echo $pdf;
+            throw new Exception($errors);
         }
+        return $pdf;
+    }
+
+    /**
+     * Inside display, call this savePdfAsDocument to save the PDF as a Document on the Contact
+     * @TODO add new categories, ensure using ID from $app_list_strings['document_category_dom']
+     */
+    public function savePdfAsDocument($pdf, $filename, $Contact, $category = '') {
+        $Document = new Document();
+        $Document->id = create_guid();
+        $Document->new_with_id = true;
+        $Document->document_name = preg_replace('#\.[a-z]+$#', '', $filename);
+        $Document->filename = $filename;
+        $Document->revision = 1;
+        $Document->file_ext = 'pdf';
+        $Document->file_mime_type = 'application/x-pdf';
+        $Document->doc_type = 'Sugar';
+        if ($category) {
+            $Document->category_id = $category;
+        }
+        file_put_contents('upload://'.$Document->id, $pdf);
+        // needed so Document handes reviion creation properly
+        $_FILES['filename_file'] = $filename;
+        $Document->save();
+
+        $Contact->load_relationship('documents');
+        $Contact->documents->add($Document);
+        return $Document;
+    }
+
+    /**
+     * Inside display, call this displayPdf to render the PDF
+     *
+     * @see SugarView::display()
+     */
+    public function displayPdf($pdf, $filename) {
+        header('Content-Type: application/pdf');
+        header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+        header('Pragma: public');
+        header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+        header('Content-Length: ' . strlen($pdf));
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+        echo $pdf;
     }
 
 }

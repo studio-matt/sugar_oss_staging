@@ -56,12 +56,12 @@
                     <br />
                     {form_label for="exercisesummary__`$OBJECT_IDX`__description_extra" _html="What is the intensity of your aerobic exercise?" class="large" _form=$FORM}
                     <input type="hidden" id="exercisesummary__{$OBJECT_IDX}__description_extra" value="" />
-                    <table class="data-table">
+                    <table class="data-table radio-left">
                       <tbody>
                         <tr>
                           <td width="20%">
                             <input type="radio" class="activated" name="exercisesummary[{$OBJECT_IDX}][description_extra]" id="exercisesummary_{$OBJECT_IDX}__description_extra_VeryLight" value="Very Light" {if $intensity=="Very Light"}checked="checked"{/if}/>
-                            <label for="exercisesummary_{$OBJECT_IDX}__description__extra_VeryLight">Very Light</label>
+                            <label for="exercisesummary_{$OBJECT_IDX}__description_extra_VeryLight">Very Light</label>
                           </td>
                           <td width="80%">
                             Stretching

@@ -31,10 +31,10 @@ array (
     'width' => '10%',
     'default' => true,
   ),
-  'DATE_BORN' => 
+  'AGE' => 
   array (
     'type' => 'varchar',
-    'label' => 'LBL_DATE_BORN',
+    'label' => 'LBL_DATE_AGE',
     'width' => '10%',
     'default' => true,
   ),

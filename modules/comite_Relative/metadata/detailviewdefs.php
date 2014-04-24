@@ -79,7 +79,11 @@ array (
             'name' => 'date_born',
             'label' => 'LBL_DATE_BORN',
           ),
-          1 => '',
+          1 =>
+          array (
+            'name' => 'age',
+            'label' => 'LBL_AGE',
+          ),
         ),
         5 => 
         array (

@@ -86,7 +86,10 @@ class comite_LettersViewBonestudy extends PdfView {
         $html = $this->ss->fetch('modules/comite_Letters/tpls/bonestudy.tpl');
 
         $filename = preg_replace("#[^a-z0-9]+#i", "-", $Contact->first_name . '-' . $Contact->last_name . '-' . $testdate . '-BoneStudy') . '.pdf';
-        $this->displayPdf($html, $filename);
+        $pdf = $this->generatePdf($html);
+        $Document = $this->savePdfAsDocument($pdf, $filename, $Contact);
+        header("Location: index.php?action=DetailView&module=Documents&record=".$Document->id);
+        exit;
     }
 
 }

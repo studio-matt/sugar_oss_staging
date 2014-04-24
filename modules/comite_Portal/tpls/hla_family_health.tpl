@@ -44,6 +44,7 @@
                   $select_options = array();
                   $select_value = '';
                   if ($relative = $this->get_template_vars('CONDITIONINSTANCE')->_relative) {
+                    $relative->_many_key = 'relatives__' . str_replace('relatives__', '', $relative->_many_key);
                     $select_options[$relative->_many_key] = $relative->relation . ' - ' .$relative->name;
                     $select_value = $relative->_many_key;
                   }
@@ -97,7 +98,7 @@
               <select id="relatives__{$RELATIVE_IDX}__relation" name="relatives[{$RELATIVE_IDX}][relation]">
                 <option value=""></option>
                 {foreach from=$FORM->app_list_strings.relationship key=KEY item=VALUE}
-                <option value="{$VALUE}"{if $VALUE|trim|lower == $RELATIVE->relation|trim|lower} selected="selected"{/if}>{$VALUE}</option>
+                <option value="{$KEY}"{if $KEY|trim|lower == $RELATIVE->relation|trim|lower} selected="selected"{/if}>{$VALUE}</option>
                 {/foreach}
               </select>
             </div>
@@ -134,7 +135,15 @@ $this->assign('DOD', array(
 
             <div class="relative_date_born"{if $RELATIVE->is_deceased} style="display:none;"{/if}>
               <label for="relatives__{$RELATIVE_IDX}__date_born">Current Age</label>
-              <input type="text" name="relatives[{$RELATIVE_IDX}][date_born]" id="relatives__{$RELATIVE_IDX}__date_born" value="{$RELATIVE->date_born}" />
+{php}
+$date_born = $this->get_template_vars('RELATIVE')->date_born;
+$age = '';
+if (preg_match('#^(\d{4})-\d{2}-\d{2}$#', $date_born, $matches)) {
+    $age = date('Y') - $matches[1];
+}
+$this->assign('AGE', $age);
+{/php}
+              <input type="text" name="relatives[{$RELATIVE_IDX}][date_born]" id="relatives__{$RELATIVE_IDX}__date_born" value="{$AGE}" />
             </div>
 
             <hr />

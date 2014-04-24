@@ -404,7 +404,7 @@
                 <input type="hidden" name="lifechangeinstance[{$OBJECT_IDX}][name]" value="{$OBJECT->name}" />
                   {assign var=namekey value=$OBJECT->name}
                   {form_label for="lifechangeinstance__`$OBJECT_IDX`__answer" _html=$FORM->app_list_strings.life_change_list.$namekey class="large" _form=$FORM}
-                  <div id="lifechangeinstance__{$OBJECT_IDX}_C" class="highlight"{if $OBJECT->answer|trim != 'yes'} style="display: none;"{/if}>
+                  <div id="lifechangeinstance__{$OBJECT_IDX}_C" class="highlight"{if $OBJECT->answer|trim < 1} style="display: none;"{/if}>
                     {form_label for="lifechangeinstance__`$OBJECT_IDX`__description" _html="Please describe:" class="large" _form=$FORM}
                     {form_textarea name="lifechangeinstance[`$OBJECT_IDX`][description]" id="lifechangeinstance__`$OBJECT_IDX`__description" _value=$OBJECT->description cols="70" rows="" _form=$FORM}
                   </div>

@@ -49,6 +49,10 @@ class comite_LettersController extends SugarController {
         $this->view = 'ehe';
     }
 
+    function action_SendTms() {
+        $this->view = 'tms';
+    }
+
     function action_Send() {
 
         $Contact = new Contact();

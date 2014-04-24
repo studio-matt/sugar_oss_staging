@@ -21,7 +21,7 @@
 
             <div class="contact_salutation">
               <p class="instruct">Please enter your full name</p>
-              {form_select id="contact__salutation_option" _label="Salutation" _options=$FORM->app_list_strings.salutation_dom _value=$FORM->contact->salutation _other="Other" _form=$FORM}
+              {form_select id="contact__salutation" _label="Salutation" _options=$FORM->app_list_strings.salutation_dom _value=$FORM->contact->salutation _other="Other" _form=$FORM}
               <input type="text" name="contact__salutation" id="contact__salutation" size="10" value="{$FORM->contact->salutation}" {if !$FORM->contact->salutation|strip || in_array($FORM->contact->salutation|strip, array_keys($FORM->app_list_strings.salutation_dom))} style="display:none;"{/if}>
             </div>
             <div class="name_first">
@@ -123,7 +123,7 @@
             {foreach from=$FORM->phones key=PHONE_IDX item=PHONE}
             <div id="phones__{$PHONE_IDX}" class="phone">
               <input type="hidden" name="phones[{$PHONE_IDX}][record]" id="phones__{$PHONE_IDX}__record" value="{$PHONE->id}" />
-              <input type="hidden" name="phones[{$PHONE_IDX}][delete]" id="phones__{$PHONE_IDX}__delete" value="0" />
+              <input type="hidden" name="phones[{$PHONE_IDX}][delete]" class="phone_delete" id="phones__{$PHONE_IDX}__delete" value="0" />
 
               <a href="#" class="button actionremove" title="Are you sure you want to remove this phone?">
                 <img src="/custom/themes/comiteMDPortal/images/x.png" />

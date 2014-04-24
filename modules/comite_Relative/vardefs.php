@@ -136,6 +136,24 @@ $dictionary['comite_Relative'] = array(
     'len' => '255',
     'size' => '20',
   ),
+  'age' => 
+  array (
+    'required' => false,
+    'name' => 'age',
+    'vname' => 'LBL_AGE',
+    'type' => 'varchar',
+    'massupdate' => 0,
+    'comments' => '',
+    'help' => '',
+    'importable' => 'true',
+    'duplicate_merge' => 'disabled',
+    'duplicate_merge_dom_value' => '0',
+    'audited' => true,
+    'reportable' => true,
+    'unified_search' => false,
+    'len' => '255',
+    'size' => '20',
+  ),
   'description' => 
   array (
     'name' => 'description',

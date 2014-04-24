@@ -264,12 +264,6 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_SURGICAL_PROCEDURES',
           ),
-          1 => 
-          array (
-            'name' => 'blood_transfusion_explanation',
-            'studio' => 'visible',
-            'label' => 'LBL_BLOOD_TRANSFUSION_EXPLANATION',
-          ),
         ),
         6 => 
         array (
@@ -287,6 +281,12 @@ array (
             'name' => 'blood_transfusion',
             'studio' => 'visible',
             'label' => 'LBL_BLOOD_TRANSFUSION',
+          ),
+          1 => 
+          array (
+            'name' => 'blood_transfusion_explanation',
+            'studio' => 'visible',
+            'label' => 'LBL_BLOOD_TRANSFUSION_EXPLANATION',
           ),
         ),
         8 => 

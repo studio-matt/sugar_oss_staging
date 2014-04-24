@@ -92,7 +92,15 @@ class comite_V02Testing_sugar extends File {
 			case 'ACL': return true;
 		}
 		return false;
-}
-		
+        }
+
+    function save($check_notify = FALSE)
+    {
+        // sync the name field
+        if ($this->document_name && preg_match('#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#', $this->document_name)) {
+            $this->name = date('Y-m-d', strtotime($this->document_name));
+        }
+        return parent::save($check_notify);
+    }
 }
 ?>

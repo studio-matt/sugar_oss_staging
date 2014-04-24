@@ -38,10 +38,10 @@ $subpanel_layout = array (
       'vname' => 'LBL_IS_DECEASED',
       'width' => '10%',
     ),
-    'date_born' => 
+    'age' => 
     array (
       'type' => 'varchar',
-      'vname' => 'LBL_DATE_BORN',
+      'vname' => 'LBL_AGE',
       'width' => '10%',
       'default' => true,
     ),

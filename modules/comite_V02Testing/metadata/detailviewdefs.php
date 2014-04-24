@@ -38,7 +38,7 @@ array (
       array (
         0 =>
         array (
-          0 => 'name',
+          0 => 'document_name',
         ),
         1 =>
         array (

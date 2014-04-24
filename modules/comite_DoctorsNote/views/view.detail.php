@@ -19,7 +19,10 @@ class comite_DoctorsNoteViewDetail extends ViewDetail {
 
     // Contact
     $comite_DoctorsNote->load_relationship('comite_doctorsnote_contacts');
-    $contact = $comite_DoctorsNote->comite_doctorsnote_contacts->beans[reset(array_keys($comite_DoctorsNote->comite_doctorsnote_contacts->beans))];
+    $contact = reset($comite_DoctorsNote->comite_doctorsnote_contacts->beans);
+    if (!$contact) {
+        return;
+    }
     $this->contact = $contact;
 
     # Demographics
@@ -99,6 +102,8 @@ EOF;
 
     $originalModule = $_REQUEST['module'];
     $originalRecord = $_REQUEST['record'];
+    $_REQUEST['originalModule'] = $originalModule;
+    $_REQUEST['originalRecord'] = $originalRecord;
 
     # Demographics
     $this->DemographicsDetail->th->ss->assign('SECTION_TITLE', 'Demographics');
@@ -140,19 +145,6 @@ EOF;
     $subpanel = new SubPanelTiles($this->PersonalHealthHistoryDetail->focus, $this->PersonalHealthHistoryDetail->module, null, 'comite_PersonalHealthHistory');
     echo '<div class="HLAGroup" id="Dr_PersonalHealth_Sub">';
     echo $this->PersonalHealthHistoryDetail->display(false);
-
-    echo '<form action="index.php" method="post">
-            <input type="hidden" value="'.$this->contact->id.'" name="record">
-            <input type="hidden" name="return_action">
-            <input type="hidden" name="return_module">
-            <input type="hidden" name="return_id">
-            <input type="hidden" name="module_tab">
-            <input type="hidden" value="false" name="isDuplicate">
-            <input type="hidden" value="1" name="offset">
-            <input type="hidden" value="comite_DoctorsNote" name="module">
-            <input type="hidden" value="DetailView" name="action">
-            <input title="Print Bone Study" class="button" onclick="this.form.return_module.value=\'comite_DoctorsNote\'; this.form.return_action.value=\'DetailView\';this.form.return_id.value=\'{$fields.id.value}\'; this.form.module.value=\'comite_Letters\'; this.form.action.value=\'Medtable\'; this.form.record.value=\''.$this->contact->id.'\';" name="Print MedTable PDF" value="Print MedTable PDF" type="submit">
-        </form>';
     echo $subpanel->display();
     echo '</div>';
     $_REQUEST['module'] = $_GET['module'] = $originalModule;

@@ -68,5 +68,6 @@ $mod_strings = array (
   'LBL_DECEASED_EXPLANATION' => 'Deceased Explanation',
   'LBL_RELATION' => 'Relationship',
   'LBL_EDITVIEW_PANEL1' => 'Office Use',
-  'LBL_DATE_BORN' => 'Current Age',
+  'LBL_DATE_BORN' => 'Date Born',
+  'LBL_AGE' => 'Current Age',
 );

@@ -48,8 +48,8 @@ class HlaFamilyHealthForm extends HlaForm {
               $conditioninstance->_relative = $_relative;
             }
           }
-          $this->conditioninstances[] = $conditioninstance;
         }
+        $this->conditioninstances[] = $conditioninstance;
       }
     }
   }
@@ -69,8 +69,14 @@ class HlaFamilyHealthForm extends HlaForm {
       foreach($_REQUEST['relatives'] as $i => $relative) {
           if(!empty($relative['date_born'])) {
               $date = new DateTime();
-              $date->sub(new DateInterval('P'.$relative['date_born'].'Y'));
-              $_REQUEST['relatives'][$i]['date_born'] = $date->format('Y-m-d');
+              if (!preg_match('#^(\d{4})-\d{2}-\d{2}$#', $relative['date_born'], $matches)) {
+                if (!preg_match('#^\d+$#', $relative['date_born'])) {
+                  $_REQUEST['relatives'][$i]['date_born'] = '';
+                } else {
+                  $date->sub(new DateInterval('P'.$relative['date_born'].'Y'));
+                  $_REQUEST['relatives'][$i]['date_born'] = $date->format('Y-m-d');
+                }
+              }
           }
       }
 
@@ -108,14 +114,7 @@ class HlaFamilyHealthForm extends HlaForm {
             ),
           ),
         ),
-        'note_patient' => array(
-          'validators' => array(
-            array(
-              'callable' => 'ComiteForm::validateRequired',
-              'message' => 'You must enter a note regarding this relative\'s condition.'
-            ),
-          ),
-        )
+        'note_patient' => array()
       ));
       // connect the condition instances to the relative instances
       foreach($this->get('conditioninstances') as $hc_key => $_conditioninstance) {

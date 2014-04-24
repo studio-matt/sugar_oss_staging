@@ -71,3 +71,39 @@ $this->assign('IDX', 0);
   </div><!-- /sidebar -->
 
 </div><!-- /stage -->
+
+
+<script type="text/javascript"><!--
+{literal}
+(function($){
+    $.fn.enterAsTab = function(options){
+        var settings = $.extend({
+            'allowSubmit': false
+        }, options);
+        this.find('input, select').live('keypress', {localSettings: settings}, function(event) {
+            if (settings.allowSubmit && $(this).attr('type') == 'submit') {
+                return true;
+            }
+            if (event.keyCode == 13) {
+                var inputs =   $(this).parents('form').eq(0).find(':input:visible:not(disabled):not([readonly])');
+                var idx = inputs.index(this);
+                if (idx == inputs.length - 1) {
+                    idx = -1;
+                } else {
+                    inputs[idx + 1].focus(); // handles submit buttons
+                }
+                try {
+                    inputs[idx + 1].select();
+                } catch(err) {
+                    // handle objects not offering select
+                }
+                return false;
+            }
+        });
+        return this;
+    };
+})(jQuery);
+$('#hla_form form').enterAsTab();
+{/literal}
+//-->
+</script>

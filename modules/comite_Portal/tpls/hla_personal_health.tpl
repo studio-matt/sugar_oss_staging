@@ -139,7 +139,8 @@
               </thead>
               <tbody>
                 {foreach from=$FORM->diagnosticinstances key=OBJECT_IDX item=OBJECT}
-                <tr id="exposureinstances__{$KEY}" class="exposureinstances">
+{if ($FORM->personalhealthhistory->gender == 'female' && $OBJECT->name != 'prostate_exam' && $OBJECT->name != 'psa') || ($FORM->personalhealthhistory->gender == 'male' && $OBJECT->name != 'pap_smear' && $OBJECT->name != 'pelvic_exam' && $OBJECT->name != 'breast_exam' && $OBJECT->name != 'mammogram') }
+                <tr id="diagnosticinstances__{$OBJECT_IDX}" class="diagnosticinstances">
                   <td>
                     {assign var="mykey" value="`$OBJECT->name`"}
                     {form_label for="diagnosticinstances__`$OBJECT_IDX`__dates" class="large" _html="`$FORM->app_list_strings.diagnostic_list.$mykey`" _form=$FORM}
@@ -152,6 +153,7 @@
                     {form_input_text name="diagnosticinstances[`$OBJECT_IDX`][results]" id="diagnosticinstances__`$OBJECT_IDX`__results" value=$OBJECT->results _form=$FORM}
                   </td>
                 </tr>
+{/if}
                 {/foreach}
               </tbody>
             </table>
@@ -260,7 +262,7 @@
                    {foreach from=$FORM->supplementinstances key=SUPPLEMENT_IDX item=SUPPLEMENT}
                     <tr id="supplementinstances__{$SUPPLEMENT_IDX}" class="supplementinstance"{if $SUPPLEMENT->delete} style="display:none;"{/if}>
                         <input type="hidden" name="supplementinstances[{$SUPPLEMENT_IDX}][record]" id="supplementinstances__{$SUPPLEMENT_IDX}__record" value="{$SUPPLEMENT->id}" />
-                        <input type="hidden" name="supplementinstances[{$SUPPLEMENT_IDX}][delete]" class="supplementinstances_delete" id="supplementinstances__{$SUPPLEMENT_IDX}__delete" value="{$SUPPLEMENT->delete}" />
+                        <input type="hidden" name="supplementinstances[{$SUPPLEMENT_IDX}][delete]" class="supplementinstance_delete" id="supplementinstances__{$SUPPLEMENT_IDX}__delete" value="{$SUPPLEMENT->delete}" />
                         <td width="20%">
                           {form_select id="supplementinstances__`$SUPPLEMENT_IDX`__supplement" _label="Supplement" class="supplement_name" _options=$FORM->supplements _error="supplementinstances__`$SUPPLEMENT_IDX`__name" _value=$SUPPLEMENT->comite_med8f3bplement_ida _other="Other" _empty=true _form=$FORM}
                           <input type="text" name="supplementinstances[{$SUPPLEMENT_IDX}][name]" class="other" id="supplementinstances__{$SUPPLEMENT_IDX}__name" value="{$SUPPLEMENT->comite_med8f3bplement_ida}" {if !$SUPPLEMENT->comite_med8f3bplement_ida|strip || in_array($SUPPLEMENT->comite_med8f3bplement_ida|strip, array_keys($FORM->supplements))} style="display:none;"{/if}>
@@ -280,7 +282,7 @@
                          {form_select name="supplementinstances[$SUPPLEMENT_IDX][frequency]" id="supplementinstances__`$SUPPLEMENT_IDX`__frequency" _options=$FORM->app_list_strings.frequency_list _value=$SUPPLEMENT->frequency _form=$FORM}
                         </td>
                          <td width="5%">
-                          <a href="#" class="button actionremove" title="Are you sure you want to remove this s?">
+                          <a href="#" class="button actionremove" title="Are you sure you want to remove this supplement?">
                             <img src="/custom/themes/comiteMDPortal/images/x.png" />
                             Remove
                           </a>
