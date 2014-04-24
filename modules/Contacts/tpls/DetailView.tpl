@@ -222,9 +222,17 @@
 </td>
 {counter name="fieldsUsed"}
 <td width='12.5%' scope="col">
-&nbsp;
+    Gender:
 </td>
 <td width='37.5%'  >
+    <span class="sugar_field">{php}
+$bean = $this->get_template_vars('bean');
+$bean->get_linked_beans('comite_personalhealthhistory_contacts', 'comite_personalhealthhistory');
+if (count($bean->comite_personalhealthhistory_contacts->beans)) {
+  $personal_health = $bean->comite_personalhealthhistory_contacts->beans[reset(array_keys($bean->comite_personalhealthhistory_contacts->beans))];
+  echo $personal_health ? ucfirst($personal_health->gender) : '';
+}
+{/php}</span>
 </td>
 </tr>
 {/capture}
