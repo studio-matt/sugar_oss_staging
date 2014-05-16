@@ -37,6 +37,9 @@ function sendEmail($templateId, array $additionalData = array())
      }
      else
      {
+         $htmlBody = str_replace('$contact_user_link_guid', $additionalData['url'], $htmlBody);
+         $body = str_replace('$contact_user_link_guid', $additionalData['url'], $body);
+
          $htmlBody = str_replace('$contact_user_user_hash', $additionalData['password'], $htmlBody);
          $body = str_replace('$contact_user_user_hash', $additionalData['password'], $body);
      }

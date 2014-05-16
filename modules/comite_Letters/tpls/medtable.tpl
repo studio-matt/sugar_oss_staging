@@ -20,7 +20,7 @@
     <p class="description">Your Medications and Supplements:</p>
 {php}
 $count = 0;
-$perpage = 15;
+$perpage = 20;
 function echoHeader($type) {
     echo '<tr class="header ' . $type . '_header">
             <th>' . ucwords($type) . '</th>
@@ -62,11 +62,14 @@ $count++;
         <tr class="medication">
             <td>
                 {$MEDSUPP->name}
-                {if $MEDSUPPINSTANCE->comite_new}<span class="red">(new)</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_name}<span class="red">(name change)</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_dosage}<span class="red">(dosage {$MEDSUPPINSTANCE->comite_change_dosage})</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_quantity}<span class="red">(quantity {$MEDSUPPINSTANCE->comite_change_quantity})</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_frequency}<span class="red">(frequency {$MEDSUPPINSTANCE->comite_change_frequency})</span>{/if}
+                {if $MEDSUPPINSTANCE->comite_new}
+                    <span class="red">(new)</span>
+                {else}
+                    {if $MEDSUPPINSTANCE->comite_change_name}<span class="red">(name change)</span>{/if}
+                    {if $MEDSUPPINSTANCE->comite_change_dosage}<span class="red">(dosage {$MEDSUPPINSTANCE->comite_change_dosage})</span>{/if}
+                    {if $MEDSUPPINSTANCE->comite_change_quantity}<span class="red">(quantity {$MEDSUPPINSTANCE->comite_change_quantity})</span>{/if}
+                    {if $MEDSUPPINSTANCE->comite_change_frequency}<span class="red">(frequency {$MEDSUPPINSTANCE->comite_change_frequency})</span>{/if}
+                {/if}
             </td>
             <td>{$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}</td>
             <td>{$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}</td>
@@ -96,11 +99,14 @@ $count++;
         <tr class="medication">
             <td>
                 {$MEDSUPP->name}
-                {if $MEDSUPPINSTANCE->comite_new}<span class="red">(new)</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_name}<span class="red">(name change)</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_dosage}<span class="red">(dosage {$MEDSUPPINSTANCE->comite_change_dosage})</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_quantity}<span class="red">(quantity {$MEDSUPPINSTANCE->comite_change_quantity})</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_frequency}<span class="red">(frequency {$MEDSUPPINSTANCE->comite_change_frequency})</span>{/if}
+                {if $MEDSUPPINSTANCE->comite_new}
+                    <span class="red">(new)</span>
+                {else}
+                    {if $MEDSUPPINSTANCE->comite_change_name}<span class="red">(name change)</span>{/if}
+                    {if $MEDSUPPINSTANCE->comite_change_dosage}<span class="red">(dosage {$MEDSUPPINSTANCE->comite_change_dosage})</span>{/if}
+                    {if $MEDSUPPINSTANCE->comite_change_quantity}<span class="red">(quantity {$MEDSUPPINSTANCE->comite_change_quantity})</span>{/if}
+                    {if $MEDSUPPINSTANCE->comite_change_frequency}<span class="red">(frequency {$MEDSUPPINSTANCE->comite_change_frequency})</span>{/if}
+                {/if}
             </td>
             <td>{$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}</td>
             <td>{$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}</td>
@@ -149,11 +155,14 @@ $first = false;
         <tr class="supplement">
             <td>
                 {$MEDSUPP->name}
-                {if $MEDSUPPINSTANCE->comite_new}<span class="red">(new)</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_name}<span class="red">(name change)</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_dosage}<span class="red">(dosage {$MEDSUPPINSTANCE->comite_change_dosage})</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_quantity}<span class="red">(quantity {$MEDSUPPINSTANCE->comite_change_quantity})</span>{/if}
-                {if $MEDSUPPINSTANCE->comite_change_frequency}<span class="red">(frequency {$MEDSUPPINSTANCE->comite_change_frequency})</span>{/if}
+                {if $MEDSUPPINSTANCE->comite_new}
+                    <span class="red">(new)</span>
+                {else}
+                    {if $MEDSUPPINSTANCE->comite_change_name}<span class="red">(name change)</span>{/if}
+                    {if $MEDSUPPINSTANCE->comite_change_dosage}<span class="red">(dosage {$MEDSUPPINSTANCE->comite_change_dosage})</span>{/if}
+                    {if $MEDSUPPINSTANCE->comite_change_quantity}<span class="red">(quantity {$MEDSUPPINSTANCE->comite_change_quantity})</span>{/if}
+                    {if $MEDSUPPINSTANCE->comite_change_frequency}<span class="red">(frequency {$MEDSUPPINSTANCE->comite_change_frequency})</span>{/if}
+                {/if}
             </td>
             <td>{$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}</td>
             <td>{$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}</td>

@@ -95,9 +95,9 @@ class comite_LettersViewMedtable extends PdfView {
                             }
 
                             if ($after > $before) {
-                                $MedSuppInstance->comite_change_frequency = 'decrease';
-                            } else {
                                 $MedSuppInstance->comite_change_frequency = 'increase';
+                            } else {
+                                $MedSuppInstance->comite_change_frequency = 'decrease';
                             }
                             break;
                     }

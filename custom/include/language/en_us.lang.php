@@ -83,8 +83,6 @@ $GLOBALS['app_list_strings']['tests_test_list']=array (
   'ta_sciences'                     => 'TA Sciences',
   'thyroid_ab'                      => 'Thyroid AB',
   'u_a__culture'                    => 'U/A &amp; Culture',
-
-
 );
 $GLOBALS['app_list_strings']['misc_type_list']=array (
   ''                                    => 'Select',
@@ -162,36 +160,6 @@ $GLOBALS['app_list_strings']['meeting_status_dom']=array (
   'Held' => 'Held',
   'Not Held' => 'Not Held',
 );
-$GLOBALS['app_list_strings']['tests_test_list']=array (
-  'amylase_lipase' => 'Amylase & Lipase',
-  'apoprotein_a-1_b' => 'Apoprotein A-1/B',
-  'autoimmune_indices' => 'Autoimmune Indices',
-  'b12__folate' => 'B12 + Folate',
-  'baseline_female_panel' => 'Baseline Female Panel',
-  'baseline_male_panel' => 'Baseline Male Panel',
-  'blood_glucose__insulin__hba1c' => 'Blood Glucose/Insulin/HbA1C',
-  'bone_markers' => 'Bone Markers',
-  'cbc_diff' => 'CBC + diff.',
-  'cortisol_saliva_testing' => 'Cortisol Saliva Testing',
-  'ebv_mono' => 'EBV/Mono',
-  'endopat' => 'EndoPAT',
-  'gtt' => 'GTT',
-  'heavy metals panel' => 'Heavy Metals Panel',
-  'hepatitis_panel' => 'Hepatitis Panel',
-  'lime_titers' => 'Lime Titers',
-  'liver_function_tests' => 'Liver Function Tests',
-  'navigenics' => 'Navigenics',
-  'nmr_lipoprofile_plac_lipo_a' => 'NMR Lipoprofile, PLAC, Lipo (a)',
-  'other' => 'Other',
-  'prostatic_fluid_culture' => 'Prostatic Fluid Culture',
-  '' => 'Select',
-  'sti_panel' => 'STI Panel',
-  'ta_sciences' => 'TA Sciences',
-  'thyroid_ab' => 'Thyroid AB',
-  'u_a__culture' => 'U/A & Culture',
-  'vo2' => 'VO2',
-  'vo2_endopat' => 'VO2/EndoPAT',
-);
 $GLOBALS['app_list_strings']['physical_exam_list']=array (
   'eyes__Conjunctive_lids' => 'Conjunctive, lids',
   'eyes__Pupils_irises' => 'Pupils, irises',
@@ -248,4 +216,13 @@ $GLOBALS['app_list_strings']['physical_exam_list']=array (
   'psychiatric__Mood_Affect' => 'Mood & Affect',
 );
 $app_strings['LBL_GROUPTAB2_1380749164'] = 'Other';
-?>
+
+$GLOBALS['app_list_strings']['dosage_unit_list']=array (
+  'g' => 'gram (g)',
+  'mg' => 'milligram (mg)',
+  'mcg' => 'microgram (mcg)',
+  'iu' => 'IU',
+  'mg_ml' => 'mg/mL',
+  'gr' => 'grain (gr)',
+  'other' => 'other',
+);

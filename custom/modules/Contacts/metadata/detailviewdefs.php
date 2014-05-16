@@ -111,6 +111,15 @@ array (
             'name' => 'contacts_users_1_name',
           ),
         ),
+        6 =>
+        array (
+          0 =>
+          array (
+            'name' => 'gender',
+            'comment' => 'The gender of the contact',
+            'label' => 'Gender',
+          ),
+        ),
       ),
       'lbl_editview_panel1' => 
       array (

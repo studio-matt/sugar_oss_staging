@@ -148,7 +148,7 @@
                 <li class="editable" data-var="{$datavar}">
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                 {else}
-                    {if $MEDSUPPINSTANCE->comite_new}Initate {/if}{if $MEDSUPPINSTANCE->comite_change_name}(name change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}.
+                    {if $MEDSUPPINSTANCE->comite_new}Initiate {/if}{if $MEDSUPPINSTANCE->comite_change_name}(name change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}.
                 {/if}
                 </li>
             {/foreach}
@@ -343,7 +343,7 @@
                 In light of the elevated Hemoglobin and Hematocrit levels seen in your most recent lab work, we advise donating 1 unit of blood as soon as your schedule permits. You may do so by calling 1-800-RED-CROSS or visiting www.redcrossblood.org to find a location and time that is convenient for you.
                 {/if}
                 {if $MEETING->status|strtolower|trim == 'planned'}
-                In light of the elevated Hemoglobin and Hematocrit levels seen in your most recent lab work, you are scheduled to obtain a Therapeutic Phlebotomy on {$MEETING->time_start|strtotime|date_format:'%B %e, %Y'|strtolower} at Lenox Hill Hospital. The Infusion and Blood Donation Center is located at Wollman building - 3rd Floor, 100 E 77th St, New York, NY 10075. We recommend repeating a therapeutic phlebotomy every 1 to 2 months thereafter.
+                In light of the elevated Hemoglobin and Hematocrit levels seen in your most recent lab work, you are scheduled to obtain a Therapeutic Phlebotomy on {$MEETING->time_start|strtotime|date_format:'%B %e, %Y'} at Lenox Hill Hospital. The Infusion and Blood Donation Center is located at Wollman building - 3rd Floor, 100 E 77th St, New York, NY 10075. We recommend repeating a therapeutic phlebotomy every 1 to 2 months thereafter.
                 {/if}
             {/if}
             </li>
@@ -363,8 +363,9 @@
                 {if $MEETING->status|strtolower|trim == 'recommended'}We recommend a {$MEETING->studies_study_c|trim}{if $MEETING->description}, in light of your {$MEETING->description}{/if}.{if $MEETING->comite_planlocation_meetings_name} This would take place at {$MEETING->comite_planlocation_meetings_name}.{/if} Please let us know your availability so that we can best coordinate your appointment.
                 {/if}
                 {if $MEETING->status|strtolower|trim == 'planned'}
-                You are scheduled for a {$MEETING->studies_study_c|trim}{if $MEETING->description}, in light of your {$MEETING->description}{/if}.
-                This will take place on {$MEETING->time_start|strtotime|date_format:'%B %e, %Y'|strtolower}{if $MEETING->comite_planlocation_meetings_name} at {$MEETING->comite_planlocation_meetings_name}.{/if}
+                {assign var=K value=$MEETING->studies_study_c}
+                You are scheduled for a {$app_list_strings.studies_study_list[$K]}{if $MEETING->description}, in light of your {$MEETING->description}{/if}.
+                This will take place on {$MEETING->time_start|strtotime|date_format:'%B %e, %Y'}{if $MEETING->comite_planlocation_meetings_name} at {$MEETING->comite_planlocation_meetings_name}.{/if}
                 {/if}
             {/if}
             </li>
