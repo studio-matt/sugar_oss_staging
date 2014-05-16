@@ -65,7 +65,7 @@ $dictionary['comite_MedicationSupplementInstance'] = array(
     'required' => false,
     'name' => 'dosage',
     'vname' => 'LBL_DOSAGE',
-    'type' => 'decimal',
+    'type' => 'varchar',
     'massupdate' => 0,
     'comments' => '',
     'help' => '',
@@ -78,7 +78,6 @@ $dictionary['comite_MedicationSupplementInstance'] = array(
     'len' => '18',
     'size' => '20',
     'enable_range_search' => false,
-    'precision' => '8',
   ),
   'dosage_unit' => 
   array (

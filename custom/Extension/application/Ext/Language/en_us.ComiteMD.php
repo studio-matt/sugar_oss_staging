@@ -1004,6 +1004,7 @@ $app_list_strings['review_of_overall_health_question_list']['jmb__history_of_inj
 $app_list_strings['review_of_overall_health_question_list']['jmb__fibromyalgia'] = 'Fibromyalgia';
 $app_list_strings['review_of_overall_health_question_list']['jmb__carpal_tunnel_syndrome'] = 'Carpal Tunnel Syndrome';
 $app_list_strings['review_of_overall_health_question_list']['jmb__osteoporosis__decreased_bone_de'] = 'Osteoporosis (decreased bone density)';
+$app_list_strings['dosage_unit_list'][''] = '';
 $app_list_strings['dosage_unit_list']['g'] = 'gram (g)';
 $app_list_strings['dosage_unit_list']['mg'] = 'miligram (mg)';
 $app_list_strings['dosage_unit_list']['mcg'] = 'microgram (mcg)';

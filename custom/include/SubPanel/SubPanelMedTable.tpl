@@ -24,7 +24,7 @@
             {assign var='type_index' value=$med.current->type}
             <td>{$app_list_strings.medication_supplement_type_list.$type_index}</td>
             {assign var='dosage_index' value=$med.current->dosage_unit}
-            <td>{$med.current->dosage|string_format:"%.3f"} {$app_list_strings.dosage_unit_list.$dosage_index}</td>
+            <td>{$med.current->dosage} {if $med.current->dosage != ''} {$app_list_strings.dosage_unit_list.$dosage_index} {/if}</td>
             {assign var='quantity_index' value=$med.current->quantity_unit}
             <td>{$med.current->quantity|string_format:"%.3f"} {$app_list_strings.quantity_unit_list.$quantity_index}</td>
             {assign var='frequency_index' value=$med.current->frequency}
