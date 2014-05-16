@@ -222,17 +222,22 @@
 </td>
 {counter name="fieldsUsed"}
 <td width='12.5%' scope="col">
-    Gender:
+    {if !$fields.gender.hidden}
+    {capture name="label" assign="label"}{sugar_translate label='LBL_GENDER' module='Contacts'}{/capture}
+    {$label|strip_semicolon}:
+    {/if}
 </td>
 <td width='37.5%'  >
-    <span class="sugar_field">{php}
-$bean = $this->get_template_vars('bean');
-$bean->get_linked_beans('comite_personalhealthhistory_contacts', 'comite_personalhealthhistory');
-if (count($bean->comite_personalhealthhistory_contacts->beans)) {
-  $personal_health = $bean->comite_personalhealthhistory_contacts->beans[reset(array_keys($bean->comite_personalhealthhistory_contacts->beans))];
-  echo $personal_health ? ucfirst($personal_health->gender) : '';
-}
-{/php}</span>
+    {if !$fields.gender.hidden}
+    {counter name="panelFieldCount"}
+    
+    {if strlen($fields.gender.value) <= 0}
+    {assign var="value" value=$fields.gender.default_value }
+    {else}
+    {assign var="value" value=$fields.gender.value }
+    {/if}
+    <span class="sugar_field" id="{$fields.gender.name}">{$fields.gender.value}</span>
+    {/if}
 </td>
 </tr>
 {/capture}

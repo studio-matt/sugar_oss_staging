@@ -248,4 +248,9 @@ $GLOBALS['app_list_strings']['physical_exam_list']=array (
   'psychiatric__Mood_Affect' => 'Mood & Affect',
 );
 $app_strings['LBL_GROUPTAB2_1380749164'] = 'Other';
+
+$GLOBALS['app_list_strings']['gender_type_dom'] = array(
+    'Male' => 'Male',
+    'Female' => 'Female',
+);
 ?>
