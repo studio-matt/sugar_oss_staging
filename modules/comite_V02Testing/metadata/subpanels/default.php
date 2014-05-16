@@ -16,6 +16,17 @@ $subpanel_layout = array (
   'where' => '',
   'list_fields' => 
   array (
+          'object_image'=>array(
+                  'vname' => 'LBL_OBJECT_IMAGE',
+                  'widget_class' => 'SubPanelIcon',
+                  'width' => '2%',
+                  'attachment_image_only' => true,
+                  'image2'=>'attachment',
+                  'image2_url_field'=> array(
+                          'id_field' => 'id',
+                          'filename_field' => 'filename',
+                  ),
+          ),
     'name' => 
     array (
       'vname' => 'LBL_NAME',
@@ -93,5 +104,11 @@ $subpanel_layout = array (
       'width' => '5%',
       'default' => true,
     ),
+          'file_url'=>array(
+                  'usage'=>'query_only'
+          ),
+          'filename'=>array(
+                  'usage'=>'query_only'
+          ),
   ),
 );
