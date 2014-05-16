@@ -30,6 +30,11 @@ array (
         array (
           0 => 'name',
         ),
+        
+        1 =>
+        array(
+            0 => 'description',
+        ),
       ),
       'lbl_quickcreate_panel1' => 
       array (
