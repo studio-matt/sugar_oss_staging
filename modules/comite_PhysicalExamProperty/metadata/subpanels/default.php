@@ -20,7 +20,7 @@ $subpanel_layout = array (
     array (
       'vname' => 'LBL_NAME',
       'widget_class' => 'SubPanelDetailViewLink',
-      'width' => '45%',
+      'width' => '15%',
       'default' => true,
     ),
     'category' => 
@@ -29,7 +29,7 @@ $subpanel_layout = array (
       'studio' => 'visible',
       'default' => true,
       'vname' => 'LBL_CATEGORY',
-      'width' => '10%',
+      'width' => '15%',
     ),
     'is_normal' => 
     array (
@@ -45,7 +45,7 @@ $subpanel_layout = array (
       'studio' => 'visible',
       'vname' => 'LBL_DESCRIPTION',
       'sortable' => false,
-      'width' => '10%',
+      'width' => '45%',
       'default' => true,
     ),
     'edit_button' => 
