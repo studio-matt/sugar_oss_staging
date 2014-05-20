@@ -117,7 +117,17 @@ class comite_BoneStudies_sugar extends File {
 			case 'ACL': return true;
 		}
 		return false;
-}
+    }
+
+    /**
+     * @see SugarBean::retrieve()
+     */
+    public function retrieve($id = -1, $encode=true, $deleted=true)
+    {
+        $ret_val = Basic::retrieve($id, $encode, $deleted);
+    
+        return $ret_val;
+    }
 		
 }
 ?>
