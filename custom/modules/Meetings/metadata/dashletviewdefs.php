@@ -106,6 +106,20 @@ $dashletData['MeetingsDashlet']['columns'] = array (
     'name' => 'assigned_user_name',
     'default' => false,
   ),
+        'contact_name' => array(
+                'name'=> 'contact_name',
+                'width' => '15%',
+                'label' => 'LBL_LIST_CONTACT',
+                'link' => true,
+                'id' => 'CONTACT_ID',
+                'module' => 'Contacts',
+                'default' => true,
+                'ACLTag' => 'CONTACT',
+                'related_fields' =>
+                array (
+                        0 => 'contact_id',
+                ),
+        ),
   'parent_name' => 
   array (
     'width' => '29%',
