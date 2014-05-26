@@ -454,22 +454,61 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
     'misc-call' : 'LBL_EDITVIEW_PANEL6'
   };
 
+  
   meeting_plan_init = function() {
-
-      hideAllPanels();
-
+	  
+    hideAllPanels();
+    
+    var plantype = '';
+    plantype = Y.one('#plan_type_c').get('value');
+    if(plantype != ''){
+    	selected = plantype;
+        hideAllPanels();
+        Y.one('#plan_type_c').ancestor('div#LBL_EDITVIEW_PANEL1').siblings('#'+panels[selected]).setStyle('display', 'block');	
+    }  
+    
+      
     Y.one('#plan_type_c').on('change', function(e){
       selected = this.get('value');
 
       hideAllPanels();
-
       Y.one('#plan_type_c').ancestor('div#LBL_EDITVIEW_PANEL1').siblings('#'+panels[selected]).setStyle('display', 'block');
+       
+        var formType = this.get('form').get('attributes').get('nodeValue');
+        var formName = formType[1];
+    	var subject = document.getElementById('name').value;
+    	if(selected == 'misc')
+    	{
+    		document.forms[formName]['name'].value = 'Misc Recommendation';
+    	}else if(selected == 'specialty')
+    	{
+    		document.forms[formName]['name'].value = 'Specialty Procedure Name';
+    	}else
+    	{
+    		document.forms[formName]['name'].value = '';
+    	}
     });
 
+    
+    var specialty_type = '';
+    specialty_type = Y.one('#specialty_type_c').get('value');
+    if(specialty_type != ''){
+		selected = specialty_type;
+		if(selected == 'other') {
+	        currentTr = this.ancestor('tr');
+	        newTr = Y.Node.create('<tr id="specialty_other_new"><td><label for="other_new">Name</label></td><td><input type="text" /></td></td>');
+	        currentTr.insert(newTr, 'after');
+	     } else {
+	        miscOtherNew = Y.one('#specialty_other_new');
+	        if(miscOtherNew) {
+	          miscOtherNew.remove();
+	        }
+	     }
+    }
+    
     // Handle Specialty
     Y.one('#specialty_type_c').on('change', function(e){
       selected = this.get('value');
-
       if(selected == 'other') {
         currentTr = this.ancestor('tr');
         newTr = Y.Node.create('<tr id="specialty_other_new"><td><label for="other_new">Name</label></td><td><input type="text" /></td></td>');
