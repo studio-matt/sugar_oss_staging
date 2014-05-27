@@ -478,18 +478,30 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
       	formType.each(function(childNode){
       		if(childNode.get('nodeName') == 'name'){
       			formName = childNode.get('nodeValue');
-      			console.log(formName);
+      			//console.log(formName);
       		}
       	});
     	if(selected == 'misc')
     	{
-    		document.forms[formName]['name'].value = 'Misc Recommendation';
+    		clear_all_errors();
+    		document.getElementById('name_label').innerHTML = '<label for="name">Misc Recommendation:</label><span class="required">*</span>';
+    		removeFromValidate(formName, 'name', 'name', true,'Subject');
+    		removeFromValidate(formName, 'name', 'name', true,'Misc Recommendation' );
+    		addToValidate(formName, 'name', 'name', true,'Misc Recommendation' );
     	}else if(selected == 'specialty')
     	{
-    		document.forms[formName]['name'].value = 'Specialty Procedure Name';
+    		clear_all_errors();
+    		document.getElementById('name_label').innerHTML = '<label for="name">Specialty Procedure Name:</label><span class="required">*</span>';
+    		removeFromValidate(formName, 'name', 'name', true,'Subject');
+    		removeFromValidate(formName, 'name', 'name', true,'Misc Recommendation' );
+    		addToValidate(formName, 'name', 'name', true,'Specialty Procedure Name' );
     	}else
     	{
-    		document.forms[formName]['name'].value = '';
+    		clear_all_errors();
+    		document.getElementById('name_label').innerHTML = '<label for="name">Subject:</label><span class="required">*</span>';
+    		removeFromValidate(formName, 'name', 'name', true,'Specialty Procedure Name' )
+    		removeFromValidate(formName, 'name', 'name', true,'Misc Recommendation' );
+    		addToValidate(formName, 'name', 'name', true,'Subject' );
     	}
     });
 

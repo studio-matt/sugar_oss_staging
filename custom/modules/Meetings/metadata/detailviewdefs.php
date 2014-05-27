@@ -105,7 +105,8 @@ $viewdefs['Meetings'] = array(
                                 0 => array(
                                         0 => array(
                                                 'name' => 'name',
-                                                'label' => 'LBL_SUBJECT'
+                                                'label' => 'LBL_SUBJECT',
+                                                'customLabel' => '{if $fields.plan_type_c.value == "specialty"}Specialty Procedure Name{elseif $fields.plan_type_c.value == "misc"}Misc Recommendation{else}{$MOD.LBL_SUBJECT}{/if}',
                                         ),
                                         1 => 'status'
                                 ),
