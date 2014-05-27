@@ -473,10 +473,14 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
 
       hideAllPanels();
       Y.one('#plan_type_c').ancestor('div#LBL_EDITVIEW_PANEL1').siblings('#'+panels[selected]).setStyle('display', 'block');
-       
-        var formType = this.get('form').get('attributes').get('nodeValue');
-        var formName = formType[1];
-    	var subject = document.getElementById('name').value;
+      	var formName = 'EditView';
+      	var formType = this.get('form').get('attributes');
+      	formType.each(function(childNode){
+      		if(childNode.get('nodeName') == 'name'){
+      			formName = childNode.get('nodeValue');
+      			console.log(formName);
+      		}
+      	});
     	if(selected == 'misc')
     	{
     		document.forms[formName]['name'].value = 'Misc Recommendation';
