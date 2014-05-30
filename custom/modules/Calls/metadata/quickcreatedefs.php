@@ -14,7 +14,7 @@ array (
           1 => '<input type="hidden" name="send_invites">',
           2 => '<input type="hidden" name="user_invitees">',
           3 => '<input type="hidden" name="lead_invitees">',
-          4 => '<input type="hidden" name="contact_invitees">',
+          4 => '<input type="hidden" name="contact_invitees" value="{$fields.contact_id.value}">',
         ),
         'buttons' => 
         array (
