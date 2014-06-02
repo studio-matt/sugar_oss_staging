@@ -464,13 +464,46 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
     if(plantype != ''){
     	selected = plantype;
         hideAllPanels();
-        Y.one('#plan_type_c').ancestor('div#LBL_EDITVIEW_PANEL1').siblings('#'+panels[selected]).setStyle('display', 'block');	
+        Y.one('#plan_type_c').ancestor('div#LBL_EDITVIEW_PANEL1').siblings('#'+panels[selected]).setStyle('display', 'block');
+        
+        var formName = 'EditView';
+      	var formType = Y.one('#plan_type_c').get('form').get('attributes');
+      	formType.each(function(childNode){
+      		if(childNode.get('nodeName') == 'name'){
+      			formName = childNode.get('nodeValue');
+      		}
+      	});
+        if(selected == 'misc')
+    	{
+    		document.getElementById('name_label').innerHTML = '<label for="name">Misc Recommendation:</label><span class="required">*</span>';
+    		addToValidate(formName, 'name', 'name', true,'Misc Recommendation' );
+    	}else if(selected == 'specialty')
+    	{
+    		document.getElementById('name_label').innerHTML = '<label for="name">Specialty Procedure Name:</label><span class="required">*</span>';
+    		addToValidate(formName, 'name', 'name', true,'Specialty Procedure Name' );
+    	}else
+    	{
+    		document.getElementById('name_label').innerHTML = '<label for="name">Subject:</label><span class="required">*</span>';
+    		addToValidate(formName, 'name', 'name', true,'Subject' );
+    	}
     }  
+    
+    Y.one('#'+formName).on('blur', function(e){
+    	selected = Y.one('#plan_type_c').get('value');
+        if(selected == 'misc')
+    	{
+        	removeFromValidate(formName, 'name');
+    		addToValidate(formName, 'name', 'name', true,'Misc Recommendation' );
+    	}else if(selected == 'specialty')
+    	{
+    		removeFromValidate(formName, 'name');
+    		addToValidate(formName, 'name', 'name', true,'Specialty Procedure Name' );
+    	}
+    });
     
       
     Y.one('#plan_type_c').on('change', function(e){
       selected = this.get('value');
-
       hideAllPanels();
       Y.one('#plan_type_c').ancestor('div#LBL_EDITVIEW_PANEL1').siblings('#'+panels[selected]).setStyle('display', 'block');
       	var formName = 'EditView';
@@ -485,22 +518,19 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
     	{
     		clear_all_errors();
     		document.getElementById('name_label').innerHTML = '<label for="name">Misc Recommendation:</label><span class="required">*</span>';
-    		removeFromValidate(formName, 'name', 'name', true,'Subject');
-    		removeFromValidate(formName, 'name', 'name', true,'Misc Recommendation' );
+    		removeFromValidate(formName, 'name');
     		addToValidate(formName, 'name', 'name', true,'Misc Recommendation' );
     	}else if(selected == 'specialty')
     	{
     		clear_all_errors();
     		document.getElementById('name_label').innerHTML = '<label for="name">Specialty Procedure Name:</label><span class="required">*</span>';
-    		removeFromValidate(formName, 'name', 'name', true,'Subject');
-    		removeFromValidate(formName, 'name', 'name', true,'Misc Recommendation' );
+    		removeFromValidate(formName, 'name');
     		addToValidate(formName, 'name', 'name', true,'Specialty Procedure Name' );
     	}else
     	{
     		clear_all_errors();
     		document.getElementById('name_label').innerHTML = '<label for="name">Subject:</label><span class="required">*</span>';
-    		removeFromValidate(formName, 'name', 'name', true,'Specialty Procedure Name' )
-    		removeFromValidate(formName, 'name', 'name', true,'Misc Recommendation' );
+    		removeFromValidate(formName, 'name');
     		addToValidate(formName, 'name', 'name', true,'Subject' );
     	}
     });
