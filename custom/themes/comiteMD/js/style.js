@@ -488,18 +488,20 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
     	}
     }  
     
-    Y.one('#'+formName).on('blur', function(e){
-    	selected = Y.one('#plan_type_c').get('value');
-        if(selected == 'misc')
-    	{
-        	removeFromValidate(formName, 'name');
-    		addToValidate(formName, 'name', 'name', true,'Misc Recommendation' );
-    	}else if(selected == 'specialty')
-    	{
-    		removeFromValidate(formName, 'name');
-    		addToValidate(formName, 'name', 'name', true,'Specialty Procedure Name' );
-    	}
-    });
+    if(plantype != ''){
+	    Y.one('#'+formName).on('blur', function(e){
+	    	selected = Y.one('#plan_type_c').get('value');
+	        if(selected == 'misc')
+	    	{
+	        	removeFromValidate(formName, 'name');
+	    		addToValidate(formName, 'name', 'name', true,'Misc Recommendation' );
+	    	}else if(selected == 'specialty')
+	    	{
+	    		removeFromValidate(formName, 'name');
+	    		addToValidate(formName, 'name', 'name', true,'Specialty Procedure Name' );
+	    	}
+	    });
+    }
     
       
     Y.one('#plan_type_c').on('change', function(e){
