@@ -55,6 +55,8 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
  	{
         parent::display();
         
+        
+        
         echo $js = <<<EOQ
         <script type="text/javascript">
                 
@@ -63,8 +65,7 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
         }else{
             var formName = 'EditView';		            
         }
-        
-        setMedicineSupp('Edit');        
+            
         
         document.getElementById('btn_comite_medsuppinstance_comite_medsupp_name').onclick = function(){
 		var popup_request_data = {
@@ -152,9 +153,9 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
      	                            }
                                     dosage_options += ">"+dosage_trim+"</option>";
                                 }
-                                $('#dosage').closest('td').html('<select name="dosage" id="dosage">'+dosage_options+'</select>');
+                                $('input#dosage').closest('td').html('<select name="dosage" id="dosage">'+dosage_options+'</select>');
                             }else{
-                                $('#dosage').closest('td').html('<input type="text" name="dosage" id="dosage" value="'+dosage_value+'">');
+                                $('input#dosage').closest('td').html('<input type="text" name="dosage" id="dosage" value="'+dosage_value+'">');
                             }
                                 
                             if( (typeof quantity != 'undefined') && (quantity != '')){
@@ -169,13 +170,13 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
      	                            }
                                     quantity_options += ">"+quantity_trim+"</option>";
                                 }
-                                $('#quantity').closest('td').html('<select name="quantity" id="quantity">'+quantity_options+'</select>');
+                                $('input#quantity').closest('td').html('<select name="quantity" id="quantity">'+quantity_options+'</select>');
                             }else{
-                                 $('#quantity').closest('td').html('<input type="text" name="quantity" id="quantity" value="'+quantity_value+'">');
+                                $('input#quantity').closest('td').html('<input type="text" name="quantity" id="quantity" value="'+quantity_value+'">');
                             }
                         }else{
-                            $('#dosage').closest('td').html('<input type="text" name="dosage" id="dosage" value="'+dosage_value+'">');
-                            $('#quantity').closest('td').html('<input type="text" name="quantity" id="quantity" value="'+quantity_value+'">');
+                            $('input#dosage').closest('td').html('<input type="text" name="dosage" id="dosage" value="'+dosage_value+'">');
+                            $('input#quantity').closest('td').html('<input type="text" name="quantity" id="quantity" value="'+quantity_value+'">');
                         }
     				}
     			}
@@ -184,5 +185,12 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
         }
         </script>
 EOQ;
+        
+        if(empty($this->bean->id))
+        {
+            echo '<script type="text/javascript">setMedicineSupp(); </script>';
+        }else{
+            echo '<script type="text/javascript">setMedicineSupp(\'Edit\'); </script>';
+        }
  	}
 }
