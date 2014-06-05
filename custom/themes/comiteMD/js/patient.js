@@ -45,5 +45,16 @@ YUI().use('node', 'event', function (Y) {
       }
     }
   };
-
+  
+  
+  var medTable = $('#whole_subpanel_comite_med_table_contacts');
+  var phoneTable = $('#whole_subpanel_comite_phone_contacts');
+  medTable.insertBefore(phoneTable);
+  
+  $('#whole_subpanel_comite_doctorsnote_contacts').insertAfter($('#whole_subpanel_comite_billing_contacts'));
+  $('#whole_subpanel_activities').insertAfter($('#whole_subpanel_comite_doctorsnote_contacts'));
+  $('#whole_subpanel_comite_episodicnote_contacts').insertAfter($('#whole_subpanel_activities'));
+  $('#whole_subpanel_documents').insertAfter($('#whole_subpanel_comite_episodicnote_contacts'));
+  $('#whole_subpanel_comite_impression_contacts').insertAfter($('#whole_subpanel_documents'));
+  $('#whole_subpanel_history').insertAfter($('#whole_subpanel_comite_impression_contacts'));
 });
