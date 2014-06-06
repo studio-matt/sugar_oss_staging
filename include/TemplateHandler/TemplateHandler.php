@@ -446,6 +446,11 @@ class TemplateHandler {
                             $sqs_objects[$name]['populate_list'] = $field['field_list'];
                             $sqs_objects[$name]['field_list'] = $field['populate_list'];
                         }
+                        
+                        //Hirak - fix post on blur bug
+                        if($name == 'form_SubpanelQuickCreate_comite_MedicationSupplementInstance_comite_medsuppinstance_comite_medsupp_name'){
+                            $sqs_objects[$name]['post_onblur_function'] = 'setMedicineSupp';
+                        }
                     }
                 } else if($field['type'] == 'parent') {
                     $sqs_objects[$name] = $qsd->getQSParent();

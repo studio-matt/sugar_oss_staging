@@ -55,8 +55,6 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
  	{
         parent::display();
         
-        
-        
         echo $js = <<<EOQ
         <script type="text/javascript">
                 
@@ -65,7 +63,6 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
         }else{
             var formName = 'EditView';		            
         }
-            
         
         document.getElementById('btn_comite_medsuppinstance_comite_medsupp_name').onclick = function(){
 		var popup_request_data = {
@@ -90,7 +87,6 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
             setMedicineSupp();
         }
                 
-       
         if (typeof sqs_objects == 'undefined') {
             var sqs_objects = new Array;
         }
@@ -113,7 +109,7 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
             "no_match_text": "No Match",
             "post_onblur_function" : "setMedicineSupp",
         };
-                
+                    
         function setMedicineSupp(viewoption){
             if(typeof document.EditView == 'undefined'){	    
 		        EditView = 'form_SubpanelQuickCreate_comite_MedicationSupplementInstance';
@@ -124,8 +120,18 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
 	        }
                
             var suppliment_id = document.getElementById('comite_med8f3bplement_ida').value;
-            var dosage_value = document.getElementById('dosage').value;
-            var quantity_value = document.getElementById('quantity').value;
+            var dosage_value = $('input#dosage').val();
+            var quantity_value = $('input#quantity').val();
+                
+            if( typeof dosage_value == 'undefined' ){
+                dosage_value = '';
+            }
+            if( typeof quantity_value == 'undefined' ){
+                quantity_value = '';
+            }
+                
+            $('select#dosage').closest('td').html('<input type="text" name="dosage" id="dosage" value="'+dosage_value+'">');
+            $('select#quantity').closest('td').html('<input type="text" name="quantity" id="quantity" value="'+quantity_value+'">');
                 
 			var callback = {
     			success: function(o){
@@ -138,8 +144,8 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
                             var quantity_unit = response.quantity_unit;
                             
                             if(typeof viewoption == 'undefined' || viewoption != 'Edit'){
-                			     document.getElementById('dosage_unit').value = dosage_unit;
-                			     document.getElementById('quantity_unit').value = quantity_unit;
+                                  $('select#dosage_unit').val(dosage_unit);
+                                  $('select#quantity_unit').val(quantity_unit);
                             }
                                 
                             if( (typeof dosage != 'undefined') && (dosage != '')){
@@ -185,8 +191,7 @@ class comite_MedicationSupplementInstanceViewEdit extends ViewEdit
         }
         </script>
 EOQ;
-        
-        if(empty($this->bean->id))
+        if(empty($_REQUEST['record']))
         {
             echo '<script type="text/javascript">setMedicineSupp(); </script>';
         }else{
