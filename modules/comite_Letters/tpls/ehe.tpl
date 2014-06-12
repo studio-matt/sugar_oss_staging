@@ -78,7 +78,7 @@
                 <li class="editable" data-var="beverage_4">Low sodium vegetable juice and herbal teas are good too.</li>
             </ul>
         </li>
-        <li><strong>As we discussed, remember portion sizes.</strong> Please review the Portion Control file on your USB.</li>
+        <li><strong>As we discussed, remember portion sizes.</strong></li>
         <li><strong>Eat small meals, every 3-4 hours, totaling 5-6 small meals a day.</strong></li>
             <ul>
                 <li class="editable" data-var="meals_1">Balance meals with all three macronutrients (proteins, fats, & carbohydrates)</li>
