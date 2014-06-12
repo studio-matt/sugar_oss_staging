@@ -6,9 +6,9 @@ $dictionary["comite_Pharmacy"]["fields"]["comite_pharmacy_comite_pharmacylog"] =
   'relationship' => 'comite_pharmacy_comite_pharmacylog',
   'source' => 'non-db',
   'vname' => 'LBL_COMITE_PHARMACY_COMITE_PHARMACYLOG_FROM_COMITE_PHARMACYLOG_TITLE',
-  'id_name' => 'comite_pharmacy_comite_pharmacylogcomite_pharmacylog_ida',
+  //'id_name' => 'comite_pharmacy_comite_pharmacylogcomite_pharmacylog_ida',
 );
-$dictionary["comite_Pharmacy"]["fields"]["comite_pharmacy_comite_pharmacylog_name"] = array (
+/*$dictionary["comite_Pharmacy"]["fields"]["comite_pharmacy_comite_pharmacylog_name"] = array (
   'name' => 'comite_pharmacy_comite_pharmacylog_name',
   'type' => 'relate',
   'source' => 'non-db',
@@ -28,4 +28,4 @@ $dictionary["comite_Pharmacy"]["fields"]["comite_pharmacy_comite_pharmacylogcomi
   'reportable' => false,
   'side' => 'right',
   'vname' => 'LBL_COMITE_PHARMACY_COMITE_PHARMACYLOG_FROM_COMITE_PHARMACY_TITLE',
-);
+);*/
