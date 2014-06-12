@@ -212,7 +212,7 @@
             </ul>
         </li>
         <li><strong>Stretching - Incorporate into your training.</strong> The ACSM recommends flexibility training a minimum 2 to 3 days per week, holding each stretch for 10 to 30 seconds to mild discomfort; 3 to 4 repetitions per stretch.</li>
-        <li><strong>Do not forget your core!</strong> Choose 3 exercises from the <em>Core Work</em> file (found on your USB) and perform them after your aerobic training, but before you begin the stretching portion of your training.</li>
+        <li><strong>Do not forget your core!</strong> Choose 3 exercises from the <em>Core Work</em> file and perform them after your aerobic training, but before you begin the stretching portion of your training.</li>
     </ol>
 
     <p>During your office visit, we did a series of fitness assessments. The VO2 assessment, which is designed to show the efficiency of your cardiovascular and pulmonary systems, provides us with a good understanding of your metabolic profile. The EndoPat test, which measures endothelial function, is an indicator of vascular health. We plan to track your progress with follow-up testing, as you continue to implement and sustain a consistent exercise and nutrition regimen.</p>
