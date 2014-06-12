@@ -58,50 +58,50 @@
     <ol>
         <li><strong>Choose natural foods.</strong>
             <ul>
-                <li>If it grows from the ground, falls from the trees, runs, flies, or swims, it is an optimal choice.</li>
+                <li class="editable" data-var="natural_foods">If it grows from the ground, falls from the trees, runs, flies, or swims, it is an optimal choice.</li>
             </ul>
         </li>
         <li><strong>Keep the Glycemic Index of all food below 45.</strong>
             <ul>
-                <li>Limit rice, potatoes, bread and pasta to once a week.</li>
-                <li>Do not skip meals, since doing so would lower your metabolism.</li>
-                <li>Add 1-2 tablespoons of all seeds and nuts (walnuts, almonds, cashews, pistachios, and macadamias) to your daily diet for essential fats. It is best for all seeds and nuts to be unsalted and unroasted.</li>
+                <li class="editable" data-var="glycemic_1">Limit rice, potatoes, bread and pasta to once a week.</li>
+                <li class="editable" data-var="glycemic_2">Do not skip meals, since doing so would lower your metabolism.</li>
+                <li class="editable" data-var="glycemic_3">Add 1-2 tablespoons of all seeds and nuts (walnuts, almonds, cashews, pistachios, and macadamias) to your daily diet for essential fats. It is best for all seeds and nuts to be unsalted and unroasted.</li>
             </ul>
         </li>
-        <li><strong>Use Stevia&reg; as a sweetener.</strong> Avoid sugar, syrups, and artificial sweeteners.</li>
+        <li><strong>Use Stevia&reg; as a sweetener.</strong> <span class="editable" data-var="sweetner"> Avoid sugar, syrups, and artificial sweeteners.</span></li>
         <li><strong>Eliminate or reduce carbonated beverages.</strong></li>
         <li><strong>Water is your beverage of choice.</strong>
             <ul>
-                <li>Drink 1/2 your body weight in ounces daily; more with alcohol, caffeine, exercise, or when in the heat.</li>
-                <li>Coffee is limited to 2-3 (6oz) cups in the morning.</li>
-                <li>1 serving of dry red wine daily is optimal for most individuals.</li>
-                <li>Low sodium vegetable juice and herbal teas are good too.</li>
+                <li class="editable" data-var="beverage_1">Drink 1/2 your body weight in ounces daily; more with alcohol, caffeine, exercise, or when in the heat.</li>
+                <li class="editable" data-var="beverage_2">Coffee is limited to 2-3 (6oz) cups in the morning.</li>
+                <li class="editable" data-var="beverage_3">1 serving of dry red wine daily is optimal for most individuals.</li>
+                <li class="editable" data-var="beverage_4">Low sodium vegetable juice and herbal teas are good too.</li>
             </ul>
         </li>
         <li><strong>As we discussed, remember portion sizes.</strong> Please review the Portion Control file on your USB.</li>
         <li><strong>Eat small meals, every 3-4 hours, totaling 5-6 small meals a day.</strong></li>
             <ul>
-                <li>Balance meals with all three macronutrients (proteins, fats, & carbohydrates)</li>
-                <li>Eat natural, low glycemic fruits and vegetables:
+                <li class="editable" data-var="meals_1">Balance meals with all three macronutrients (proteins, fats, & carbohydrates)</li>
+                <li><span  class="editable" data-var="meals_2">Eat natural, low glycemic fruits and vegetables:</span>
                     <ul>
-                        <li>For vegetables, try lettuce, cucumbers, tomatoes, onions, broccoli, asparagus, green beans, spinach, squash, zucchini, cauliflower, etc.</li>
-                        <li>i.e. plums, apples, pears, dried apricots, berries</li>
+                        <li class="editable" data-var="meals_3">For vegetables, try lettuce, cucumbers, tomatoes, onions, broccoli, asparagus, green beans, spinach, squash, zucchini, cauliflower, etc.</li>
+                        <li class="editable" data-var="meals_4">i.e. plums, apples, pears, dried apricots, berries</li>
                     </ul>
-                <li>Lean Proteins:
+                <li class="editable" data-var="meals_5">Lean Proteins:
                     <ul>
-                        <li>i.e. fish, chicken, turkey, egg whites, non-fat cottage cheese, protein shakes</li>
+                        <li class="editable" data-var="meals_6">i.e. fish, chicken, turkey, egg whites, non-fat cottage cheese, protein shakes</li>
                     </ul>
                 </li>
-                <li>Good Fats:
+                <li class="editable" data-var="meals_7">Good Fats:
                     <ul>
-                        <li>apple w/ nuts, pears w/ cheese, V8 w/ string cheese, celery w/ natural nut butter</li>
+                        <li class="editable" data-var="meals_8">apple w/ nuts, pears w/ cheese, V8 w/ string cheese, celery w/ natural nut butter</li>
                     </ul>
                 </li>
             </ul>
         <li><strong>Eat two small snacks daily.</strong>
             <ul>
-                <li>This can include a protein or a fat eaten alone, such as protein shake, nuts, meat & cheese, nitrate-free jerky</li>
-                <li>Never eat a carbohydrate by itself. Always balance it with a protein or a good fat, such as apples with nuts, pears with cheese, V8 with string cheese, & celery with natural peanut butter.</li>
+                <li class="editable" data-var="snacks_1">This can include a protein or a fat eaten alone, such as protein shake, nuts, meat & cheese, nitrate-free jerky</li>
+                <li class="editable" data-var="snacks_2">Never eat a carbohydrate by itself. Always balance it with a protein or a good fat, such as apples with nuts, pears with cheese, V8 with string cheese, & celery with natural peanut butter.</li>
             </ul>
         </li>
         <li><strong>Daily Protein Intake:</strong>
@@ -127,7 +127,7 @@
     {if $MEDSUPP->type == "supplement"}
         {* @TODO add a field? $MEDSUPP->purpose ?? *}
         {if $MEDSUPP->name == "Prime Alpha" || $MEDSUPP->name == "Prime Alpha Plus" || $MEDSUPP->name == "Prime Power" || $MEDSUPP->name == "Prime Strength"}
-        <li>{if $MEDSUPPINSTANCE->comite_new}Begin{else}Continue{/if} {$MEDSUPP->name} 
+        <li class="editable" data-var="supplementation_1">{if $MEDSUPPINSTANCE->comite_new}Begin{else}Continue{/if} {$MEDSUPP->name} 
             {if $MEDSUPP->name == "Prime Alpha"}for improved endothelial function and growth hormone delivery{/if}
             {if $MEDSUPP->name == "Prime Alpha Plus"}before bed for additional improvement of growth hormone delivery{/if}
             {if $MEDSUPP->name == "Prime Power"}for general well-being{/if}
@@ -135,6 +135,7 @@
         {/if}
     {/if}
 {/foreach}
+			<li class="editable" data-var="supplementation_2"></li>
             </ul>
         </li>
 {/if}
@@ -146,13 +147,13 @@
             <ul>
                 {assign var=A value=$EHE_RECOMMENDATIONS->ehe_aerobic_action}
                 {assign var=B value=$EHE_RECOMMENDATIONS->ehe_aerobic_frequency}
-                <li>Frequency: {$app_list_strings.ehe_aerobic_action_list[$A]} cardiovascular training {$app_list_strings.ehe_aerobic_frequency_list[$B]|strtolower} weekly
+                <li><span class="editable" data-var="frequency">Frequency: {$app_list_strings.ehe_aerobic_action_list[$A]} cardiovascular training {$app_list_strings.ehe_aerobic_frequency_list[$B]|strtolower} weekly</span>
                     <ul>
-                        <li>Longer duration CV once per week</li>
-                        <li>Interval based CV training once per week</li>
+                        <li class="editable" data-var="frequency_1">Longer duration CV once per week</li>
+                        <li class="editable" data-var="frequency_2">Interval based CV training once per week</li>
                     </ul>
                 </li>
-                <li>Intensity:
+                <li><span class="editable" data-var="intensity">Intensity:</span>
                     <ul>
                         {assign var=datavar value='aerobic_duration'}
                         <li class="editable" data-var="{$datavar}">
@@ -171,7 +172,7 @@
                     </ul>
                 </li>
                 {assign var=A value=$EHE_RECOMMENDATIONS->ehe_aerobic_time}
-                <li>Time:
+                <li><span class="editable" data-var="time">Time:</span>
                     <ul>
                         {assign var=datavar value='aerobic_time'}
                         <li class="editable" data-var="{$datavar}">
@@ -180,7 +181,7 @@
                             Longer duration CV: {$app_list_strings.ehe_aerobic_time_list[$A]} minutes
                         {/if}
                         </li>
-                        <li>Interval based CV: 9-21 intervals of 30 seconds at a high intensity (90-95% heart rate reserve) and 30 seconds active recovery at a low intensity</li>
+                        <li class="editable" data-var="time_2">Interval based CV: 9-21 intervals of 30 seconds at a high intensity (90-95% heart rate reserve) and 30 seconds active recovery at a low intensity</li>
                     </ul>
                 </li>
                 {assign var=A value=$EHE_RECOMMENDATIONS->ehe_aerobic_activity}
@@ -197,9 +198,9 @@
             <ul>
                 {assign var=A value=$EHE_RECOMMENDATIONS->ehe_weight_frequency}
                 {assign var=B value=$EHE_RECOMMENDATIONS->ehe_weight_format}
-                <li>Frequency: {$app_list_strings.ehe_weight_frequency_list[$A]} per week, following the {$app_list_strings.ehe_weight_format_list[$B]} format</li>
-                <li>Duration: 3 sets of 1 to 2 different exercises (totaling 3 to 6 sets) for each body part or muscle group</li>
-                <li>Intensity: 8 to 10 repetitions per set. When you can perform 10 reps in any one set, increase the weight for that set so that you can perform at least 8 reps. Continue to increase the reps to 10 before adding weight.</li>
+                <li class="editable" data-var="weight_training_1">Frequency: {$app_list_strings.ehe_weight_frequency_list[$A]} per week, following the {$app_list_strings.ehe_weight_format_list[$B]} format</li>
+                <li class="editable" data-var="weight_training_2">Duration: 3 sets of 1 to 2 different exercises (totaling 3 to 6 sets) for each body part or muscle group</li>
+                <li class="editable" data-var="weight_training_3">Intensity: 8 to 10 repetitions per set. When you can perform 10 reps in any one set, increase the weight for that set so that you can perform at least 8 reps. Continue to increase the reps to 10 before adding weight.</li>
                 {assign var=A value=$EHE_RECOMMENDATIONS->ehe_weight_type}
                 {assign var=datavar value='weight_type'}
                 <li class="editable" data-var="{$datavar}">
@@ -210,12 +211,12 @@
                 </li>
             </ul>
         </li>
-        <li><strong>Stretching - Incorporate into your training.</strong> The ACSM recommends flexibility training a minimum 2 to 3 days per week, holding each stretch for 10 to 30 seconds to mild discomfort; 3 to 4 repetitions per stretch. Review flexibility packet for specific stretches (found on your USB).</li>
-        <li><strong>Do not forget your core!</strong> Choose 3 exercies from the <em>Core Work</em> file (found on your USB) and perform them after your aerobic training, but before you begin the stretching portion of your training.</li>
+        <li><strong>Stretching - Incorporate into your training.</strong> The ACSM recommends flexibility training a minimum 2 to 3 days per week, holding each stretch for 10 to 30 seconds to mild discomfort; 3 to 4 repetitions per stretch.</li>
+        <li><strong>Do not forget your core!</strong> Choose 3 exercises from the <em>Core Work</em> file (found on your USB) and perform them after your aerobic training, but before you begin the stretching portion of your training.</li>
     </ol>
 
     <p>During your office visit, we did a series of fitness assessments. The VO2 assessment, which is designed to show the efficiency of your cardiovascular and pulmonary systems, provides us with a good understanding of your metabolic profile. The EndoPat test, which measures endothelial function, is an indicator of vascular health. We plan to track your progress with follow-up testing, as you continue to implement and sustain a consistent exercise and nutrition regimen.</p>
-    <p>Please understand that this is a process, and should be incorporated into your life gradually. Feel free to contact the ComiteMD team at any time with questions or concerns regarding exercise and nutrition, by phone, or by e-mail.</p>
+    <p class="editable" data-var="footer_greetings">Please understand that this is a process, and should be incorporated into your life gradually. Feel free to contact the ComiteMD team at any time with questions or concerns regarding exercise and nutrition, by phone, or by e-mail.</p>
 
     <p>To your good health!</p>
 
