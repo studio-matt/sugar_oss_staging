@@ -18,6 +18,8 @@ form#letter {
     cursor: text;
     background: url('/custom/themes/comiteMD/images/comite_DoctorsNote.gif') right top no-repeat #ffc;
     margin-bottom: 1px;
+	padding: 0 17px 0 0;
+
 }
 
 .editable form button {
