@@ -1,7 +1,7 @@
 <?php
 // created: 2012-12-26 17:44:07
 $dictionary["comite_pharmacy_comite_pharmacylog"] = array (
-  'true_relationship_type' => 'one-to-many',
+  'true_relationship_type' => 'many-to-many',
   'relationships' => 
   array (
     'comite_pharmacy_comite_pharmacylog' => 

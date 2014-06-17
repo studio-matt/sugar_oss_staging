@@ -48,10 +48,10 @@ array (
         2 => 
         array (
           0 => 'description',
-          1 => 
+          /*1 => 
           array (
             'name' => 'comite_pharmacy_comite_pharmacylog_name',
-          ),
+          ),*/
         ),
       ),
       'lbl_editview_panel1' => 
