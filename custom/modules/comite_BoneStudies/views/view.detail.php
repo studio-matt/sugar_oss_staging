@@ -51,9 +51,6 @@ class comite_BoneStudiesViewDetail extends ViewDetail{
  	            'customCode' => '<input title="Generate Bone Study PDF" class="button" onclick="this.form.return_module.value=\'comite_BoneStudies\'; this.form.return_action.value=\'DetailView\';this.form.return_id.value=\'{$fields.id.value}\'; this.form.module.value=\'comite_Letters\'; this.form.action.value=\'Bonestudy\'; this.form.record.value=\'{$fields.id.value}\';" name="bone_study_pdf" value="Generate Bone Study PDF" type="submit">',
  	    );
  	    
- 	    $this->dv->defs['templateMeta']['form']['buttons'][] = array(
- 	            'customCode' => '<input type="button" name="comaprisonReport" value="Comparison Report" id="comaprisonReport"  onClick="window.open(\'index.php?module=comite_BoneStudies&action=comparisonReport&record={$fields.id.value}\', \'comaprisonReport\');">',
- 	    );
 		parent::display();
  	}
 }
