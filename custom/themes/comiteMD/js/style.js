@@ -390,13 +390,23 @@ function doctorsNoteShowHide(a, id) {
             $('#Dr_DrNotesNutritionExercise_Sub #subpanel_list li:not(#whole_subpanel_comite_physicalexam_comite_drnotesnutritionexercise)').hide();
             $('#Dr_DrNotesNutritionExercise_Sub #subpanel_comite_lifestyle').hide();
             $('#Dr_Demographics_Sub').show().find('> div').hide().siblings('ul').find('li').hide();
+            $('div#Dr_Demographics_Sub ul#subpanel_list #LBL_EDITVIEW_PANEL1').hide();
+            $('#whole_subpanel_history').hide();
+            $('.subpanelTablist').hide();
+            $('#Dr_Demographics_Sub div#LBL_EDITVIEW_PANEL2').hide();
+            $('div#Dr_Demographics_Sub ul#subpanel_list li').hide();
+            $('div#Dr_Demographics_Sub #whole_subpanel_comite_episodicnote_contacts').hide();
+            $('div#Dr_Demographics_Sub #whole_subpanel_activities').hide();
+            $('div#Dr_Demographics_Sub #whole_subpanel_comite_doctorsnote_contacts').hide();
+            $('#whole_subpanel_comite_impression_contacts').show(); 
             $('#whole_subpanel_documents').show();
-            $('#whole_subpanel_comite_impression_contacts').show();
+            
             break;
         case 'Dr_PharmacyLog_Sub':
             $('#Dr_PharmacyLog_Sub').show();
             $('#Dr_PharmacyLog_Sub #subpanel_title_comite_angryreactioninstance_comite_lifestyle').hide();
             $('#Dr_PharmacyLog_Sub #subpanel_comite_lifestyle').hide();
+            $('#whole_subpanel_comite_pharmacylog_contacts').hide();
             break;
         case 'Dr_Plan_Sub':
             $('#Dr_Demographics_Sub').show().siblings('.HLAGroup').hide();
