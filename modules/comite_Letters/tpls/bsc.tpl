@@ -198,11 +198,24 @@ body fat with breakdown by region. The healthy body fat range for {$CONTACT->gen
         <strong>Congratulations on improving your body composition!</strong> 
         {/if}
      Being 
-    {if $BONESTUDY->bc_subtotal_fat_percent > $percent_range }above{/if}
-    {if $BONESTUDY->bc_subtotal_fat_percent < $percent_range }within{/if}
+	{if $age >= 50 and $CONTACT->gender == "Male" and $BONESTUDY->bc_subtotal_fat_percent <= 25}within{/if}
+    {if $age >= 50 and $CONTACT->gender == "Male" and $BONESTUDY->bc_subtotal_fat_percent > 25}above{/if}
+    {if $age < 50 and $CONTACT->gender == "Male" and $BONESTUDY->bc_subtotal_fat_percent <= 20}within{/if}
+    {if $age < 50 and $CONTACT->gender == "Male" and $BONESTUDY->bc_subtotal_fat_percent > 20}above{/if}
+    {if $age >= 50 and $CONTACT->gender == "Female" and $BONESTUDY->bc_subtotal_fat_percent <= 31}within{/if}
+    {if $age >= 50 and $CONTACT->gender == "Female" and $BONESTUDY->bc_subtotal_fat_percent > 31}above{/if}
+    {if $age < 50 and $CONTACT->gender == "Female" and $BONESTUDY->bc_subtotal_fat_percent <= 27}within{/if}
+    {if $age < 50 and $CONTACT->gender == "Female" and $BONESTUDY->bc_subtotal_fat_percent > 27}above{/if}
      the healthy range of body fat 
-    {if $BONESTUDY->bc_subtotal_fat_percent > $percent_range }increases{/if}
-    {if $BONESTUDY->bc_subtotal_fat_percent < $percent_range }reduces{/if}
+    {if $age >= 50 and $CONTACT->gender == "Male" and $BONESTUDY->bc_subtotal_fat_percent <= 25}reduces{/if}
+    {if $age >= 50 and $CONTACT->gender == "Male" and $BONESTUDY->bc_subtotal_fat_percent > 25}increases{/if}
+    {if $age < 50 and $CONTACT->gender == "Male" and $BONESTUDY->bc_subtotal_fat_percent <= 20}reduces{/if}
+    {if $age < 50 and $CONTACT->gender == "Male" and $BONESTUDY->bc_subtotal_fat_percent > 20}increases{/if}
+    {if $age >= 50 and $CONTACT->gender == "Female" and $BONESTUDY->bc_subtotal_fat_percent <= 31}reduces{/if}
+    {if $age >= 50 and $CONTACT->gender == "Female" and $BONESTUDY->bc_subtotal_fat_percent > 31}increases{/if}
+    {if $age < 50 and $CONTACT->gender == "Female" and $BONESTUDY->bc_subtotal_fat_percent <= 27}reduces{/if}
+    {if $age < 50 and $CONTACT->gender == "Female" and $BONESTUDY->bc_subtotal_fat_percent > 27}increases{/if}
+
     a person's risk for medical illness such as diabetes, heart disease, and certain cancers. Weight reduction, 
     a "low glycemic" diet, and a regular exercise program will reduce the risk of these illnesses. Body composition 
     may be monitored in response to diet, exercise, and medical treatments. Repeat testing is recommended in 6-12 months 
