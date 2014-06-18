@@ -136,6 +136,20 @@ class comite_LettersViewMedtable extends PdfView {
             }
         }
 
+        foreach($MedSuppInstances as $MedSuppInstance) {
+            if(!empty($MedSuppInstance->dosage)){
+                if ( strpos( $MedSuppInstance->dosage, "." ) !== false ) {
+                    $MedSuppInstance->dosage = floatval($MedSuppInstance->dosage);
+                }
+            }
+            if(!empty($MedSuppInstance->quantity)){
+                if ( strpos( $MedSuppInstance->quantity, "." ) !== false ) {
+                    $MedSuppInstance->quantity = floatval($MedSuppInstance->quantity);
+                }
+            }
+        }
+        
+        
         $date = date('F j, Y');
 
         $this->ss->assign('css', file_get_contents(dirname(__FILE__).'/../css/pdf.css'));

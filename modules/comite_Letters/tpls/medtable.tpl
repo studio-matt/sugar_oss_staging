@@ -68,8 +68,8 @@ $count++;
                 {if $MEDSUPPINSTANCE->comite_change_quantity}<span class="red">(quantity {$MEDSUPPINSTANCE->comite_change_quantity})</span>{/if}
                 {if $MEDSUPPINSTANCE->comite_change_frequency}<span class="red">(frequency {$MEDSUPPINSTANCE->comite_change_frequency})</span>{/if}
             </td>
-            <td>{$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}</td>
-            <td>{$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}</td>
+            <td>{$MEDSUPPINSTANCE->dosage} {$app_list_strings.dosage_unit_list[$dosage_index]}</td>
+            <td>{$MEDSUPPINSTANCE->quantity} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}</td>
             <td>{if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{else}&nbsp;{/if}</td>
             <td>{if $MEDSUPPINSTANCE->time_of_day|strstr:"am" || $MEDSUPPINSTANCE->time_of_day|strstr:"early morning" || $MEDSUPPINSTANCE->time_of_day|strstr:"morning"}X{else}&nbsp;{/if}</td>
             <td>{if $MEDSUPPINSTANCE->time_of_day|strstr:"noon" || $MEDSUPPINSTANCE->time_of_day|strstr:"afternoon" || $MEDSUPPINSTANCE->time_of_day|strstr:"late-afternoon"}X{else}&nbsp;{/if}</td>
@@ -102,8 +102,8 @@ $count++;
                 {if $MEDSUPPINSTANCE->comite_change_quantity}<span class="red">(quantity {$MEDSUPPINSTANCE->comite_change_quantity})</span>{/if}
                 {if $MEDSUPPINSTANCE->comite_change_frequency}<span class="red">(frequency {$MEDSUPPINSTANCE->comite_change_frequency})</span>{/if}
             </td>
-            <td>{$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}</td>
-            <td>{$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}</td>
+            <td>{$MEDSUPPINSTANCE->dosage} {$app_list_strings.dosage_unit_list[$dosage_index]}</td>
+            <td>{$MEDSUPPINSTANCE->quantity} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}</td>
             <td>{if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{else}&nbsp;{/if}</td>
             <td>{if $MEDSUPPINSTANCE->time_of_day|strstr:"am" || $MEDSUPPINSTANCE->time_of_day|strstr:"early morning" || $MEDSUPPINSTANCE->time_of_day|strstr:"morning"}X{else}&nbsp;{/if}</td>
             <td>{if $MEDSUPPINSTANCE->time_of_day|strstr:"noon" || $MEDSUPPINSTANCE->time_of_day|strstr:"afternoon" || $MEDSUPPINSTANCE->time_of_day|strstr:"late-afternoon"}X{else}&nbsp;{/if}</td>
@@ -155,8 +155,8 @@ $first = false;
                 {if $MEDSUPPINSTANCE->comite_change_quantity}<span class="red">(quantity {$MEDSUPPINSTANCE->comite_change_quantity})</span>{/if}
                 {if $MEDSUPPINSTANCE->comite_change_frequency}<span class="red">(frequency {$MEDSUPPINSTANCE->comite_change_frequency})</span>{/if}
             </td>
-            <td>{$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}</td>
-            <td>{$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}</td>
+            <td>{$MEDSUPPINSTANCE->dosage} {$app_list_strings.dosage_unit_list[$dosage_index]}</td>
+            <td>{$MEDSUPPINSTANCE->quantity} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}</td>
             <td>{if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{else}&nbsp;{/if}</td>
             <td>{if $MEDSUPPINSTANCE->time_of_day|strstr:"am" || $MEDSUPPINSTANCE->time_of_day|strstr:"early morning" || $MEDSUPPINSTANCE->time_of_day|strstr:"morning"}X{else}&nbsp;{/if}</td>
             <td>{if $MEDSUPPINSTANCE->time_of_day|strstr:"noon" || $MEDSUPPINSTANCE->time_of_day|strstr:"afternoon" || $MEDSUPPINSTANCE->time_of_day|strstr:"late-afternoon"}X{else}&nbsp;{/if}</td>

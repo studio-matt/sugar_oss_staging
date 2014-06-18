@@ -201,7 +201,21 @@ class comite_LettersViewTms extends PdfView {
         $Hormones = array();
         $Medications = array();
         $Supplements = array();
+        
         foreach($MedSuppInstances as $MedSuppInstance) {
+            
+            if(!empty($MedSuppInstance->dosage)){
+                if ( strpos( $MedSuppInstance->dosage, "." ) !== false ) {
+                    $MedSuppInstance->dosage = floatval($MedSuppInstance->dosage);
+                }
+            }
+            
+            if(!empty($MedSuppInstance->quantity)){
+                if ( strpos( $MedSuppInstance->quantity, "." ) !== false ) {
+                    $MedSuppInstance->quantity = floatval($MedSuppInstance->quantity);
+                }
+            }
+            
             if ($MedSuppInstance->type == 'hormone') {
                 $Hormones[] = $MedSuppInstance;
             }
