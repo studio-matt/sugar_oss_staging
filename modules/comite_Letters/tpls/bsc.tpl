@@ -12,10 +12,10 @@
     <p class="patient">
         {if $CONTACT->salutation}<span class="salutation">{$CONTACT->salutation} </span>{/if}
         <span class="name">{if $CONTACT->first_name}{$CONTACT->first_name} {/if}{$CONTACT->last_name}</span><br />
-        {if $CONTACT->primary_address_street}<span class="primary_address_street">{$CONTACT->primary_address_street}</span><br />{/if}
-        {if $CONTACT->primary_address_street2}<span class="primary_address_street2">{$CONTACT->primary_address_street2}</span><br />{/if}
-        {if $CONTACT->primary_address_street3}<span class="primary_address_street3">{$CONTACT->primary_address_street3}</span><br />{/if}
-        {if $CONTACT->primary_address_city}<span class="primary_address_city">{$CONTACT->primary_address_city}</span>, <span class="primary_address_state">{$CONTACT->primary_address_state}</span> <span class="primary_address_postalcode">{$CONTACT->primary_address_postalcode}</span><br />{/if}
+        {if $ADDRESS->address_1}<span class="primary_address_street">{$ADDRESS->address_1}</span><br />{/if}
+        {if $ADDRESS->address_2}<span class="primary_address_street2">{$ADDRESS->address_2}</span><br />{/if}
+        {if $ADDRESS->address_3}<span class="primary_address_street3">{$ADDRESS->address_3}</span><br />{/if}
+        {if $ADDRESS->city}<span class="primary_address_city">{$ADDRESS->city}</span>, <span class="primary_address_state">{$ADDRESS->state}</span> <span class="primary_address_postalcode">{$ADDRESS->postalcode}</span><br />{/if}
     </p>
     <p class="date">{$date}</p>
 
@@ -58,38 +58,38 @@ body fat with breakdown by region. The healthy body fat range for {$CONTACT->gen
         </tr>
         <tr>
             <td>L Arm</td>
-            <td>{$BONESTUDY->bc_left_arm_lean_muscle}</td>
             <td>{$PREVIOUSBONESTUDY->bc_left_arm_lean_muscle}</td>
+            <td>{$BONESTUDY->bc_left_arm_lean_muscle}</td>
             <td>{$DELTA.bc_left_arm_lean_muscle}</td>
         </tr>
         <tr>
             <td>R Arm</td>
-            <td>{$BONESTUDY->bc_right_arm_lean_muscle}</td>
             <td>{$PREVIOUSBONESTUDY->bc_right_arm_lean_muscle}</td>
+            <td>{$BONESTUDY->bc_right_arm_lean_muscle}</td>
             <td>{$DELTA.bc_right_arm_lean_muscle}</td>
         </tr>
         <tr>
             <td>Trunk</td>
-            <td>{$BONESTUDY->bc_trunk_lean_muscle}</td>
             <td>{$PREVIOUSBONESTUDY->bc_trunk_lean_muscle}</td>
+            <td>{$BONESTUDY->bc_trunk_lean_muscle}</td>
             <td>{$DELTA.bc_trunk_lean_muscle}</td>
         </tr>
         <tr>
             <td>L Leg</td>
-            <td>{$BONESTUDY->bc_left_leg_lean_muscle}</td>
             <td>{$PREVIOUSBONESTUDY->bc_left_leg_lean_muscle}</td>
+            <td>{$BONESTUDY->bc_left_leg_lean_muscle}</td>
             <td>{$DELTA.bc_left_leg_lean_muscle}</td>
         </tr>
         <tr>
             <td>R Leg</td>
-            <td>{$BONESTUDY->bc_right_leg_lean_muscle}</td>
             <td>{$PREVIOUSBONESTUDY->bc_right_leg_lean_muscle}</td>
+            <td>{$BONESTUDY->bc_right_leg_lean_muscle}</td>
             <td>{$DELTA.bc_right_leg_lean_muscle}</td>
         </tr>
         <tr>
             <td>Total</td>
-            <td>{$BONESTUDY->bc_subtotal_lean_muscle}</td>
             <td>{$PREVIOUSBONESTUDY->bc_subtotal_lean_muscle}</td>
+            <td>{$BONESTUDY->bc_subtotal_lean_muscle}</td>
             <td>{$DELTA.bc_subtotal_lean_muscle}</td>
         </tr>
         <tr>
@@ -106,38 +106,38 @@ body fat with breakdown by region. The healthy body fat range for {$CONTACT->gen
         </tr>
         <tr>
             <td>L Arm</td>
-            <td>{$BONESTUDY->bc_left_arm_fat_mass}</td>
             <td>{$PREVIOUSBONESTUDY->bc_left_arm_fat_mass}</td>
+            <td>{$BONESTUDY->bc_left_arm_fat_mass}</td>
             <td>{$DELTA.bc_left_arm_fat_mass}</td>
         </tr>
         <tr>
             <td>R Arm</td>
-            <td>{$BONESTUDY->bc_right_arm_fat_mass}</td>
             <td>{$PREVIOUSBONESTUDY->bc_right_arm_fat_mass}</td>
+            <td>{$BONESTUDY->bc_right_arm_fat_mass}</td>
             <td>{$DELTA.bc_right_arm_fat_mass}</td>
         </tr>
         <tr>
             <td>Trunk</td>
-            <td>{$BONESTUDY->bc_trunk_fat_mass}</td>
             <td>{$PREVIOUSBONESTUDY->bc_trunk_fat_mass}</td>
+            <td>{$BONESTUDY->bc_trunk_fat_mass}</td>
             <td>{$DELTA.bc_trunk_fat_mass}</td>
         </tr>
         <tr>
             <td>L Leg</td>
-            <td>{$BONESTUDY->bc_left_leg_fat_mass}</td>
             <td>{$PREVIOUSBONESTUDY->bc_left_leg_fat_mass}</td>
+            <td>{$BONESTUDY->bc_left_leg_fat_mass}</td>
             <td>{$DELTA.bc_left_leg_fat_mass}</td>
         </tr>
         <tr>
             <td>R Leg</td>
-            <td>{$BONESTUDY->bc_right_leg_fat_mass}</td>
             <td>{$PREVIOUSBONESTUDY->bc_right_leg_fat_mass}</td>
+            <td>{$BONESTUDY->bc_right_leg_fat_mass}</td>
             <td>{$DELTA.bc_right_leg_fat_mass}</td>
         </tr>
         <tr>
             <td>Total</td>
-            <td>{$BONESTUDY->bc_subtotal_fat_mass}</td>
             <td>{$PREVIOUSBONESTUDY->bc_subtotal_fat_mass}</td>
+            <td>{$BONESTUDY->bc_subtotal_fat_mass}</td>
             <td>{$DELTA.bc_subtotal_fat_mass}</td>
         </tr>
         <tr>
@@ -154,38 +154,38 @@ body fat with breakdown by region. The healthy body fat range for {$CONTACT->gen
         </tr>
         <tr>
             <td>L Arm</td>
-            <td>{$BONESTUDY->bc_left_arm_fat_percent}</td>
             <td>{$PREVIOUSBONESTUDY->bc_left_arm_fat_percent}</td>
+            <td>{$BONESTUDY->bc_left_arm_fat_percent}</td>
             <td>{$DELTA.bc_left_arm_fat_percent}</td>
         </tr>
         <tr>
             <td>R Arm</td>
-            <td>{$BONESTUDY->bc_right_arm_fat_percent}</td>
             <td>{$PREVIOUSBONESTUDY->bc_right_arm_fat_percent}</td>
+            <td>{$BONESTUDY->bc_right_arm_fat_percent}</td>
             <td>{$DELTA.bc_right_arm_fat_percent}</td>
         </tr>
         <tr>
             <td>Trunk</td>
-            <td>{$BONESTUDY->bc_trunk_fat_percent}</td>
             <td>{$PREVIOUSBONESTUDY->bc_trunk_fat_percent}</td>
+            <td>{$BONESTUDY->bc_trunk_fat_percent}</td>
             <td>{$DELTA.bc_trunk_fat_percent}</td>
         </tr>
         <tr>
             <td>L Leg</td>
-            <td>{$BONESTUDY->bc_left_leg_fat_percent}</td>
             <td>{$PREVIOUSBONESTUDY->bc_left_leg_fat_percent}</td>
+            <td>{$BONESTUDY->bc_left_leg_fat_percent}</td>
             <td>{$DELTA.bc_left_leg_fat_percent}</td>
         </tr>
         <tr>
             <td>R Leg</td>
-            <td>{$BONESTUDY->bc_right_leg_fat_percent}</td>
             <td>{$PREVIOUSBONESTUDY->bc_right_leg_fat_percent}</td>
+            <td>{$BONESTUDY->bc_right_leg_fat_percent}</td>
             <td>{$DELTA.bc_right_leg_fat_percent}</td>
         </tr>
         <tr>
             <td><strong>Total</strong></td>
-            <td>{$BONESTUDY->bc_subtotal_fat_percent}</td>
             <td>{$PREVIOUSBONESTUDY->bc_subtotal_fat_percent}</td>
+            <td>{$BONESTUDY->bc_subtotal_fat_percent}</td>
             <td>{$DELTA.bc_subtotal_fat_percent}</td>
         </tr>
     </table>

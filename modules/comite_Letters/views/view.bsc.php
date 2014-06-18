@@ -49,6 +49,7 @@ class comite_LettersViewBsc extends PdfView {
      * @see SugarView::display()
      */
     public function display() {
+
         $record = array_key_exists('record', $_REQUEST) ? $_REQUEST['record'] : false;
         if (!$record) {
             die('Invalid Bone Study ID');
@@ -77,8 +78,8 @@ class comite_LettersViewBsc extends PdfView {
             if (!$PreviousBonestudy->id) {
                 die('Invalid Previous Bone Study ID');
             }
-
-            $gramsperlb = 453.592;
+            
+            $gramsperlb = 453.59;
             $delta = array(
                 'bc_left_arm_lean_muscle' => number_format(($Bonestudy->bc_left_arm_lean_muscle - $PreviousBonestudy->bc_left_arm_lean_muscle)/$gramsperlb, 3),
                 'bc_right_arm_lean_muscle' => number_format(($Bonestudy->bc_right_arm_lean_muscle - $PreviousBonestudy->bc_right_arm_lean_muscle)/$gramsperlb, 3),
@@ -131,6 +132,15 @@ class comite_LettersViewBsc extends PdfView {
         }else if( ($age-> y < 50) && ($Contact->gender == 'Female') ) {
             $this->ss->assign('percent_range', '18-27%');
         }
+        
+        $address = new comite_Address();
+        $sqlContactAddress = "SELECT comite_address.id FROM comite_address LEFT JOIN comite_address_contacts_c ON comite_address_contacts_c.comite_address_contactscomite_address_idb = comite_address.id AND comite_address_contacts_c.deleted = 0 AND comite_address_contacts_c.comite_address_contactscontacts_ida = '".$Contact->id."' WHERE comite_address.deleted = 0 ORDER BY rank LIMIT 0,1";
+        $resultContactAddress = $Contact->db->query($sqlContactAddress);
+        $rowContactAddress = $Contact->db->fetchByAssoc($resultContactAddress);
+        if(!empty($rowContactAddress['id'])){
+            $address->retrieve($rowContactAddress['id']);
+        }
+        $this->ss->assign('ADDRESS', $address);
 
         $this->ss->assign('base', $this->getBaseUrl());
         $this->ss->assign('age', $age->y);
