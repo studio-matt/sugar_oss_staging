@@ -15,7 +15,7 @@
         {if $ADDRESS->address_1}<span class="primary_address_street">{$ADDRESS->address_1}</span><br />{/if}
         {if $ADDRESS->address_2}<span class="primary_address_street2">{$ADDRESS->address_2}</span><br />{/if}
         {if $ADDRESS->address_3}<span class="primary_address_street3">{$ADDRESS->address_3}</span><br />{/if}
-        {if $ADDRESS->city}<span class="primary_address_city">{$ADDRESS->city}</span>, <span class="primary_address_state">{$ADDRESS->state}</span> <span class="primary_address_postalcode">{$ADDRESS->postalcode}</span><br />{/if}
+        {if $ADDRESS->city}<span class="primary_address_city">{$ADDRESS->city}</span>, <span class="primary_address_state">{$ADDRESS->state}</span> <span class="primary_address_postalcode">{$ADDRESS->postal_code}</span><br />{/if}
     </p>
     <p class="date">{$date}</p>
 
@@ -198,11 +198,11 @@ body fat with breakdown by region. The healthy body fat range for {$CONTACT->gen
         <strong>Congratulations on improving your body composition!</strong> 
         {/if}
      Being 
-    {if $BONESTUDY->bc_subtotal_fat_percent > $perncent_range }above{/if}
-    {if $BONESTUDY->bc_subtotal_fat_percent < $perncent_range }within{/if}
+    {if $BONESTUDY->bc_subtotal_fat_percent > $percent_range }above{/if}
+    {if $BONESTUDY->bc_subtotal_fat_percent < $percent_range }within{/if}
      the healthy range of body fat 
-    {if $BONESTUDY->bc_subtotal_fat_percent > $perncent_range }increases{/if}
-    {if $BONESTUDY->bc_subtotal_fat_percent < $perncent_range }reduces{/if}
+    {if $BONESTUDY->bc_subtotal_fat_percent > $percent_range }increases{/if}
+    {if $BONESTUDY->bc_subtotal_fat_percent < $percent_range }reduces{/if}
     a person's risk for medical illness such as diabetes, heart disease, and certain cancers. Weight reduction, 
     a "low glycemic" diet, and a regular exercise program will reduce the risk of these illnesses. Body composition 
     may be monitored in response to diet, exercise, and medical treatments. Repeat testing is recommended in 6-12 months 
