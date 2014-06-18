@@ -134,7 +134,7 @@ class comite_LettersViewBsc extends PdfView {
         }
         
         $address = new comite_Address();
-        $sqlContactAddress = "SELECT comite_address.id FROM comite_address LEFT JOIN comite_address_contacts_c ON comite_address_contacts_c.comite_address_contactscomite_address_idb = comite_address.id AND comite_address_contacts_c.deleted = 0 AND comite_address_contacts_c.comite_address_contactscontacts_ida = '".$Contact->id."' WHERE comite_address.deleted = 0 ORDER BY rank LIMIT 0,1";
+        $sqlContactAddress = "SELECT comite_address.id FROM comite_address INNER JOIN comite_address_contacts_c ON comite_address_contacts_c.comite_address_contactscomite_address_idb = comite_address.id AND comite_address_contacts_c.deleted = 0 AND comite_address_contacts_c.comite_address_contactscontacts_ida = '".$Contact->id."' WHERE comite_address.deleted = 0 ORDER BY rank LIMIT 0,1";
         $resultContactAddress = $Contact->db->query($sqlContactAddress);
         $rowContactAddress = $Contact->db->fetchByAssoc($resultContactAddress);
         if(!empty($rowContactAddress['id'])){
