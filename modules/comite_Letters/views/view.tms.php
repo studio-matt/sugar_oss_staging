@@ -83,17 +83,17 @@ class comite_LettersViewTms extends PdfView {
                         case 'dosage':
                             $MedSuppInstance->comite_changed = true;
                             if ($row['after_value_string'] > $row['before_value_string']) {
-                                $MedSuppInstance->comite_change_dosage = 'increase';
+                                $MedSuppInstance->comite_change_dosage = 'Increase';
                             } else {
-                                $MedSuppInstance->comite_change_dosage = 'decrease';
+                                $MedSuppInstance->comite_change_dosage = 'Decrease';
                             }
                             break;
                         case 'quantity':
                             $MedSuppInstance->comite_changed = true;
                             if ($row['after_value_string'] > $row['before_value_string']) {
-                                $MedSuppInstance->comite_change_quantity = 'increase';
+                                $MedSuppInstance->comite_change_quantity = 'Increase';
                             } else {
-                                $MedSuppInstance->comite_change_quantity = 'decrease';
+                                $MedSuppInstance->comite_change_quantity = 'Decrease';
                             }
                             break;
                         case 'frequency':
@@ -115,9 +115,9 @@ class comite_LettersViewTms extends PdfView {
                             }
 
                             if ($after > $before) {
-                                $MedSuppInstance->comite_change_frequency = 'increase';
+                                $MedSuppInstance->comite_change_frequency = 'Increase';
                             } else {
-                                $MedSuppInstance->comite_change_frequency = 'decrease';
+                                $MedSuppInstance->comite_change_frequency = 'Decrease';
                             }
                             break;
                     }
@@ -227,6 +227,8 @@ class comite_LettersViewTms extends PdfView {
             }
         }
 
+        //echo '<pre>'; print_r($PhysicalExamProperties); echo '</pre>';
+        
         $this->ss->assign('base', $this->getBaseUrl());
         $this->ss->assign('date', $date);
         $this->ss->assign('HORMONES', $Hormones);

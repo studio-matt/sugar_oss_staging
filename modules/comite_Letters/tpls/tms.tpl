@@ -1,5 +1,10 @@
 <style type="text/css">
     {$css}
+	{literal}
+	ul li.editable{
+		margin-bottom: 10px;
+	}
+	{/literal}
 </style>
 
 <div class="pdf" id="tmsummary">
@@ -15,29 +20,27 @@
         <span class="name">{$CONTACT->last_name}</span>,
     </p>
 
-    {assign var=datavar value='description'}
-    <p class="description editable" data-var="{$datavar}">
-    {if $VARS[$datavar]}{$VARS[$datavar]}
-    {else}
-        This letter follows your appointment on {$DRNOTE->date_entered|strtotime|date_format:'%B %e, %Y'}
-        {if $DRNOTE->appointment_type|strtolower|trim == 'telemedicine'}
-            to review your labs,
-        {/if}
-        {if $EHECOUNT == 1 && $DRNOTE->appointment_type|strtolower|trim == 'ehe'}
-            for your initial Precision Health Analysis,
-        {/if}
-        {if $EHECOUNT > 1 && $DRNOTE->appointment_type|strtolower|trim == 'ehe'}
-            for your annual Precision Health Analysis,
-        {/if}
-        and summarizes the medication adjustments and follow-up recommendations. This summary is based on your clinical progress and contains input from the ComiteMD Team: our physician, Dr. Florence Comite, our physician assistants, Susan Barrett and Jennifer Hankins, and our Exercise Physiologists, Timothy Coyle and Steven Villagomez.
+    <p class="description editable" data-var="description">
+    This letter follows your appointment on {$DRNOTE->date_entered|strtotime|date_format:'%B %e, %Y'}
+    {if $DRNOTE->appointment_type|strtolower|trim == 'telemedicine'}
+        to review your labs,
     {/if}
-    </p>
+    {if $DRNOTE->appointment_type|strtolower|trim == 'ehe'}
+        for your annual Precision Health Analysis,
+    {/if}
+    {if $DRNOTE->appointment_type|strtolower|trim == 'office_visit'}
+        in the office,
+    {/if}
+	{if $DRNOTE->appointment_type|strtolower|trim == 'follow_up'}
+        to follow up with you,
+    {/if}
+    and summarizes the medication adjustments and follow-up recommendations.  This summary is based on your clinical progress and contains input from the ComiteMD Team: our physician, Dr. Florence Comite, our Physician Assistants, Jennifer Braun and Nicole McDermott, and our Exercise Physiologists, Timothy Coyle and Steven Villagomez.
+	</p>
 
     <ol>
         {if $HORMONES|count || $DISCONTINUE_HORMONES|count}
-        <li><strong>Prescribed Injectable and Other Hormones</strong>
+        <li><strong><span class="editable">Prescribed Injectable and Other Hormones</span></strong>
             <ul>
-
             {php}
             $hcg = false;
             $testosterone = false;
@@ -58,16 +61,16 @@
                 {assign var=quantity_index value=$MEDSUPPINSTANCE->quantity_unit}
                 {assign var=dosage_index value=$MEDSUPPINSTANCE->dosage_unit}
                 {assign var=datavar value='hormone_'|cat:$MSI_IDX}
-                <li class="editable" data-var="{$datavar}">
+                <li class="editable" data-var="{$datavar}" style="font-weight: bold;">
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                 {else}
-                    {if $MEDSUPPINSTANCE->comite_new}Initiate {/if}{if $MEDSUPPINSTANCE->comite_change_name}(name change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity} {$app_list_strings.quantity_unit_list[$quantity_index]}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}.{* We have noted your days of injection are {day1 of injection} and {day 2 of injection}.*}
+                    {if $MEDSUPPINSTANCE->comite_change_name}(Name Change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(Dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(Quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(Frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}, We have noted your days of injection are {literal}{day1 of injection} and {day 2 of injection}{/literal}.
                 {/if}
                 </li>
             {/foreach}
             {foreach from=$DISCONTINUE_HORMONES key=MSI_IDX item=MSI}
                 {assign var=datavar value='hormone_discontinue_'|cat:$MSI_IDX}
-                <li class="editable" data-var="{$datavar}">
+                <li class="editable" data-var="{$datavar}"  style="font-weight: bold;">
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                     {else}Discontinue {$MSI.name}
                 {/if}
@@ -90,21 +93,18 @@
                 $this->assign('TESTOSTERONE', true);
             }
             {/php}
-            {if $CYCLE}
-            <strong>For cycling the Testosterone & hCG:</strong>
+            <strong><u><span class="editable">For cycling the Testosterone & hCG:</span></u></strong>
             <ul>
-                <li>Decrease Testosterone subcutaneous injection to DOSE once a week for 10 weeks.</li>
-                <li>Start hCG DOSE IU, two times weekly for two weeks every 10 weeks.</li>
-                <li>Resume Testosterone after two weeks of hCG.</li>
+                <li class="editable" style="font-weight: bold;">Decrease Testosterone subcutaneous injection to DOSE once a week for 10 weeks.</li>
+                <li class="editable" style="font-weight: bold;">Start hCG DOSE IU, two times weekly for two weeks every 10 weeks.</li>
+                <li class="editable" style="font-weight: bold;">Resume Testosterone after two weeks of hCG.</li>
             </ul>
-            {/if}
         </li>
         {/if}
 
         {if $MEDICATIONS|count || $DISCONTINUE_MEDICATIONS|count}
-        <li><strong>Other Medications - <em>Please continue to take your medications as before, with the following changes:</em></strong>
+        <li><strong><span class="editable">Other Medications - <em>Please continue to take your medications as before, with the following changes:</em></span></strong>
             <ul>
-
             {foreach from=$MEDICATIONS key=MSI_IDX item=MEDSUPPINSTANCE}
                 {assign var=BEANS value=$MEDSUPPINSTANCE->comite_medsuppinstance_comite_medsupp->beans}
                 {assign var=MEDSUPP_ID value=$MEDSUPPINSTANCE->comite_med8f3bplement_ida}
@@ -113,16 +113,16 @@
                 {assign var=quantity_index value=$MEDSUPPINSTANCE->quantity_unit}
                 {assign var=dosage_index value=$MEDSUPPINSTANCE->dosage_unit}
                 {assign var=datavar value='medication_'|cat:$MSI_IDX}
-                <li class="editable" data-var="{$datavar}">
+                <li class="editable" data-var="{$datavar}" style="font-weight: bold;">
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                 {else}
-                    {if $MEDSUPPINSTANCE->comite_new}Initiate {/if}{if $MEDSUPPINSTANCE->comite_change_name}(name change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}.
+                    {if $MEDSUPPINSTANCE->comite_change_name}(Name Change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(Dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(Quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(Frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}.
                 {/if}
                 </li>
             {/foreach}
             {foreach from=$DISCONTINUE_MEDICATIONS key=MSI_IDX item=MSI}
                 {assign var=datavar value='medication_discontinue_'|cat:$MSI_IDX}
-                <li class="editable" data-var="{$datavar}">
+                <li class="editable" data-var="{$datavar}" style="font-weight: bold;">
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                 {else}
                     Discontinue {$MSI.name}
@@ -134,7 +134,7 @@
         {/if}
 
         {if $SUPPLEMENTS|count || $DISCONTINUE_SUPPLEMENTS|count}
-        <li><strong>Supplement Program - <em>Please continue to take your vitamins and supplements as before, with the following changes:</em></strong>
+        <li><strong><span class="editable">Supplement Program - <em>Please continue to take your vitamins and supplements as before, with the following changes:</em></span></strong>
             <ul>
 
             {foreach from=$SUPPLEMENTS key=MSI_IDX item=MEDSUPPINSTANCE}
@@ -145,19 +145,19 @@
                 {assign var=quantity_index value=$MEDSUPPINSTANCE->quantity_unit}
                 {assign var=dosage_index value=$MEDSUPPINSTANCE->dosage_unit}
                 {assign var=datavar value='supplement_'|cat:$MSI_IDX}
-                <li class="editable" data-var="{$datavar}">
+                <li class="editable" data-var="{$datavar}" style="font-weight: bold;">
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                 {else}
-                    {if $MEDSUPPINSTANCE->comite_new}Initate {/if}{if $MEDSUPPINSTANCE->comite_change_name}(name change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}.
+                    {if $MEDSUPPINSTANCE->comite_change_name}(Name Change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(Dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(Quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(Frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}.
                 {/if}
                 </li>
             {/foreach}
             {foreach from=$DISCONTINUE_SUPPLEMENTS key=MSI_IDX item=MSI}
                 {assign var=datavar value='supplement_discontinue_'|cat:$MSI_IDX}
-                <li class="editable" data-var="{$datavar}">
+                <li class="editable" data-var="{$datavar}"  style="font-weight: bold;">
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                 {else}
-                    (discontinue) {$MSI.name}
+                    (Discontinue) {$MSI.name}
                 {/if}
                 </li>
             {/foreach}
@@ -165,28 +165,43 @@
         </li>
         {/if}
 
-    {if $DRNOTE->appointment_type|strtolower|trim == 'ehe' && $PHYSICALEXAM}
+        {if $DRNOTE->appointment_type|strtolower|trim == 'ehe' && $PHYSICALEXAM}
         {assign var=PEP_REMARKS value=""}
+        {assign var=ALL_YES value="1"}
+        {assign var=ALL_NO value="1"}
         {foreach from=$PHYSICALEXAMPROPERTIES key=PEP_IDX item=PHYSICALEXAMPROPERTY}
             {if $PHYSICALEXAMPROPERTY->is_normal|strtolower|trim == 'no'}
+				{assign var=ALL_YES value="0"}
                 {assign var=K value=$PHYSICALEXAMPROPERTY->name}
                 {if $PEP_REMARKS != ""}
-                    {assign var=PEP_REMARKS value="`$PEP_REMARKS`, "}
+                    {assign var=PEP_REMARKS value="`$PEP_REMARKS` "}
                 {/if}
-                {assign var=PEP_REMARKS value="`$PEP_REMARKS``$PHYSICALEXAMPROPERTY->description` in your `$app_list_strings.physical_exam_list[$K]`"}
+				{if $PHYSICALEXAMPROPERTY->description != ''}
+                    {assign var=PEP_REMARKS value="`$PEP_REMARKS``$PHYSICALEXAMPROPERTY->description` in your `$app_list_strings.physical_exam_list[$K]`,"}
+				{/if}
+			{else}
+				{if $PHYSICALEXAMPROPERTY->is_normal|strtolower|trim == 'yes'}
+					{assign var=ALL_NO value="0"}
+				{/if}
             {/if}
         {/foreach}
         {assign var=datavar value='physical_exam'}
         <li class="editable" data-var="{$datavar}">
         {if $VARS[$datavar]}{$VARS[$datavar]}
         {else}
-            During your evaluation, you underwent a physical exam. Your blood pressure was {$PHYSICALEXAM->blood_pressure}{*, which was {BP status},*} and your pulse was {$PHYSICALEXAM->pulse}.
-            {if $PEP_REMARKS != ""}
-            Your physical exam demonstrated {$PEP_REMARKS}. Based on these findings, please see our recommendations below.
+            <strong>During your evaluation, you underwent a physical exam.</strong> Your blood pressure was {$PHYSICALEXAM->blood_pressure}, which was {$PHYSICALEXAM->fat_mass}, and your pulse was {$PHYSICALEXAM->pulse}.
+            {if $PEP_REMARKS != "" && $ALL_NO eq 1}
+            	Your physical exam demonstrated {$PEP_REMARKS}.{literal}Based on these findings, please see our recommendations below.{/literal}
+			{elseif $ALL_YES eq 1}
+				Your physical exam demonstrated no abnormalities.
             {/if}
         {/if}
         </li>
+		<br>
     {/if}
+
+
+	{*
     {if $DRNOTE->appointment_type|strtolower|trim == 'ehe'}
         {assign var=datavar value='exercises'}
         <li class="editable" data-var="{$datavar}">
@@ -212,63 +227,88 @@
         {/if}
         </li>
     {/if}
-
-    {foreach from=$MEETINGS key=MTG_IDX item=MEETING}
-
-        {if $MEETING->plan_type_c|trim == 'misc'}
-            {if $MEETING->misc_type_c|strtolower|trim == 'low_purine_diet'}
-                {assign var=datavar value='meeting_'|cat:$MEETING->id}
-                <li class="editable" data-var="{$datavar}">
-                {if $VARS[$datavar]}{$VARS[$datavar]}{else}
-                    We recommend you eat more organ meats, anchovies, mackerel, and sardines.
-                    {$MEETING->description}
-                {/if}
-                </li>
-            {elseif $MEETING->misc_type_c|strtolower|trim|substr:0:7 == 'qi_gong'}
-                {assign var=datavar value='meeting_'|cat:$MEETING->id}
-                <li class="editable" data-var="{$datavar}">
-                {if $VARS[$datavar]}{$VARS[$datavar]}
-                {else}
-                    In light of your stress and difficulty with sleep, as well as elevated cortisol on your labs, we recommend Robert Peng’s book, Qigong Master, as well as his Qigong DVD (Four Golden Wheels and Lotus Meditation) and the corresponding CD's. These Qigong ‘body-mind’ exercises are an excellent way to reduce stress and promote a sense of well-being and balanced energies, which can have a profound effect on cortisol levels, thus metabolism. We suggest starting with Four Golden Wheels daily, which takes approximately 14 minutes. After you become comfortable with the DVD, the Lotus Meditation CD can be used at night before going to sleep; both CD's are useful during travel or when playing a DVD is not convenient.{if $MEETING->status|trim|strtolower == 'recommended'} Please let us know if you would like to purchase any of these. We can send them to you or you can pick them up in our office.{/if}{if $MEETING->status|trim|strtolower == 'planned'} As discussed, we will send them to you or you can pick them up in our office.{/if} You may also wish to visit his website at www.robertpeng.com for more information and to sign up for his newsletter as well as explore his weekend Qigong programs.
-                    {$MEETING->description}
-                {/if}
-                </li>
-            {else}
-                {assign var=datavar value='meeting_'|cat:$MEETING->id}
-                <li class="editable" data-var="{$datavar}">
-                {if $VARS[$datavar]}{$VARS[$datavar]}
-                {else}
-                    We recommend {$MEETING->name}{if $MEETING->description}, in light of your {$MEETING->description}{/if}.
-                {/if}
-                </li>
-            {/if}
-        {/if}
-
-    {/foreach}
-    {foreach from=$MEETINGS key=MTG_IDX item=MEETING}
-
+	*}
+	
+	{foreach from=$MEETINGS key=MTG_IDX item=MEETING}
         {if $MEETING->plan_type_c|strtolower|trim == 'specialty'}
+            {assign var=datavar value='meeting_'|cat:$MEETING->id}
+            <li class="editable" data-var="{$datavar}">
+			{if $VARS[$datavar]}{$VARS[$datavar]}
+            {else}
+			<strong>
+                {assign var=K value=$MEETING->specialty_type_c}
+                {assign var=SPECIALTYREFERRAL value=$MEETING->comite_specialtyreferral_meetings->beans|@reset}
+                {if $MEETING->status|strtolower|trim == 'recommended'}We recommend a{/if}
+                {if $MEETING->status|strtolower|trim == 'planned'}You are scheduled for a{/if}
+                {if $MEETING->status|strtolower|trim == 'completed'}You had a{/if} 
+                {$MEETING->name}{if $SPECIALTYREFERRAL->name} with {$SPECIALTYREFERRAL->name} a {$app_list_strings.specialty_type_list[$K]}{/if}{if $MEETING->description}, in light of your {$MEETING->description}{/if}.
+                {if $MEETING->status|strtolower|trim == 'planned'}
+                    This appointment will take place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}.
+                {/if}
+                {if $MEETING->status|strtolower|trim == 'recommended' || $MEETING->status|strtolower|trim == 'planned'}
+                    {if $SPECIALTYREFERRAL->name}{$SPECIALTYREFERRAL->name} is located at {$SPECIALTYREFERRAL->address}, and the phone number is {$SPECIALTYREFERRAL->phone}.{/if}{/if}</strong>Please contact our office if you need any assistance with this referral. Please have all records from your visit sent to our office.
+            {/if}
+            </li>
+			<br>
+        {/if}	
+    {/foreach}
+
+	{foreach from=$MEETINGS key=MTG_IDX item=MEETING}
+        {if $MEETING->plan_type_c|trim == 'study' && ($MEETING->studies_study_c|trim == 'bone_density__body_comp' || $MEETING->studies_study_c|trim == 'body_composition')}
             {assign var=datavar value='meeting_'|cat:$MEETING->id}
             <li class="editable" data-var="{$datavar}">
             {if $VARS[$datavar]}{$VARS[$datavar]}
             {else}
-                {assign var=K value=$MEETING->specialty_type_c}
-                {assign var=SPECIALTYREFERRAL value=$MEETING->comite_specialtyreferral_meetings->beans|@reset}
-                {if $MEETING->status|strtolower|trim == 'recommended'}We recommend a{/if}{if $MEETING->status|strtolower|trim == 'planned'}You are scheduled for a{/if}{if $MEETING->status|strtolower|trim == 'completed'}You had a{/if} {$MEETING->name}{if $SPECIALTYREFERRAL->name} with {$SPECIALTYREFERRAL->name} a {$app_list_strings.specialty_type_list[$K]}{/if}{if $MEETING->description}, in light of your {$MEETING->description}{/if}.
+                {if $MEETING->status|strtolower|trim == 'planned'}Your follow-up {if $MEETING->studies_study_c|trim == 'body_composition'}body composition{else}bone study{/if} will also be performed on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower} to monitor your progress. This appointment is at the Metabolic Bone Health Center located at 429 E 75th Street on the Lower Level, New York, NY (between First and York Avenues).{/if}
+                {if $MEETING->status|strtolower|trim == 'recommended'}You are due for a {if $MEETING->studies_study_c|trim == 'body_composition'}body composition{else}bone study{/if} in {$MEETING->date_start|strtotime|date_format:'%B'}, to monitor your progress. This appointment is at the Metabolic Bone Health Center located at 429 E 75th Street on the Lower Level, New York, NY (between First and York Avenues). Please let us know your availability so that we can best coordinate your appointments.{/if}
+            {/if}
+            </li>
+			<br>
+        {/if}
+    {/foreach}
+
+    {foreach from=$MEETINGS key=MTG_IDX item=MEETING}
+        {if $MEETING->plan_type_c|trim == 'study' && $MEETING->studies_study_c|trim != 'bone_density__body_comp' && $MEETING->studies_study_c|trim != 'body_composition'}
+            {assign var=datavar value='meeting_'|cat:$MEETING->id}
+            <li class="editable" data-var="{$datavar}">
+            {if $VARS[$datavar]}{$VARS[$datavar]}
+            {else}
+                <strong>
+                {if $MEETING->status|strtolower|trim == 'recommended'}We recommend a{/if}
+                {if $MEETING->status|strtolower|trim == 'planned'}You are scheduled for a{/if}
+                {if $MEETING->status|strtolower|trim == 'completed'}You had a{/if} 
+                {$MEETING->name}{if $MEETING->description} in light of your {$MEETING->description}.{/if}
                 {if $MEETING->status|strtolower|trim == 'planned'}
-                    This appointment will take place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}.
-                {/if}
-                {if $MEETING->status|strtolower|trim == 'held'}
-                    This appointment took place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'}.
+                       This appointment will take place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}.
                 {/if}
                 {if $MEETING->status|strtolower|trim == 'recommended' || $MEETING->status|strtolower|trim == 'planned'}
-                    {if $SPECIALTYREFERRAL->name}{$SPECIALTYREFERRAL->name} is located at {$SPECIALTYREFERRAL->address}, and the phone number is {$SPECIALTYREFERRAL->phone}. {/if}Please contact our office if you need any assistance with this referral. Please have all records from your visit sent to our office.
+                {literal}{Specialty referral} is located at {address}, and the phone number is {phone}. {/literal}</strong>		
                 {/if}
+				{if $MEETING->studies_study_c|trim == 'sleep_study'}
+					A tiny recording device with instructors will be provided to you. An interpretive report and recommendations will follow.
+                {/if}
+				{if $MEETING->studies_study_c|trim == 'therapeutic_phlebotomy'}
+					A requisition has already been sent to the Blood Donor Center for this draw.Additionally, we recommend a repeat Complete Blood Count with differential two to four weeks after your Therapeutic Phlebotomy. Please do not hesitate to contact our office should you have any questions or need any help with coordination.
+                {/if}
+				Please contact our office if you need any assistance with this referral. Please have all records from your visit sent to our office.
             {/if}
             </li>
         {/if}
-
     {/foreach}
+
+
+    {foreach from=$MEETINGS key=MTG_IDX item=MEETING}
+        {if $MEETING->plan_type_c|trim == 'misc'}
+               {assign var=datavar value='meeting_'|cat:$MEETING->id}
+                <li class="editable" data-var="{$datavar}">
+                {if $VARS[$datavar]}{$VARS[$datavar]}
+                {else}
+                    We recommend {$MEETING->name} {if $MEETING->description}, in light of your {$MEETING->description}{/if}.
+                {/if}
+                </li>
+            {/if}
+    {/foreach}
+    
     {foreach from=$MEETINGS key=MTG_IDX item=MEETING}
 
         {if ($MEETING->plan_type_c|trim == 'test' && ($MEETING->tests_test_c == 'vo2' || $MEETING->tests_test_c == 'endopat' || $MEETING->tests_test_c == 'vo2_endopat')) || $MEETING->plan_type_c|trim == 'vo2' ||  $MEETING->plan_type_c|trim == 'endopat' || $MEETING->plan_type_c|trim == 'vo2_endopat'}
@@ -320,57 +360,8 @@
         {/if}
 
     {/foreach}
-    {foreach from=$MEETINGS key=MTG_IDX item=MEETING}
-        {if $MEETING->plan_type_c|trim == 'study' && ($MEETING->studies_study_c|trim == 'bone_density__body_comp' || $MEETING->studies_study_c|trim == 'body_composition')}
-            {assign var=datavar value='meeting_'|cat:$MEETING->id}
-            <li class="editable" data-var="{$datavar}">
-            {if $VARS[$datavar]}{$VARS[$datavar]}
-            {else}
-                {if $MEETING->status|strtolower|trim == 'planned'}Your follow-up {if $MEETING->studies_study_c|trim == 'body_composition'}body composition{else}bone study{/if} will also be performed on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower} to monitor your progress. This appointment is at the Metabolic Bone Health Center located at 429 E 75th Street on the Lower Level, New York, NY (between First and York Avenues).{/if}
-                {if $MEETING->status|strtolower|trim == 'recommended'}You are due for a {if $MEETING->studies_study_c|trim == 'body_composition'}body composition{else}bone study{/if} in {$MEETING->date_start|strtotime|date_format:'%B'}, to monitor your progress. This appointment is at the Metabolic Bone Health Center located at 429 E 75th Street on the Lower Level, New York, NY (between First and York Avenues). Please let us know your availability so that we can best coordinate your appointments.{/if}
-            {/if}
-            </li>
-        {/if}
-
-    {/foreach}
-    {foreach from=$MEETINGS key=MTG_IDX item=MEETING}
-        {if $MEETING->plan_type_c|trim == 'study' && $MEETING->studies_study_c|trim == 'therapeutic_phlebotomy'}
-            {assign var=datavar value='meeting_'|cat:$MEETING->id}
-            <li class="editable" data-var="{$datavar}">
-            {if $VARS[$datavar]}{$VARS[$datavar]}
-            {else}
-                {if $MEETING->status|strtolower|trim == 'recommended'}
-                In light of the elevated Hemoglobin and Hematocrit levels seen in your most recent lab work, we advise donating 1 unit of blood as soon as your schedule permits. You may do so by calling 1-800-RED-CROSS or visiting www.redcrossblood.org to find a location and time that is convenient for you.
-                {/if}
-                {if $MEETING->status|strtolower|trim == 'planned'}
-                In light of the elevated Hemoglobin and Hematocrit levels seen in your most recent lab work, you are scheduled to obtain a Therapeutic Phlebotomy on {$MEETING->time_start|strtotime|date_format:'%B %e, %Y'|strtolower} at Lenox Hill Hospital. The Infusion and Blood Donation Center is located at Wollman building - 3rd Floor, 100 E 77th St, New York, NY 10075. We recommend repeating a therapeutic phlebotomy every 1 to 2 months thereafter.
-                {/if}
-            {/if}
-            </li>
-        {elseif $MEETING->plan_type_c|trim == 'study' && $MEETING->studies_study_c|trim == 'sleep_study'}
-            {assign var=datavar value='meeting_'|cat:$MEETING->id}
-            <li class="editable" data-var="{$datavar}">
-            {if $VARS[$datavar]}{$VARS[$datavar]}
-            {else}
-                {if $MEETING->status|strtolower|trim == 'recommended'}We recommend{/if}{if $MEETING->status|strtolower|trim == 'planned'}As discussed, we would like to arrange{/if} a Sleep Image System to objectively measure your sleep quality. Should you like to move forward with this study, a tiny recording device with instructions will be provided to you and an interpretive report and recommendations will follow. Do let us know if you are interested in this option so that we can coordinate your study.
-            {/if}
-            </li>
-        {elseif $MEETING->plan_type_c|trim == 'study' && $MEETING->studies_study_c|trim != 'bone_density__body_comp' && $MEETING->studies_study_c|trim != 'body_composition'}
-            {assign var=datavar value='meeting_'|cat:$MEETING->id}
-            <li class="editable" data-var="{$datavar}">
-            {if $VARS[$datavar]}{$VARS[$datavar]}
-            {else}
-                {if $MEETING->status|strtolower|trim == 'recommended'}We recommend a {$MEETING->studies_study_c|trim}{if $MEETING->description}, in light of your {$MEETING->description}{/if}.{if $MEETING->comite_planlocation_meetings_name} This would take place at {$MEETING->comite_planlocation_meetings_name}.{/if} Please let us know your availability so that we can best coordinate your appointment.
-                {/if}
-                {if $MEETING->status|strtolower|trim == 'planned'}
-                You are scheduled for a {$MEETING->studies_study_c|trim}{if $MEETING->description}, in light of your {$MEETING->description}{/if}.
-                This will take place on {$MEETING->time_start|strtotime|date_format:'%B %e, %Y'|strtolower}{if $MEETING->comite_planlocation_meetings_name} at {$MEETING->comite_planlocation_meetings_name}.{/if}
-                {/if}
-            {/if}
-            </li>
-        {/if}
-
-    {/foreach}
+	
+    
     {foreach from=$MEETINGS key=MTG_IDX item=MEETING}
 
         {if $MEETING->plan_type_c|trim == 'ehe'}
