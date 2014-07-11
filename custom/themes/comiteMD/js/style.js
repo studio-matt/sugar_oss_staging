@@ -496,6 +496,12 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
     		document.getElementById('name_label').innerHTML = '<label for="name">Subject:</label><span class="required">*</span>';
     		addToValidate(formName, 'name', 'name', true,'Subject' );
     	}
+        
+        if(selected == 'bd'){
+        	document.getElementById('description_label').innerHTML = '<label for="name">BD Instructions:</label>';
+        }else{
+        	document.getElementById('description_label').innerHTML = '<label for="name">In light of your:</label>';
+        }
     }  
     
     if(plantype != ''){
@@ -545,6 +551,12 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
     		removeFromValidate(formName, 'name');
     		addToValidate(formName, 'name', 'name', true,'Subject' );
     	}
+    	
+    	if(selected == 'bd'){
+        	document.getElementById('description_label').innerHTML = '<label for="name">BD Instructions:</label>';
+        }else{
+        	document.getElementById('description_label').innerHTML = '<label for="name">In light of your:</label>';
+        }
     });
 
     

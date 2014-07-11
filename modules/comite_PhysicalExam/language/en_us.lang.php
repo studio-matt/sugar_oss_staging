@@ -75,4 +75,5 @@ $mod_strings = array (
   'LBL_EDITVIEW_PANEL2' => 'Test Results',
   'LBL_DETAILVIEW_PANEL3' => 'Office Use',
   'LBL_QUICKCREATE_PANEL1' => 'Test Results',
+  'LBL_FAT_MASS' => 'BP Status',
 );
