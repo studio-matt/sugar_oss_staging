@@ -189,7 +189,7 @@
         <li class="editable" data-var="{$datavar}">
         {if $VARS[$datavar]}{$VARS[$datavar]}
         {else}
-            <strong>During your evaluation, you underwent a physical exam.</strong> Your blood pressure was {$PHYSICALEXAM->blood_pressure}, which was {$PHYSICALEXAM->fat_mass}, and your pulse was {$PHYSICALEXAM->pulse}.
+            During your evaluation, you underwent a physical exam. Your blood pressure was {$PHYSICALEXAM->blood_pressure}, which was {$PHYSICALEXAM->fat_mass}, and your pulse was {$PHYSICALEXAM->pulse}.
             {if $PEP_REMARKS != "" && $ALL_NO eq 1}
             	Your physical exam demonstrated {$PEP_REMARKS}.{literal}Based on these findings, please see our recommendations below.{/literal}
 			{elseif $ALL_YES eq 1}
@@ -235,7 +235,6 @@
             <li class="editable" data-var="{$datavar}">
 			{if $VARS[$datavar]}{$VARS[$datavar]}
             {else}
-			<strong>
                 {assign var=K value=$MEETING->specialty_type_c}
                 {assign var=SPECIALTYREFERRAL value=$MEETING->comite_specialtyreferral_meetings->beans|@reset}
                 {if $MEETING->status|strtolower|trim == 'recommended'}We recommend a{/if}
@@ -246,7 +245,7 @@
                     This appointment will take place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}.
                 {/if}
                 {if $MEETING->status|strtolower|trim == 'recommended' || $MEETING->status|strtolower|trim == 'planned'}
-                    {if $SPECIALTYREFERRAL->name}{$SPECIALTYREFERRAL->name} is located at {$SPECIALTYREFERRAL->address}, and the phone number is {$SPECIALTYREFERRAL->phone}.{/if}{/if}</strong>Please contact our office if you need any assistance with this referral. Please have all records from your visit sent to our office.
+                    {if $SPECIALTYREFERRAL->name}{$SPECIALTYREFERRAL->name} is located at {$SPECIALTYREFERRAL->address}, and the phone number is {$SPECIALTYREFERRAL->phone}.{/if}{/if}Please contact our office if you need any assistance with this referral. Please have all records from your visit sent to our office.
             {/if}
             </li>
 			<br>
@@ -273,7 +272,6 @@
             <li class="editable" data-var="{$datavar}">
             {if $VARS[$datavar]}{$VARS[$datavar]}
             {else}
-                <strong>
                 {if $MEETING->status|strtolower|trim == 'recommended'}We recommend a{/if}
                 {if $MEETING->status|strtolower|trim == 'planned'}You are scheduled for a{/if}
                 {if $MEETING->status|strtolower|trim == 'completed'}You had a{/if} 
@@ -282,7 +280,7 @@
                        This appointment will take place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}.
                 {/if}
                 {if $MEETING->status|strtolower|trim == 'recommended' || $MEETING->status|strtolower|trim == 'planned'}
-                {literal}{Specialty referral} is located at {address}, and the phone number is {phone}. {/literal}</strong>		
+                {literal}{Specialty referral} is located at {address}, and the phone number is {phone}. {/literal}		
                 {/if}
 				{if $MEETING->studies_study_c|trim == 'sleep_study'}
 					A tiny recording device with instructors will be provided to you. An interpretive report and recommendations will follow.
@@ -318,13 +316,13 @@
                 <span class="editable" data-var="{$datavar}">
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                 {else}
-                    {if $MEETING->status|strtolower|trim == 'recommended'}<strong>Please schedule to meet with one of our Exercise Physiologists, Steven Villagomez or Timothy Coyle, in {$MEETING->date_start|strtotime|date_format:'%B'}</strong> to evaluate your current exercise pattern, including
+                    {if $MEETING->status|strtolower|trim == 'recommended'}Please schedule to meet with one of our Exercise Physiologists, Steven Villagomez or Timothy Coyle, in {$MEETING->date_start|strtotime|date_format:'%B'} to evaluate your current exercise pattern, including
                     {/if}
-                    {if $MEETING->status|strtolower|trim == 'planned'}<strong>You are scheduled to meet with one of our Exercise Physiologists, Steven Villagomez or Timothy Coyle, on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}</strong> to evaluate your current exercise pattern, including
+                    {if $MEETING->status|strtolower|trim == 'planned'}ou are scheduled to meet with one of our Exercise Physiologists, Steven Villagomez or Timothy Coyle, on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower} to evaluate your current exercise pattern, including
                     {/if}
 					
                     {if $MEETING->plan_type_c|trim == 'vo2' || $MEETING->tests_test_c == 'vo2'}a follow-up VO2 assessment{/if}{if $MEETING->plan_type_c|trim == 'endopat' || $MEETING->tests_test_c == 'endopat'}an EndoPAT test{/if}{if $MEETING->plan_type_c|trim == 'vo2_endopat' || $MEETING->tests_test_c == 'vo2_endopat'}an EndoPAT test and follow-up VO2 assessment{/if}, in order to determine the next steps in your training program. This evaluation is at our office.
-					<strong>Please observe the following prior to your appointment:</strong>
+					Please observe the following prior to your appointment:
                 {/if}
                 </span>
 				<strong>
@@ -358,10 +356,10 @@
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                 {else}
                     {if $MEETING->status|strtolower|trim == 'recommended'}
-                        <strong>You are due for your Precision Health Analysis in {$MEETING->date_start|strtotime|date_format:'%B'} as you enter the {$MEETING->description} year of our program.</strong> Please let us know your availability so that we can best coordinate your appointment.
+                        You are due for your Precision Health Analysis in {$MEETING->date_start|strtotime|date_format:'%B'} as you enter the {$MEETING->description} year of our program.Please let us know your availability so that we can best coordinate your appointment.
                     {/if}
                     {if $MEETING->status|strtolower|trim == 'planned'}
-                       <strong> You are scheduled for a Precision Health Analysis on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}, as you enter the {$MEETING->description} year of our program.</strong> During this evaluation, you will meet with one of our Exercise Physiologists, Timothy Coyle or Steven Villagomez, to evaluate your current exercise pattern, including an EndoPAT test and follow-up VO2 assessment, in order to determine the next steps in your training program. This evaluation is at our office. <strong>Please observe the following prior to your appointment:</strong>
+                        You are scheduled for a Precision Health Analysis on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}, as you enter the {$MEETING->description} year of our program. During this evaluation, you will meet with one of our Exercise Physiologists, Timothy Coyle or Steven Villagomez, to evaluate your current exercise pattern, including an EndoPAT test and follow-up VO2 assessment, in order to determine the next steps in your training program. This evaluation is at our office. Please observe the following prior to your appointment:
                     {/if}
                 {/if}
                 </span>
@@ -396,8 +394,7 @@
             <li class="editable" data-var="{$datavar}">
             {if $VARS[$datavar]}{$VARS[$datavar]}
             {else}
-                <strong>Your follow-up Comprehensive Labs are due on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'}{if $MEETING->description}, {$MEETING->description}{/if}. This should be done after a 10-12 hour fast (drink plenty of water during this time){strip}
-                </strong>
+                Your follow-up Comprehensive Labs are due on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'}{if $MEETING->description}, {$MEETING->description}{/if}. This should be done after a 10-12 hour fast (drink plenty of water during this time){strip}
                 {if $TESTOSTERONE && !$HCG}
                     , on the day of your testosterone dose, before your Testosterone Cypionate injection
                 {/if}
@@ -407,8 +404,8 @@
                 {if $TESTOSTERONE && $HCG}
 , on the day after your hCG injection or, on the day of your testosterone dose, before your Testosterone Cypionate injection
                 {/if}.{/strip}
-                As we get closer to this date, a phlebotomist will be in contact with you to schedule your blood draw time.{if $FUTURETM} A follow-up teleconference has been {if $FUTURETM->status|trim|strtolower == 'recommended'} tentatively scheduled for the week of <strong>{$FUTURETM->date_start|strtotime|date_format:'%B %e, %Y'} </strong>
-{/if}{if $FUTURETM->status|trim|strtolower == 'planned'} scheduled for <strong>{$FUTURETM->date_start|strtotime|date_format:'%B %e, %Y'} at {$FUTURETM->time_start|strtotime|date_format:'%l:%M%p'|strtolower}{/if}</strong> to discuss the results and any recommended changes to your program.{/if}
+                As we get closer to this date, a phlebotomist will be in contact with you to schedule your blood draw time.{if $FUTURETM} A follow-up teleconference has been {if $FUTURETM->status|trim|strtolower == 'recommended'} tentatively scheduled for the week of {$FUTURETM->date_start|strtotime|date_format:'%B %e, %Y'}
+{/if}{if $FUTURETM->status|trim|strtolower == 'planned'} scheduled for {$FUTURETM->date_start|strtotime|date_format:'%B %e, %Y'} at {$FUTURETM->time_start|strtotime|date_format:'%l:%M%p'|strtolower}{/if} to discuss the results and any recommended changes to your program.{/if}
             {/if}
             </li>
         {/if}
@@ -421,14 +418,14 @@
             <li class="editable" data-var="{$datavar}">
             {if $VARS[$datavar]}{$VARS[$datavar]}
             {else}
-                <strong>{if $MEETING->status|strtolower|trim == 'recommended'}
+                {if $MEETING->status|strtolower|trim == 'recommended'}
                 As discussed, we recommend additional tests, which would be done at the time of next blood draw,
                 {/if}
 				{if $MEETING->status|strtolower|trim == 'planned'}
               	 As discussed, we will be including additional tests with your next blood draw,
                 {/if}
 				specifically {$MEETING->name} {if $MEETING->description} given your {$MEETING->description}{/if}
-			{if $MEETING->status|strtolower|trim == 'recommended'}Please let us know if you would like to go forward with these tests.{/if}</strong>
+			{if $MEETING->status|strtolower|trim == 'recommended'}Please let us know if you would like to go forward with these tests.{/if}
             {/if}
             </li>
         {/if}
