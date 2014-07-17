@@ -52,6 +52,9 @@ class PdfView extends SugarView {
             1 => array('pipe', 'w'), // stdout
             2 => array('pipe', 'w'), // stderr
         );
+	
+	$html = str_replace('<img src="https://', '<img src="/srv/',$html);
+	$html = str_replace('.com/custom', '.com/httpdocs/custom',$html);
 
         $process = proc_open(dirname(__FILE__) . '/../bin/wkhtmltopdf-amd64 -q - -', $descriptorspec, $pipes);
 
@@ -67,8 +70,7 @@ class PdfView extends SugarView {
         $return_value = proc_close($process);
         // Output the results
         $errors = str_replace("QPixmap: Cannot create a QPixmap when no GUI is being used\n", '', $errors);
-        $errors = str_replace("QSslSocket: cannot resolve SSLv2_client_method\n", '', $errors);
-        $errors = str_replace("QSslSocket: cannot resolve SSLv2_server_method\n", '', $errors);
+        $errors = preg_replace("#QSslSocket: [^\n]+\n#", '', $errors);
         if ($errors) {
             throw new Exception($errors);
         }
