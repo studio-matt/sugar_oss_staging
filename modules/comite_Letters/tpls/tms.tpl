@@ -242,7 +242,7 @@
                 {if $MEETING->status|strtolower|trim == 'completed'}You had a{/if} 
                 {$MEETING->name}{if $SPECIALTYREFERRAL->name} with {$SPECIALTYREFERRAL->name} a {$app_list_strings.specialty_type_list[$K]}{/if}{if $MEETING->description}, in light of your {$MEETING->description}{/if}.
                 {if $MEETING->status|strtolower|trim == 'planned'}
-                    This appointment will take place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}.
+                    This appointment will take place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->date_start|strtotime|date_format:'%l:%M%p'|strtolower}.
                 {/if}
                 {if $MEETING->status|strtolower|trim == 'recommended' || $MEETING->status|strtolower|trim == 'planned'}
                     {if $SPECIALTYREFERRAL->name}{$SPECIALTYREFERRAL->name} is located at {$SPECIALTYREFERRAL->address}, and the phone number is {$SPECIALTYREFERRAL->phone}.{/if}{/if}Please contact our office if you need any assistance with this referral. Please have all records from your visit sent to our office.
@@ -258,7 +258,7 @@
             <li class="editable" data-var="{$datavar}">
             {if $VARS[$datavar]}{$VARS[$datavar]}
             {else}
-                {if $MEETING->status|strtolower|trim == 'planned'}Your follow-up {if $MEETING->studies_study_c|trim == 'body_composition'}body composition{else}bone study{/if} will also be performed on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower} to monitor your progress. This appointment is at the Metabolic Bone Health Center located at 429 E 75th Street on the Lower Level, New York, NY (between First and York Avenues).{/if}
+                {if $MEETING->status|strtolower|trim == 'planned'}Your follow-up {if $MEETING->studies_study_c|trim == 'body_composition'}body composition{else}bone study{/if} will also be performed on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->date_start|strtotime|date_format:'%l:%M%p'|strtolower} to monitor your progress. This appointment is at the Metabolic Bone Health Center located at 429 E 75th Street on the Lower Level, New York, NY (between First and York Avenues).{/if}
                 {if $MEETING->status|strtolower|trim == 'recommended'}You are due for a {if $MEETING->studies_study_c|trim == 'body_composition'}body composition{else}bone study{/if} in {$MEETING->date_start|strtotime|date_format:'%B'}, to monitor your progress. This appointment is at the Metabolic Bone Health Center located at 429 E 75th Street on the Lower Level, New York, NY (between First and York Avenues). Please let us know your availability so that we can best coordinate your appointments.{/if}
             {/if}
             </li>
@@ -277,7 +277,7 @@
                 {if $MEETING->status|strtolower|trim == 'completed'}You had a{/if} 
                 {$MEETING->name}{if $MEETING->description} in light of your {$MEETING->description}.{/if}
                 {if $MEETING->status|strtolower|trim == 'planned'}
-                       This appointment will take place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}.
+                       This appointment will take place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->date_start|strtotime|date_format:'%l:%M%p'|strtolower}.
                 {/if}
                 {if $MEETING->status|strtolower|trim == 'recommended' || $MEETING->status|strtolower|trim == 'planned'}
                 {literal}{Specialty referral} is located at {address}, and the phone number is {phone}. {/literal}		
@@ -291,6 +291,7 @@
 				Please contact our office if you need any assistance with this referral. Please have all records from your visit sent to our office.
             {/if}
             </li>
+            <br>
         {/if}
     {/foreach}
 
@@ -318,7 +319,7 @@
                 {else}
                     {if $MEETING->status|strtolower|trim == 'recommended'}Please schedule to meet with one of our Exercise Physiologists, Steven Villagomez or Timothy Coyle, in {$MEETING->date_start|strtotime|date_format:'%B'} to evaluate your current exercise pattern, including
                     {/if}
-                    {if $MEETING->status|strtolower|trim == 'planned'}ou are scheduled to meet with one of our Exercise Physiologists, Steven Villagomez or Timothy Coyle, on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower} to evaluate your current exercise pattern, including
+                    {if $MEETING->status|strtolower|trim == 'planned'}ou are scheduled to meet with one of our Exercise Physiologists, Steven Villagomez or Timothy Coyle, on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->date_start|strtotime|date_format:'%l:%M%p'|strtolower} to evaluate your current exercise pattern, including
                     {/if}
 					
                     {if $MEETING->plan_type_c|trim == 'vo2' || $MEETING->tests_test_c == 'vo2'}a follow-up VO2 assessment{/if}{if $MEETING->plan_type_c|trim == 'endopat' || $MEETING->tests_test_c == 'endopat'}an EndoPAT test{/if}{if $MEETING->plan_type_c|trim == 'vo2_endopat' || $MEETING->tests_test_c == 'vo2_endopat'}an EndoPAT test and follow-up VO2 assessment{/if}, in order to determine the next steps in your training program. This evaluation is at our office.
@@ -344,6 +345,7 @@
                 </ul>
 				</strong>
             </li>
+            <br>
         {/if}
     {/foreach}
 	
@@ -359,7 +361,7 @@
                         You are due for your Precision Health Analysis in {$MEETING->date_start|strtotime|date_format:'%B'} as you enter the {$MEETING->description} year of our program.Please let us know your availability so that we can best coordinate your appointment.
                     {/if}
                     {if $MEETING->status|strtolower|trim == 'planned'}
-                        You are scheduled for a Precision Health Analysis on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->time_start|strtotime|date_format:'%l:%M%p'|strtolower}, as you enter the {$MEETING->description} year of our program. During this evaluation, you will meet with one of our Exercise Physiologists, Timothy Coyle or Steven Villagomez, to evaluate your current exercise pattern, including an EndoPAT test and follow-up VO2 assessment, in order to determine the next steps in your training program. This evaluation is at our office. Please observe the following prior to your appointment:
+                        You are scheduled for a Precision Health Analysis on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->date_start|strtotime|date_format:'%l:%M%p'|strtolower}, as you enter the {$MEETING->description} year of our program. During this evaluation, you will meet with one of our Exercise Physiologists, Timothy Coyle or Steven Villagomez, to evaluate your current exercise pattern, including an EndoPAT test and follow-up VO2 assessment, in order to determine the next steps in your training program. This evaluation is at our office. Please observe the following prior to your appointment:
                     {/if}
                 {/if}
                 </span>
@@ -384,6 +386,7 @@
 				</strong>
                 {/if}
             </li>
+            <br>
         {/if}
 
     {/foreach}
@@ -405,9 +408,10 @@
 , on the day after your hCG injection or, on the day of your testosterone dose, before your Testosterone Cypionate injection
                 {/if}.{/strip}
                 As we get closer to this date, a phlebotomist will be in contact with you to schedule your blood draw time.{if $FUTURETM} A follow-up teleconference has been {if $FUTURETM->status|trim|strtolower == 'recommended'} tentatively scheduled for the week of {$FUTURETM->date_start|strtotime|date_format:'%B %e, %Y'}
-{/if}{if $FUTURETM->status|trim|strtolower == 'planned'} scheduled for {$FUTURETM->date_start|strtotime|date_format:'%B %e, %Y'} at {$FUTURETM->time_start|strtotime|date_format:'%l:%M%p'|strtolower}{/if} to discuss the results and any recommended changes to your program.{/if}
+{/if}{if $FUTURETM->status|trim|strtolower == 'planned'} scheduled for {$FUTURETM->date_start|strtotime|date_format:'%B %e, %Y'} at {$FUTURETM->date_start|strtotime|date_format:'%l:%M%p'|strtolower}{/if} to discuss the results and any recommended changes to your program.{/if}
             {/if}
             </li>
+            <br>
         {/if}
 
     {/foreach}
@@ -428,6 +432,7 @@
 			{if $MEETING->status|strtolower|trim == 'recommended'}Please let us know if you would like to go forward with these tests.{/if}
             {/if}
             </li>
+            <br>
         {/if}
 
     {/foreach}
