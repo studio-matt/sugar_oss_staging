@@ -491,6 +491,10 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
     	{
     		document.getElementById('name_label').innerHTML = '<label for="name">Specialty Procedure Name:</label><span class="required">*</span>';
     		addToValidate(formName, 'name', 'name', true,'Specialty Procedure Name' );
+    	}else if(selected == 'ehe')
+    	{
+    		document.getElementById('name_label').innerHTML = '<label for="name">EHE Year:</label><span class="required">*</span>';
+    		addToValidate(formName, 'name', 'name', true,'EHE Year' );
     	}else
     	{
     		document.getElementById('name_label').innerHTML = '<label for="name">Subject:</label><span class="required">*</span>';
@@ -498,10 +502,13 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
     	}
         
         if(selected == 'bd'){
-        	document.getElementById('description_label').innerHTML = '<label for="name">BD Instructions:</label>';
+            document.getElementById('description_label').innerHTML = '<label for="description">BD Instructions:</label>';
+        }else if(selected == 'specialty' || selected == 'test' || selected == 'study' || selected == 'misc'){
+            document.getElementById('description_label').innerHTML = '<label for="description">In light of your:</label>';
         }else{
-        	document.getElementById('description_label').innerHTML = '<label for="name">In light of your:</label>';
+            document.getElementById('description_label').innerHTML = '<label for="description">Notes:</label>';
         }
+        
     }  
     
     if(plantype != ''){
@@ -515,6 +522,10 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
 	    	{
 	    		removeFromValidate(formName, 'name');
 	    		addToValidate(formName, 'name', 'name', true,'Specialty Procedure Name' );
+	    	}else if(selected == 'ehe')
+	    	{
+	    		removeFromValidate(formName, 'name');
+	    		addToValidate(formName, 'name', 'name', true,'EHE Year' );
 	    	}
 	    });
     }
@@ -532,6 +543,15 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
       			//console.log(formName);
       		}
       	});
+        
+        if(selected != 'specialty' && selected != 'ehe'){
+            var el = document.getElementById('plan_type_c');
+            var plan_type_c_label = el.options[el.selectedIndex].innerHTML;
+            $('input#name').val(plan_type_c_label);
+        }else{
+            $('input#name').val('');
+        }
+        
     	if(selected == 'misc')
     	{
     		clear_all_errors();
@@ -544,6 +564,12 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
     		document.getElementById('name_label').innerHTML = '<label for="name">Specialty Procedure Name:</label><span class="required">*</span>';
     		removeFromValidate(formName, 'name');
     		addToValidate(formName, 'name', 'name', true,'Specialty Procedure Name' );
+    	}else if(selected == 'ehe')
+    	{
+    		clear_all_errors();
+    		document.getElementById('name_label').innerHTML = '<label for="name">EHE Year:</label><span class="required">*</span>';
+    		removeFromValidate(formName, 'name');
+    		addToValidate(formName, 'name', 'name', true,'EHE Year' );
     	}else
     	{
     		clear_all_errors();
@@ -553,9 +579,11 @@ YUI({base:'include/javascript/yui3/build/'}).use('node', 'event', 'io-base', 'js
     	}
     	
     	if(selected == 'bd'){
-        	document.getElementById('description_label').innerHTML = '<label for="name">BD Instructions:</label>';
+            document.getElementById('description_label').innerHTML = '<label for="description">BD Instructions:</label>';
+        }else if(selected == 'specialty' || selected == 'test' || selected == 'study' || selected == 'misc'){
+            document.getElementById('description_label').innerHTML = '<label for="description">In light of your:</label>';
         }else{
-        	document.getElementById('description_label').innerHTML = '<label for="name">In light of your:</label>';
+            document.getElementById('description_label').innerHTML = '<label for="description">Notes:</label>';
         }
     });
 

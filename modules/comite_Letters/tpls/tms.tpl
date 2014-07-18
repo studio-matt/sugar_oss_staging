@@ -275,7 +275,7 @@
                 {if $MEETING->status|strtolower|trim == 'recommended'}We recommend a{/if}
                 {if $MEETING->status|strtolower|trim == 'planned'}You are scheduled for a{/if}
                 {if $MEETING->status|strtolower|trim == 'completed'}You had a{/if} 
-                {$MEETING->name}{if $MEETING->description} in light of your {$MEETING->description}.{/if}
+                {$MEETING->name}{if $MEETING->description} in light of your {$MEETING->description}{/if}.
                 {if $MEETING->status|strtolower|trim == 'planned'}
                        This appointment will take place on {$MEETING->date_start|strtotime|date_format:'%B %e, %Y'} at {$MEETING->date_start|strtotime|date_format:'%l:%M%p'|strtolower}.
                 {/if}
