@@ -231,6 +231,7 @@ body fat with breakdown by region. The healthy body fat range for {$CONTACT->gen
     <input type="hidden" name="module" value="{$REQUEST.module}" />
     <input type="hidden" name="action" value="{$REQUEST.action}" />
     <input type="hidden" name="record" value="{$REQUEST.record}" />
+    <input type="hidden" name="previous" value="{$REQUEST.previous}" />
     <input type="hidden" name="return_module" value="{$REQUEST.return_module}" />
     <input type="hidden" name="return_action" value="{$REQUEST.return_action}" />
     <input type="hidden" name="return_record" value="{$REQUEST.record}" />

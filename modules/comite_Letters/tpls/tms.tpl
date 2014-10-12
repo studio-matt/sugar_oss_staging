@@ -1,3 +1,4 @@
+
 <style type="text/css">
     {$css}
 	{literal}
@@ -64,7 +65,7 @@
                 <li class="editable" data-var="{$datavar}" style="font-weight: bold;">
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                 {else}
-                    {if $MEDSUPPINSTANCE->comite_change_name}(Name Change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(Dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(Quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(Frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}, We have noted your days of injection are {literal}{day1 of injection} and {day 2 of injection}{/literal}.
+                    {if $MEDSUPPINSTANCE->comite_change_name}(Name Change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(Dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(Quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(Frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity} {$app_list_strings.quantity_unit_list[$quantity_index]}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}, We have noted your days of injection are {literal}{day1 of injection} and {day 2 of injection}{/literal}.
                 {/if}
                 </li>
             {/foreach}
@@ -116,7 +117,7 @@
                 <li class="editable" data-var="{$datavar}" style="font-weight: bold;">
                 {if $VARS[$datavar]}{$VARS[$datavar]}
                 {else}
-                    {if $MEDSUPPINSTANCE->comite_change_name}(Name Change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(Dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(Quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(Frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage|rtrim:'0'|rtrim:'.'} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity|rtrim:'0'|rtrim:'.'} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}.
+                    {if $MEDSUPPINSTANCE->comite_change_name}(Name Change) {/if}{if $MEDSUPPINSTANCE->comite_change_dosage}(Dosage {$MEDSUPPINSTANCE->comite_change_dosage}) {/if}{if $MEDSUPPINSTANCE->comite_change_quantity}(Quantity {$MEDSUPPINSTANCE->comite_change_quantity}) {/if}{if $MEDSUPPINSTANCE->comite_change_frequency}(Frequency {$MEDSUPPINSTANCE->comite_change_frequency}) {/if}{$MEDSUPP->name}, {$MEDSUPPINSTANCE->dosage} {$app_list_strings.dosage_unit_list[$dosage_index]}, {$MEDSUPPINSTANCE->quantity} {$app_list_strings.quantity_unit_list[$quantity_index]}{if $MEDSUPPINSTANCE->quantity > 1}s{/if}, {if $MEDSUPPINSTANCE->frequency}{$app_list_strings.frequency_list[$frequency_index]}{/if}{if $MEDSUPPINSTANCE->notes_doctor}, {$MEDSUPPINSTANCE->notes_doctor}{/if}.
                 {/if}
                 </li>
             {/foreach}

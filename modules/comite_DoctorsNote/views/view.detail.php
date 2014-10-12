@@ -1,5 +1,6 @@
 <?php
 require_once('include/MVC/View/views/view.detail.php');
+$GLOBALS['sugar_config']['developerMode']=true;
 
 class comite_DoctorsNoteViewDetail extends ViewDetail {
 
@@ -97,7 +98,7 @@ class comite_DoctorsNoteViewDetail extends ViewDetail {
               $i++;
           }
           
-          if($i > 1){
+          if($i > 2){
               $this->dv->defs['templateMeta']['form']['buttons'][] = array(
                       'customCode' => '<input type="button" name="comaprisonReport" value="Bone Studies Comparison Report" id="comaprisonReport"  onClick="window.open(\'index.php?module=comite_Letters&action=bsc&record='.$boneStudyId[1].'&previous='.$boneStudyId[2].'\', \'comaprisonReport\');">',
               );
