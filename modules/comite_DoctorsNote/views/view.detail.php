@@ -1,6 +1,5 @@
 <?php
 require_once('include/MVC/View/views/view.detail.php');
-//$GLOBALS['sugar_config']['developerMode']=true;
 
 class comite_DoctorsNoteViewDetail extends ViewDetail {
 
@@ -101,10 +100,14 @@ class comite_DoctorsNoteViewDetail extends ViewDetail {
           }
           
           if($i > 2){
-                  echo '<script type="text/javascript">var bone_studies_button = \'<input type="button" name="comaprisonReport" value="Bone Studies Comparison Report" id="comaprisonReport"  onClick="window.open(\'index.php?module=comite_Letters&action=bsc&record='.$boneStudyId[1].'&previous='.$boneStudyId[2]}.'\', \'comaprisonReport\');">\'; 
-                  $('#btn_view_change_log').prepend(bone_studies_button);
-                  </script>';           
-              );
+                echo <<<EOQ
+		<script type="text/javascript">
+		$(document).ready(function(){
+		 	var bone_studies_button = '<input type="button" name="comaprisonReport" value="Bone Studies Comparison Report" id="comaprisonReport"  onClick="window.open(\'index.php?module=comite_Letters&action=bsc&record={$boneStudyId[1]}&previous={$boneStudyId[2]}\', \'comaprisonReport\');">';
+                  	$('#btn_view_change_log').parent().prepend(bone_studies_button);
+		});
+                </script>
+EOQ;
           }
       }
 
