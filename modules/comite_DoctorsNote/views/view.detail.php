@@ -1,6 +1,6 @@
 <?php
 require_once('include/MVC/View/views/view.detail.php');
-$GLOBALS['sugar_config']['developerMode']=true;
+//$GLOBALS['sugar_config']['developerMode']=true;
 
 class comite_DoctorsNoteViewDetail extends ViewDetail {
 
@@ -86,8 +86,8 @@ class comite_DoctorsNoteViewDetail extends ViewDetail {
     */
   public function display()
   {
-      
-      //Bone Study PDF button
+   
+       //Bone Study PDF button
       if(!empty($this->bean->comite_doctorsnote_contactscontacts_ida)){
          global $db;
          $sqlBoneStudies = "(SELECT comite_bonestudies.id, comite_bonestudies.name  FROM comite_bonestudies INNER JOIN comite_bonestudies_comite_drnotesnutritionexercise_c ON comite_bonestudies.id=comite_bonestudies_comite_drnotesnutritionexercise_c.comite_bon36d7studies_idb AND comite_bonestudies_comite_drnotesnutritionexercise_c.deleted=0  LEFT JOIN   comite_drnotesnutritionexercise ON comite_drnotesnutritionexercise.id = comite_bonestudies_comite_drnotesnutritionexercise_c.comite_bon0dc8xercise_ida AND comite_drnotesnutritionexercise.deleted = 0 INNER JOIN  comite_drnotesnutritionexercise_contacts_c ON comite_drnotesnutritionexercise_contacts_c.comite_drn0c29xercise_ida = comite_drnotesnutritionexercise.id AND  comite_drnotesnutritionexercise_contacts_c. 	comite_drnotesnutritionexercise_contactscontacts_idb = '".$this->bean->comite_doctorsnote_contactscontacts_ida."'  AND comite_drnotesnutritionexercise_contacts_c.deleted = 0 WHERE comite_bonestudies.deleted=0) ORDER BY comite_bonestudies.test_date desc LIMIT 0,2";
@@ -99,13 +99,16 @@ class comite_DoctorsNoteViewDetail extends ViewDetail {
           }
           
           if($i > 2){
-              $this->dv->defs['templateMeta']['form']['buttons'][] = array(
-                      'customCode' => '<input type="button" name="comaprisonReport" value="Bone Studies Comparison Report" id="comaprisonReport"  onClick="window.open(\'index.php?module=comite_Letters&action=bsc&record='.$boneStudyId[1].'&previous='.$boneStudyId[2].'\', \'comaprisonReport\');">',
+                  echo <<EOQ
+                  <script type="text/javascript">
+                   var bone_studies_button = '<input type="button" name="comaprisonReport" value="Bone Studies Comparison Report" id="comaprisonReport"  onClick="window.open(\'index.php?module=comite_Letters&action=bsc&record={$boneStudyId[1]}&previous={$boneStudyId[2]}\', \'comaprisonReport\');">';
+                   $('#btn_view_change_log').prepend(bone_studies_button);
+                  </script>
+EOQ;                      
               );
           }
       }
-      
-      
+   
     parent::display();
 
     echo <<<EOF
