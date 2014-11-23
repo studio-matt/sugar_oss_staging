@@ -99,7 +99,7 @@ class comite_DoctorsNoteViewDetail extends ViewDetail {
           }
           
           if($i > 2){
-                  echo <<EOQ
+                  echo <<<EOQ
                   <script type="text/javascript">
                    var bone_studies_button = '<input type="button" name="comaprisonReport" value="Bone Studies Comparison Report" id="comaprisonReport"  onClick="window.open(\'index.php?module=comite_Letters&action=bsc&record={$boneStudyId[1]}&previous={$boneStudyId[2]}\', \'comaprisonReport\');">';
                    $('#btn_view_change_log').prepend(bone_studies_button);
