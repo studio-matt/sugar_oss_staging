@@ -89,7 +89,7 @@ class comite_LettersViewBsc extends PdfView {
                 'bc_subtotal_lean_muscle' => number_format(($Bonestudy->bc_subtotal_lean_muscle - $PreviousBonestudy->bc_subtotal_lean_muscle)/$gramsperlb, 3),
 
                 'bc_left_arm_fat_mass' => number_format(($Bonestudy->bc_left_arm_fat_mass - $PreviousBonestudy->bc_left_arm_fat_mass)/$gramsperlb, 3),
-                'bc_right_arm_fat_mass' => number_format(($Bonestudy->bc_trunk_lean_muscle - $PreviousBonestudy->bc_right_arm_fat_mass)/$gramsperlb, 3),
+                'bc_right_arm_fat_mass' => number_format(($Bonestudy->bc_right_arm_fat_mass - $PreviousBonestudy->bc_right_arm_fat_mass)/$gramsperlb, 3),
                 'bc_trunk_fat_mass' => number_format(($Bonestudy->bc_trunk_fat_mass - $PreviousBonestudy->bc_trunk_fat_mass)/$gramsperlb, 3),
                 'bc_left_leg_fat_mass' => number_format(($Bonestudy->bc_left_leg_fat_mass - $PreviousBonestudy->bc_left_leg_fat_mass)/$gramsperlb, 3),
                 'bc_right_leg_fat_mass' => number_format(($Bonestudy->bc_right_leg_fat_mass - $PreviousBonestudy->bc_right_leg_fat_mass)/$gramsperlb, 3),
